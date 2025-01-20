@@ -120,7 +120,7 @@ export default function Inventory() {
           <SearchIcon />
         </IconButton>
       </Box>
-      <List dense={true} sx={{ minHeight: '100px' }}>
+      <List dense={true} sx={{ minHeight: '100px', maxWidth: '600px' }}>
         {Object.entries(searchResults).map(([id, name]) => (
           <ListItem key={id} secondaryAction={
             <React.Fragment>
@@ -129,17 +129,20 @@ export default function Inventory() {
                 label="Count"
                 value={sendItemCounts[Number(id)]}
                 onChange={(e) => setSendItemCounts({ ...sendItemCounts, [Number(id)]: Number(e.target.value) })}
+                margin="dense"
+                sx={{ maxWidth: '60px', maxHeight: '100%' }}
               />
               <Button
                 variant="contained"
                 color="secondary"
                 onClick={() => handleSendItem(Number(id), sendItemCounts[Number(id)])}
+                sx={{ marginLeft: '10px', textTransform: 'none' }}
                 disabled={loading}>
                 Send
               </Button>
             </React.Fragment>
           }>
-            <ListItemText primary={name} secondary={id} />
+            <ListItemText primary={name} secondary={id} slotProps={{ primary: { variant: 'body1' } }} />
           </ListItem>
         ))}
       </List>
@@ -155,7 +158,7 @@ export default function Inventory() {
                   <Typography variant="body1">{GameData.get(Number(id), language)}</Typography>
                   <Typography variant="body2" color="text.secondary">{id}</Typography>
                 </Box>
-                <Box sx={{ flex: 0.25, textAlign: 'right', borderLeft: '1px solid #e0e0e0', paddingLeft: '5px' }}>
+                <Box sx={{ flex: 0.25, textAlign: 'right', borderLeft: '1px solid #e0e0e0', paddingLeft: '5px', height: '100%' }}>
                   <Typography variant="body1">x{count}</Typography>
                 </Box>
               </CardContent>
