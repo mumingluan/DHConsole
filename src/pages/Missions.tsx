@@ -4,6 +4,7 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
 import { useLanguageContext } from '../store/languageContext';
+import { usePlayerContext } from '../store/playerContext';
 
 const missionCategories = [
   { label: 'Main Story', prefix: '1', icon: 'Book' },
@@ -21,6 +22,7 @@ const Missions = () => {
   const [searchResults, setSearchResults] = useState<Record<string, number>>({});
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const { language } = useLanguageContext();
+  const { playerUid } = usePlayerContext();
 
   useEffect(() => {
     GameData.loadMainMission(language);
@@ -30,6 +32,7 @@ const Missions = () => {
   const fetchMissions = async () => {
     const missions = await CommandService.getCurrentMissions();
     setCurrentMissions(missions);
+    console.log(missions);
     const mainMissionIds = Object.keys(missions).map(Number);
     setCompletedMainMissions((prev) => prev.filter(id => !mainMissionIds.includes(id)));
     const subMissionIds = Object.values(missions).flat();
@@ -37,25 +40,25 @@ const Missions = () => {
   };
 
   useEffect(() => {
-    fetchMissions(); // Load missions on component mount
-  }, []);
+    fetchMissions();
+  }, [playerUid]);
 
   const handleCompleteSubMission = (subMissionId: number) => {
     CommandService.finishSubMission(subMissionId);
     setCompletedSubMissions((prev) => [...prev, subMissionId]);
-    fetchMissions(); // Fetch missions after completing a sub-mission
+    fetchMissions();
   };
 
   const handleCompleteMainMission = (mainMissionId: number) => {
     CommandService.finishMainMission(mainMissionId);
     setCompletedMainMissions((prev) => [...prev, mainMissionId]);
-    fetchMissions(); // Fetch missions after completing a main mission
+    fetchMissions();
   };
   
 
   const handleAcceptMission = (missionId: number) => {
     CommandService.acceptMainMission(missionId);
-    fetchMissions(); // Fetch missions after accepting a mission
+    fetchMissions();
   };
 
   const handleSearch = () => {
@@ -78,15 +81,23 @@ const Missions = () => {
     selectedCategories.length === 0 || selectedCategories.some((category) => category.includes(id[0]))
   );
 
+  const missionCounts = missionCategories.map(category => ({
+    label: category.label,
+    count: Object.keys(currentMissions).filter(([id]) => category.prefix.includes(id[0])).length,
+  }));
+
   return (
     <Box display="flex" height="100%">
+      <Button variant="contained" color="primary" onClick={fetchMissions}>
+        Fetch Missions
+      </Button>
       <Box flex={1} padding={2} borderRight="1px solid #ccc">
         <Typography variant="h6">Current Missions</Typography>
         <Box display="flex" flexWrap="wrap" marginBottom={2}>
           {missionCategories.map((category) => (
             <Chip
               key={category.label}
-              label={category.label}
+              label={`${category.label} (${missionCounts.find(count => count.label === category.label)?.count || 0})`}
               onClick={() => toggleCategory(category.prefix)}
               color={selectedCategories.includes(category.prefix) ? 'primary' : 'default'}
               style={{ margin: 4 }}
