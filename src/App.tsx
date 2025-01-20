@@ -1,11 +1,10 @@
 import PeopleIcon from '@mui/icons-material/People';
-import StarsIcon from '@mui/icons-material/Stars';
-import DiamondIcon from '@mui/icons-material/Diamond';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
+import { DialogsProvider } from '@toolpad/core/useDialogs';
 import { Outlet } from 'react-router';
 import type { Navigation } from '@toolpad/core';
 import { lightTheme, darkTheme } from './theme';
@@ -48,8 +47,10 @@ const BRANDING = {
 
 export default function App() {
   return (
-    <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING} theme={{light: lightTheme, dark: darkTheme}}>
-      <Outlet />
-    </ReactRouterAppProvider>
+    <DialogsProvider>
+      <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING} theme={{ light: lightTheme, dark: darkTheme }}>
+        <Outlet />
+      </ReactRouterAppProvider>
+    </DialogsProvider>
   );
 }

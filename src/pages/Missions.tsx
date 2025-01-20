@@ -150,7 +150,12 @@ const Missions = () => {
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
               <ListItem secondaryAction={
-                <Button variant="contained" color="secondary" onClick={() => handleSkipMainMission(Number(mainMissionId))} disabled={waiting}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => handleSkipMainMission(Number(mainMissionId))}
+                  disabled={waiting}
+                  sx={{ textTransform: 'none' }}>
                   Skip All
                 </Button>
               } >
@@ -162,7 +167,12 @@ const Missions = () => {
               </ListItem>
               {subMissions.filter(subMissionId => isNamedMission(subMissionId)).map((subMissionId) => (
                 <ListItem key={subMissionId} secondaryAction={
-                  <Button variant="contained" color="secondary" onClick={() => handleSkipSubMission(subMissionId)} disabled={waiting}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleSkipSubMission(subMissionId)}
+                    disabled={waiting}
+                    sx={{ textTransform: 'none' }}>
                     Skip
                   </Button>
                 } >
@@ -184,7 +194,12 @@ const Missions = () => {
         <List>
           {completedMainMissions.slice(-5).map((id) => (
             <ListItem key={id} secondaryAction={
-              <Button variant="contained" color="secondary" onClick={() => handleAcceptMission(Number(id))} disabled={waiting}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleAcceptMission(Number(id))}
+                disabled={waiting}
+                sx={{ textTransform: 'none' }}>
                 Reaccept
               </Button>
             } >
@@ -216,7 +231,12 @@ const Missions = () => {
         <List>
           {Object.entries(searchResults).map(([id, name]) => (
             <ListItem key={id} secondaryAction={
-              <Button variant="contained" color="secondary" onClick={() => handleAcceptMission(Number(id))} disabled={waiting}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleAcceptMission(Number(id))}
+                disabled={waiting}
+                sx={{ textTransform: 'none' }}>
                 Accept
               </Button>
             } >

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Card, CardContent, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import { TextField, Button, Typography, Card, CardContent, IconButton, List, ListItem, ListItemText, Box, Divider, Dialog, DialogTitle, DialogActions, DialogContent } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
@@ -8,6 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLanguageContext } from '../store/languageContext';
 import { usePlayerContext } from '../store/playerContext';
+import { useDialogs, DialogProps } from '@toolpad/core/useDialogs';
 
 export default function Inventory() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,6 +18,7 @@ export default function Inventory() {
   const [loading, setLoading] = useState(false);
   const { language } = useLanguageContext();
   const { playerUid, isConnected } = usePlayerContext();
+  const dialogs = useDialogs();
   var allItems: Record<number, string> = {};
 
   useEffect(() => {
@@ -60,28 +62,55 @@ export default function Inventory() {
     await CommandService.giveItem(itemId, count);
   };
 
-  const handleRemoveUnusedEquipment = async () => {
-    await CommandService.removeUnusedEquipment();
+  function confirmRemoval({ payload, open, onClose }: DialogProps<string, boolean>) {
+    return <Dialog open={open} onClose={() => onClose(false)}>
+      <DialogTitle>Are you sure you want to remove all unused {payload}?</DialogTitle>
+      <DialogContent>This will remove all {payload} that no characters currently equip.</DialogContent>
+      <DialogActions>
+        <Button onClick={() => onClose(false)}>Cancel</Button>
+        <Button onClick={() => onClose(true)}>Confirm</Button>
+      </DialogActions>
+    </Dialog>
+  }
+
+  const handleRemoveEquipment = async () => {
+    const confirmed = await dialogs.open(confirmRemoval, 'light cones');
+    if (confirmed) {
+      await CommandService.removeUnusedEquipment();
+    }
   };
 
-  const handleRemoveUnusedRelics = async () => {
-    await CommandService.removeUnusedRelics();
+  const handleRemoveRelics = async () => {
+    const confirmed = await dialogs.open(confirmRemoval, 'relics');
+    if (confirmed) {
+      await CommandService.removeUnusedRelics();
+    }
   };
 
   return (
-    <div>
-
-      <div style={{ display: 'flex', justifyContent: 'end', gap: '20px', alignItems: 'center' }}>
-        <Button variant="contained" color="secondary" onClick={handleRemoveUnusedEquipment} startIcon={<DeleteIcon />}>
-          Remove Unused Equipment
-        </Button>
-        <Button variant="contained" color="secondary" onClick={handleRemoveUnusedRelics} startIcon={<DeleteIcon />}>
+    <Box>
+      <Box style={{ display: 'flex', justifyContent: 'end', gap: '20px', alignItems: 'center' }}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleRemoveRelics}
+          startIcon={<DeleteIcon />}
+          sx={{ textTransform: 'none' }}>
           Remove Unused Relics
         </Button>
-      </div>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleRemoveEquipment}
+          startIcon={<DeleteIcon />}
+          sx={{ textTransform: 'none' }}>
+          Remove Unused Equipment
+        </Button>
+      </Box>
       <Typography variant="h6">Send Items</Typography>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+      <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', maxWidth: '60%' }}>
         <TextField
+          fullWidth
           label="Search Items"
           variant="outlined"
           value={searchTerm}
@@ -90,8 +119,8 @@ export default function Inventory() {
         <IconButton onClick={handleSearch}>
           <SearchIcon />
         </IconButton>
-      </div>
-      <List dense={true}>
+      </Box>
+      <List dense={true} sx={{ minHeight: '100px' }}>
         {Object.entries(searchResults).map(([id, name]) => (
           <ListItem key={id} secondaryAction={
             <React.Fragment>
@@ -115,6 +144,8 @@ export default function Inventory() {
         ))}
       </List>
 
+      <Divider style={{ margin: '16px 0' }} />
+      <Typography variant="h6">Inventory</Typography>
       <Grid container spacing={2}>
         {Object.entries(items).map(([id, count]) => (
           <Grid key={id} size={3}>
@@ -130,6 +161,6 @@ export default function Inventory() {
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 }
