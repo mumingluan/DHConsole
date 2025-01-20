@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton, ListItemButton, ListItemIcon, ListItemSecondaryAction } from '@mui/material';
+import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton, ListItemButton, ListItemIcon, ListItemSecondaryAction, Switch } from '@mui/material';
 import { Search as SearchIcon, Refresh as RefreshIcon, Assignment as AssignmentIcon } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
@@ -23,15 +23,20 @@ const Missions = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [waiting, setWaiting] = useState(false);
+  const [showUnnamedMissions, setShowUnnamedMissions] = useState(false);
   const { language } = useLanguageContext();
   const { playerUid, isConnected } = usePlayerContext();
 
   useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      GameData.loadMainMission(language),
-      GameData.loadSubMission(language),
-    ]).then(() => setLoading(false));
+    const loadMissions = async () => {
+      setLoading(true);
+      await Promise.all([
+        GameData.loadMainMission(language),
+        GameData.loadSubMission(language),
+      ]);
+      setLoading(false);
+    };
+    loadMissions();
   }, [language, isConnected]);
 
   const fetchMissions = async () => {
@@ -91,8 +96,13 @@ const Missions = () => {
     );
   };
 
-  const filteredMissions = Object.entries(currentMissions).filter(([id]) =>
-    selectedCategories.length === 0 || selectedCategories.some((category) => category.includes(id[0]))
+  const isNamedMission = (id: number) => {
+    return GameData.get(id, language) !== '[371857150]';
+  };
+
+  const filteredMissions = Object.entries(currentMissions).filter(([mainId, subIds]) =>
+    (selectedCategories.length === 0 || selectedCategories.some((category) => category.includes(mainId[0])))
+    && (showUnnamedMissions || isNamedMission(Number(mainId)) || subIds.some(subId => isNamedMission(subId)))
   );
 
   const missionCounts = missionCategories.map(category => ({
@@ -109,7 +119,7 @@ const Missions = () => {
             <RefreshIcon />
           </IconButton>
         </Box>
-        <Box display="flex" flexWrap="wrap" marginBottom={2}>
+        <Box display="flex" flexWrap="wrap">
           {missionCategories.map((category) => (
             <Chip
               key={category.label}
@@ -120,6 +130,16 @@ const Missions = () => {
             />
           ))}
         </Box>
+        <Box display="flex" alignItems="center" marginBottom={2}>
+          <Typography variant="body2">
+            Show unnamed missions
+          </Typography>
+          <Switch
+            checked={showUnnamedMissions}
+            onChange={(e) => setShowUnnamedMissions(e.target.checked)}
+            inputProps={{ 'aria-label': 'primary checkbox' }}
+          />
+        </Box>
         <List dense={true}>
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
@@ -128,7 +148,7 @@ const Missions = () => {
                   Skip All
                 </Button>
               } >
-                <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} />
+                <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} secondary={`${mainMissionId} (main)`} />
               </ListItem>
               {subMissions.map((subMissionId) => (
                 <ListItem key={subMissionId} secondaryAction={
@@ -136,7 +156,7 @@ const Missions = () => {
                     Skip
                   </Button>
                 } >
-                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} sx={{ marginLeft: '32px' }} />
+                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`${subMissionId} (sub)`} sx={{ marginLeft: '24px' }} />
                 </ListItem>
               ))}
             </React.Fragment>
@@ -145,8 +165,7 @@ const Missions = () => {
       </Box>
 
       <Box flex={1} paddingLeft={2}>
-        <Typography variant="h6">Accept New Missions</Typography>
-        <Typography variant="subtitle1">Recently Skipped Main Missions</Typography>
+        <Typography variant="h6">Recent Skip History</Typography>
         <List>
           {completedMainMissions.slice(-5).map((id) => (
             <ListItem key={id} secondaryAction={
@@ -158,7 +177,6 @@ const Missions = () => {
             </ListItem>
           ))}
         </List>
-        <Typography variant="subtitle1">Recently Skipped Sub Missions</Typography>
         <List>
           {completedSubMissions.slice(-5).map((id) => (
             <ListItem key={id}>
@@ -167,7 +185,7 @@ const Missions = () => {
           ))}
         </List>
         <Divider style={{ margin: '16px 0' }} />
-        <Typography variant="subtitle1">Search Missions</Typography>
+        <Typography variant="h6">Accept New Missions</Typography>
         <Box display="flex" alignItems="center" marginBottom={2}>
           <TextField
             fullWidth
@@ -187,7 +205,7 @@ const Missions = () => {
                 Accept
               </Button>
             } >
-              <ListItemText primary={name} />
+              <ListItemText primary={name} secondary={`${id} (main)`} />
             </ListItem>
           ))}
         </List>
