@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton, ListItemButton, ListItemIcon } from '@mui/material';
+import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton, ListItemButton, ListItemIcon, ListItemSecondaryAction } from '@mui/material';
 import { Search as SearchIcon, Refresh as RefreshIcon, Assignment as AssignmentIcon } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
@@ -21,12 +21,15 @@ const Missions = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Record<number, string>>({});
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const { language } = useLanguageContext();
   const { playerUid, isConnected } = usePlayerContext();
 
   useEffect(() => {
+    setLoading(true);
     GameData.loadMainMission(language);
     GameData.loadSubMission(language);
+    setLoading(false);
   }, [language, isConnected]);
 
   const fetchMissions = async () => {
@@ -112,21 +115,23 @@ const Missions = () => {
         <List dense={true}>
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
-              <ListItem>
+              <ListItem secondaryAction={
+                <Button color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
+                  Complete All
+                </Button>
+              } >
                 <ListItemIcon>
                   <AssignmentIcon />
                 </ListItemIcon>
                 <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} secondary={`(${mainMissionId})`} />
-                <ListItemButton onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
-                  Complete All
-                </ListItemButton>
               </ListItem>
               {subMissions.map((subMissionId) => (
-                <ListItem key={subMissionId} style={{ marginLeft: '16px' }}>
-                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`(${subMissionId})`} />
-                  <ListItemButton onClick={() => handleCompleteSubMission(subMissionId)}>
+                <ListItem key={subMissionId} style={{ marginLeft: '48px' }} secondaryAction={
+                  <Button color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
                     Complete
-                  </ListItemButton>
+                  </Button>
+                } >
+                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`(${subMissionId})`} />
                 </ListItem>
               ))}
             </React.Fragment>
@@ -139,11 +144,12 @@ const Missions = () => {
         <Typography variant="subtitle1">Recently Completed</Typography>
         <List>
           {completedMainMissions.map((id) => (
-            <ListItem key={id}>
-              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`(${id} main)`} />
-              <ListItemButton onClick={() => handleAcceptMission(Number(id))}>
+            <ListItem key={id} secondaryAction={
+              <Button color="secondary" onClick={() => handleAcceptMission(Number(id))}>
                 Reaccept
-              </ListItemButton>
+              </Button>
+            } >
+              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`(${id} main)`} />
             </ListItem>
           ))}
           {completedSubMissions.map((id) => (
