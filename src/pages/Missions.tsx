@@ -96,13 +96,13 @@ const Missions = () => {
     );
   };
 
-  const isNamedMission = (id: number, subIds: number[]) => {
-    return GameData.get(id, language) !== '[371857150]' && subIds.some(subId => GameData.get(subId, language) !== '[371857150]');
+  const isNamedMission = (id: number) => {
+    return showUnnamedMissions || GameData.get(id, language) !== '[371857150]';
   };
 
   const filteredMissions = Object.entries(currentMissions).filter(([mainId, subIds]) =>
     (selectedCategories.length === 0 || selectedCategories.some((category) => category.includes(mainId[0])))
-    && (showUnnamedMissions || isNamedMission(Number(mainId), subIds))
+    && isNamedMission(Number(mainId))
   );
 
   const missionCounts = missionCategories.map(category => ({
@@ -154,13 +154,18 @@ const Missions = () => {
                   slotProps={{ primary: { variant: 'body1' } }}
                 />
               </ListItem>
-              {subMissions.map((subMissionId) => (
+              {subMissions.filter(subMissionId => isNamedMission(subMissionId)).map((subMissionId) => (
                 <ListItem key={subMissionId} secondaryAction={
                   <Button variant="contained" color="secondary" onClick={() => handleSkipSubMission(subMissionId)} disabled={waiting}>
                     Skip
                   </Button>
                 } >
-                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`${subMissionId} (sub)`} sx={{ marginLeft: '24px' }} />
+                  <ListItemText
+                    primary={`${GameData.get(Number(subMissionId), language)}`}
+                    secondary={`${subMissionId} (sub)`}
+                    slotProps={{ primary: { variant: 'body1' } }}
+                    sx={{ marginLeft: '24px' }}
+                  />
                 </ListItem>
               ))}
             </React.Fragment>
