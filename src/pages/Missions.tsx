@@ -96,13 +96,13 @@ const Missions = () => {
     );
   };
 
-  const isNamedMission = (id: number) => {
-    return GameData.get(id, language) !== '[371857150]';
+  const isNamedMission = (id: number, subIds: number[]) => {
+    return GameData.get(id, language) !== '[371857150]' && subIds.some(subId => GameData.get(subId, language) !== '[371857150]');
   };
 
   const filteredMissions = Object.entries(currentMissions).filter(([mainId, subIds]) =>
     (selectedCategories.length === 0 || selectedCategories.some((category) => category.includes(mainId[0])))
-    && (showUnnamedMissions || isNamedMission(Number(mainId)) || subIds.some(subId => isNamedMission(subId)))
+    && (showUnnamedMissions || isNamedMission(Number(mainId), subIds))
   );
 
   const missionCounts = missionCategories.map(category => ({
@@ -148,7 +148,11 @@ const Missions = () => {
                   Skip All
                 </Button>
               } >
-                <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} secondary={`${mainMissionId} (main)`} />
+                <ListItemText
+                  primary={`${GameData.get(Number(mainMissionId), language)}`}
+                  secondary={`${mainMissionId} (main)`}
+                  slotProps={{ primary: { variant: 'body1' } }}
+                />
               </ListItem>
               {subMissions.map((subMissionId) => (
                 <ListItem key={subMissionId} secondaryAction={
