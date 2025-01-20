@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton } from '@mui/material';
-import { Search as SearchIcon, Refresh as RefreshIcon } from '@mui/icons-material';
+import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton, ListItemButton, ListItemIcon } from '@mui/material';
+import { Search as SearchIcon, Refresh as RefreshIcon, Assignment as AssignmentIcon } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
 import { useLanguageContext } from '../store/languageContext';
@@ -109,21 +109,24 @@ const Missions = () => {
             />
           ))}
         </Box>
-        <List>
+        <List dense={true}>
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
               <ListItem>
-                <ListItemText primary={`${GameData.get(Number(mainMissionId))} (${mainMissionId})`} />
-                <Button variant="contained" color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} secondary={`(${mainMissionId})`} />
+                <ListItemButton onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
                   Complete All
-                </Button>
+                </ListItemButton>
               </ListItem>
               {subMissions.map((subMissionId) => (
                 <ListItem key={subMissionId} style={{ marginLeft: '16px' }}>
-                  <ListItemText primary={`${GameData.get(Number(subMissionId))} (${subMissionId})`} />
-                  <Button variant="contained" color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
+                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`(${subMissionId})`} />
+                  <ListItemButton onClick={() => handleCompleteSubMission(subMissionId)}>
                     Complete
-                  </Button>
+                  </ListItemButton>
                 </ListItem>
               ))}
             </React.Fragment>
@@ -137,17 +140,15 @@ const Missions = () => {
         <List>
           {completedMainMissions.map((id) => (
             <ListItem key={id}>
-              <ListItemText primary={`${GameData.get(Number(id))} (${id} main)`} />
-              <Box display="flex" justifyContent="flex-end">
-                <Button variant="contained" color="primary" onClick={() => handleAcceptMission(Number(id))}>
-                  Reaccept
-                </Button>
-              </Box>
+              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`(${id} main)`} />
+              <ListItemButton onClick={() => handleAcceptMission(Number(id))}>
+                Reaccept
+              </ListItemButton>
             </ListItem>
           ))}
           {completedSubMissions.map((id) => (
             <ListItem key={id}>
-              <ListItemText primary={`${GameData.get(Number(id))} (${id} sub)`} />
+              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`(${id} sub)`} />
             </ListItem>
           ))}
         </List>
@@ -169,11 +170,9 @@ const Missions = () => {
           {Object.entries(searchResults).map(([id, name]) => (
             <ListItem key={id}>
               <ListItemText primary={name} />
-              <Box display="flex" justifyContent="flex-end">
-                <Button variant="contained" color="primary" onClick={() => handleAcceptMission(Number(id))}>
-                  Accept
-                </Button>
-              </Box>
+              <ListItemButton onClick={() => handleAcceptMission(Number(id))}>
+                Accept
+              </ListItemButton>
             </ListItem>
           ))}
         </List>

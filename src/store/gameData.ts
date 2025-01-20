@@ -8,15 +8,10 @@ enum GameEntity {
 }
 
 class GameData {
-  static defaultLanguage: string = "en";
   static entities: Record<string, Record<number, string>> = {}; // Map of Language to ID to name
   static entityTypes: Record<number, GameEntity> = {}; // Map of ID to entity type
   // loaded pairs of language and GameEntities as tuples
   static loadedEntities: Set<[GameEntity, string]> = new Set();
-
-  public static setDefaultLanguage(language: string): void {
-    this.defaultLanguage = language;
-  }
 
   public static async loadAvatar(language: string): Promise<void> {
     if (this.loadedEntities.has([GameEntity.Avatar, language])) {
@@ -58,7 +53,7 @@ class GameData {
     console.log('Loaded', Object.keys(data).length, 'entities for', entity, 'in', language);
   }
 
-  public static get(key: number, language: string = this.defaultLanguage): string {
+  public static get(key: number, language: string): string {
     if (!this.entities[language]) {
       return "ERROR_NOT_LOADED_BY_CONSOLE";
     }
