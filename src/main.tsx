@@ -10,6 +10,7 @@ import Missions from './pages/Missions';
 import Relics from './pages/Relics';
 import Layout from './layouts/Console';
 import App from './App';
+import Command from './pages/Command';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
           {
             path: 'relics',
             Component: Relics,
+          },
+          {
+            path: 'command',
+            Component: Command,
           },
         ],
       },

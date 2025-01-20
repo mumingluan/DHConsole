@@ -1,16 +1,14 @@
-import * as React from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import StarsIcon from '@mui/icons-material/Stars';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import TerminalIcon from '@mui/icons-material/Terminal';
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { Outlet } from 'react-router';
 import type { Navigation } from '@toolpad/core';
-import Typography from '@mui/material/Typography';
 import { lightTheme, darkTheme } from './theme';
-import Link from '@mui/material/Link';
 
 const NAVIGATION: Navigation = [
   {
@@ -46,30 +44,16 @@ const NAVIGATION: Navigation = [
     title: 'Account',
     icon: <AccountCircleIcon />,
   },
+  {
+    segment: 'command',
+    title: 'Command',
+    icon: <TerminalIcon />,
+  },
 ];
 
 const BRANDING = {
   title: 'Danheng Console',
 };
-
-
-function Copyright() {
-  return (
-    <Typography
-      variant="body2"
-      align="center"
-      sx={{
-        color: 'text.secondary',
-      }}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
 
 export default function App() {
   return (

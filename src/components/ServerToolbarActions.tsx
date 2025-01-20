@@ -76,6 +76,7 @@ const ServerToolbarActions = () => {
         onChange={(e) => updatePlayerUid(Number(e.target.value))}
         disabled={!state.isConnected}
         displayEmpty
+        sx={{ height: '45px', padding: '0 14px', boxSizing: 'border-box' }}
       >
         <MenuItem value="" disabled>
           {state.isConnected ? 'Select a player' : '(disconnected)'}

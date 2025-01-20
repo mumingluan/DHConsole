@@ -2,57 +2,60 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
-import GameData, { GameEntity } from '../store/gameData';
+import GameData from '../store/gameData';
+import { useLanguageContext } from '../store/languageContext';
 
 const missionCategories = [
   { label: 'Main Story', prefix: '1', icon: 'Book' },
-  { label: 'Side Story', prefix: '2', icon: 'LocalLibrary' },
-  { label: 'Companion Story', prefix: '3', icon: 'People' },
-  { label: 'Daily Quest', prefix: '4', icon: 'Event' },
-  { label: 'Other Missions', prefix: '5', icon: 'Assignment' },
+  { label: 'Side Story', prefix: '2|5|6|7', icon: 'LocalLibrary' },
+  { label: 'World Quest', prefix: '4', icon: 'Map' },
+  { label: 'Daily Quest', prefix: '3', icon: 'Event' },
   { label: 'Event Quests', prefix: '8', icon: 'Star' },
 ];
 
 const Missions = () => {
   const [currentMissions, setCurrentMissions] = useState<Record<number, number[]>>({});
-  const [completedMainMissions, setCompletedMainMissions] = useState<string[]>([]);
-  const [completedSubMissions, setCompletedSubMissions] = useState<string[]>([]);
+  const [completedMainMissions, setCompletedMainMissions] = useState<number[]>([]);
+  const [completedSubMissions, setCompletedSubMissions] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Record<string, number>>({});
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const { language } = useLanguageContext();
 
   useEffect(() => {
-    // Fetch current missions from CommandService
-    const fetchMissions = async () => {
-      const missions = await CommandService.getCurrentMissions();
-      setCurrentMissions(missions);
-    };
-    fetchMissions();
+    GameData.loadMainMission(language);
+    GameData.loadSubMission(language);
+  }, [language]);
+
+  const fetchMissions = async () => {
+    const missions = await CommandService.getCurrentMissions();
+    setCurrentMissions(missions);
+    const mainMissionIds = Object.keys(missions).map(Number);
+    setCompletedMainMissions((prev) => prev.filter(id => !mainMissionIds.includes(id)));
+    const subMissionIds = Object.values(missions).flat();
+    setCompletedSubMissions((prev) => prev.filter(id => !subMissionIds.includes(id)));
+  };
+
+  useEffect(() => {
+    fetchMissions(); // Load missions on component mount
   }, []);
 
   const handleCompleteSubMission = (subMissionId: number) => {
     CommandService.finishSubMission(subMissionId);
-    setCompletedSubMissions((prev) => [...prev, subMissionId.toString()]);
-    setCurrentMissions((prev) => {
-      const updated = { ...prev };
-      delete updated[subMissionId];
-      return updated;
-    });
+    setCompletedSubMissions((prev) => [...prev, subMissionId]);
+    fetchMissions(); // Fetch missions after completing a sub-mission
   };
 
   const handleCompleteMainMission = (mainMissionId: number) => {
     CommandService.finishMainMission(mainMissionId);
-    setCompletedMainMissions((prev) => [...prev, mainMissionId.toString()]);
-    setCurrentMissions((prev) => {
-      const updated = { ...prev };
-      delete updated[mainMissionId];
-      return updated;
-    });
+    setCompletedMainMissions((prev) => [...prev, mainMissionId]);
+    fetchMissions(); // Fetch missions after completing a main mission
   };
   
 
   const handleAcceptMission = (missionId: number) => {
     CommandService.acceptMainMission(missionId);
+    fetchMissions(); // Fetch missions after accepting a mission
   };
 
   const handleSearch = () => {
@@ -72,18 +75,17 @@ const Missions = () => {
   };
 
   const filteredMissions = Object.entries(currentMissions).filter(([id]) =>
-    selectedCategories.length === 0 || selectedCategories.some((category) => id.startsWith(category))
+    selectedCategories.length === 0 || selectedCategories.some((category) => category.includes(id[0]))
   );
 
   return (
     <Box display="flex" height="100%">
-      {/* Left Panel: Current Missions */}
       <Box flex={1} padding={2} borderRight="1px solid #ccc">
         <Typography variant="h6">Current Missions</Typography>
         <Box display="flex" flexWrap="wrap" marginBottom={2}>
           {missionCategories.map((category) => (
             <Chip
-              key={category.prefix}
+              key={category.label}
               label={category.label}
               onClick={() => toggleCategory(category.prefix)}
               color={selectedCategories.includes(category.prefix) ? 'primary' : 'default'}
@@ -95,7 +97,7 @@ const Missions = () => {
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
               <ListItem>
-                <ListItemText primary={GameData.get(Number(mainMissionId))} />
+                <ListItemText primary={`${GameData.get(Number(mainMissionId))} (${mainMissionId})`} />
                 <Box display="flex" justifyContent="flex-end">
                   <Button variant="contained" color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
                     Complete All
@@ -104,7 +106,7 @@ const Missions = () => {
               </ListItem>
               {subMissions.map((subMissionId) => (
                 <ListItem key={subMissionId} style={{ marginLeft: '16px' }}>
-                  <ListItemText primary={GameData.get(subMissionId)} />
+                  <ListItemText primary={`${GameData.get(Number(subMissionId))} (${subMissionId})`} />
                   <Box display="flex" justifyContent="flex-end">
                     <Button variant="contained" color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
                       Complete
@@ -117,14 +119,13 @@ const Missions = () => {
         </List>
       </Box>
 
-      {/* Right Panel: Accept Missions */}
       <Box flex={1} padding={2}>
-        <Typography variant="h6">Accept Missions</Typography>
+        <Typography variant="h6">Accept New Missions</Typography>
         <Typography variant="subtitle1">Recently Completed</Typography>
         <List>
           {completedMainMissions.map((id) => (
             <ListItem key={id}>
-              <ListItemText primary={GameData.get(Number(id))} />
+              <ListItemText primary={`${GameData.get(Number(id))} (${id} main)`} />
               <Box display="flex" justifyContent="flex-end">
                 <Button variant="contained" color="primary" onClick={() => handleAcceptMission(Number(id))}>
                   Reaccept
@@ -134,7 +135,7 @@ const Missions = () => {
           ))}
           {completedSubMissions.map((id) => (
             <ListItem key={id}>
-              <ListItemText primary={GameData.get(Number(id))} />
+              <ListItemText primary={`${GameData.get(Number(id))} (${id} sub)`} />
             </ListItem>
           ))}
         </List>
