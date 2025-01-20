@@ -18,6 +18,9 @@ const CommandPage: React.FC = () => {
 
     return (
         <Box sx={{ padding: 2 }}>
+            <Typography variant="body2" color="text.secondary">
+                Tip: don't include the "/" prefix.
+            </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, maxWidth: '80%' }}>
                 <TextField
                     label="Command Input"
@@ -38,9 +41,6 @@ const CommandPage: React.FC = () => {
                     Run
                 </Button>
             </Box>
-            <Typography variant="body2">
-                Tip: don't include the "/" prefix.
-            </Typography>
             <Paper elevation={3} sx={{ padding: 2, mt: 2 }}>
                 <Typography variant="h6" gutterBottom>
                     [Command Output]

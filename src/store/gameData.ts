@@ -55,7 +55,7 @@ class GameData {
 
   public static get(key: number, language: string): string {
     if (!this.entities[language]) {
-      return "ERROR_NOT_LOADED_BY_CONSOLE";
+      return "ERROR_NOT_LOADED";
     }
     if (!this.entityTypes[key]) {
       return "ERROR_NOT_FOUND";
