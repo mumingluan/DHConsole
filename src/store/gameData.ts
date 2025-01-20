@@ -55,10 +55,17 @@ class GameData {
       GameData.set(parseInt(key, 10), value, entity, language);
     }
     this.loadedEntities.add([entity, language]);
+    console.log('Loaded', Object.keys(data).length, 'entities for', entity, 'in', language);
   }
 
   public static get(key: number, language: string = this.defaultLanguage): string {
-      return this.entities[language][key];
+    if (!this.entities[language]) {
+      return "ERROR_NOT_LOADED_BY_CONSOLE";
+    }
+    if (!this.entities[language][key]) {
+      return "ERROR_NOT_FOUND";
+    }
+    return this.entities[language][key];
   }
 
   public static getType(key: number): GameEntity {

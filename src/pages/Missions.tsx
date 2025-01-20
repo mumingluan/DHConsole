@@ -22,14 +22,17 @@ const Missions = () => {
   const [searchResults, setSearchResults] = useState<Record<number, string>>({});
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const { language } = useLanguageContext();
-  const { playerUid } = usePlayerContext();
+  const { playerUid, isConnected } = usePlayerContext();
 
   useEffect(() => {
     GameData.loadMainMission(language);
     GameData.loadSubMission(language);
-  }, [language]);
+  }, [language, isConnected]);
 
   const fetchMissions = async () => {
+    if (!isConnected) {
+      return;
+    }
     const missions = await CommandService.getCurrentMissions();
     setCurrentMissions(missions);
     console.log(missions);
@@ -41,7 +44,7 @@ const Missions = () => {
 
   useEffect(() => {
     fetchMissions();
-  }, [playerUid]);
+  }, [playerUid, isConnected]);
 
   const handleCompleteSubMission = (subMissionId: number) => {
     CommandService.finishSubMission(subMissionId);
@@ -111,20 +114,16 @@ const Missions = () => {
             <React.Fragment key={mainMissionId}>
               <ListItem>
                 <ListItemText primary={`${GameData.get(Number(mainMissionId))} (${mainMissionId})`} />
-                <Box display="flex" justifyContent="flex-end">
-                  <Button variant="contained" color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
-                    Complete All
-                  </Button>
-                </Box>
+                <Button variant="contained" color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
+                  Complete All
+                </Button>
               </ListItem>
               {subMissions.map((subMissionId) => (
                 <ListItem key={subMissionId} style={{ marginLeft: '16px' }}>
                   <ListItemText primary={`${GameData.get(Number(subMissionId))} (${subMissionId})`} />
-                  <Box display="flex" justifyContent="flex-end">
-                    <Button variant="contained" color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
-                      Complete
-                    </Button>
-                  </Box>
+                  <Button variant="contained" color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
+                    Complete
+                  </Button>
                 </ListItem>
               ))}
             </React.Fragment>

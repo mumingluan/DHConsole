@@ -131,11 +131,13 @@ class CommandService {
     let currentMainId = null;
     for (const line of lines.slice(1)) {
       if (line.includes('Main task')) {
-        const mainTaskMatch = line.match(/Main task (\d+):/);
+        const mainTaskMatch = line.match(/Main task (\d+).*/);
         if (mainTaskMatch && mainTaskMatch[1]) {
           currentMainId = parseInt(mainTaskMatch[1], 10);
           data[currentMainId] = [];
         }
+      } else if (line.includes('Possibly stuck tasks')) {
+        break;
       } else if (currentMainId) {
         const subIds = line.trim().split('、').map(Number);
         data[currentMainId].push(...subIds);

@@ -6,16 +6,14 @@ import CommandService from '../api/CommandService';
 import { usePlayerContext } from '../store/playerContext';
 
 interface ServerState {
-  isConnected: boolean;
   players: { uid: number; name: string }[];
   serverTime: string;
   serverMemory: string;
 }
 
 const ServerToolbarActions = () => {
-  const { playerUid, setPlayerUid } = usePlayerContext();
+  const { playerUid, setPlayerUid, isConnected, setIsConnected } = usePlayerContext();
   const [state, setState] = React.useState<ServerState>({
-    isConnected: false,
     players: [],
     serverTime: '',
     serverMemory: '',
@@ -25,7 +23,6 @@ const ServerToolbarActions = () => {
     try {
       const serverInfo = await MuipService.getServerInformation();
       setState((prevState) => ({
-        ...prevState,
         players: serverInfo.onlinePlayers,
         serverTime: new Date(serverInfo.serverTime * 1000).toLocaleString([], { hour: '2-digit', minute: '2-digit' }),
         serverMemory: `${(serverInfo.programUsedMemory).toFixed(2)} MB`,
@@ -36,14 +33,14 @@ const ServerToolbarActions = () => {
       }
     } catch (error) {
       console.error('Error fetching server information:', error);
-      setState((prevState) => ({ ...prevState, isConnected: false }));
+      setIsConnected(false);
     }
   };
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (state.isConnected) {
+    if (isConnected) {
       interval = setInterval(fetchServerInfo, 5000);
     }
 
@@ -52,15 +49,16 @@ const ServerToolbarActions = () => {
         clearInterval(interval);
       }
     };
-  }, [state.isConnected]);
+  }, [isConnected]);
 
   const handleConnect = async () => {
     try {
       await fetchServerInfo();
-      setState((prevState) => ({ ...prevState, isConnected: true }));
+      setIsConnected(true);
     } catch (error) {
       console.error('Connection failed:', error);
-      setState((prevState) => ({ ...prevState, isConnected: false }));
+      setIsConnected(false);
+      setPlayerUid(0);
     }
   };
 
@@ -74,12 +72,12 @@ const ServerToolbarActions = () => {
       <Select
         value={playerUid || ''}
         onChange={(e) => updatePlayerUid(Number(e.target.value))}
-        disabled={!state.isConnected}
+        disabled={!isConnected}
         displayEmpty
         sx={{ height: '45px', padding: '0 14px', boxSizing: 'border-box' }}
       >
         <MenuItem value="" disabled>
-          {state.isConnected ? 'Select a player' : '(disconnected)'}
+          {isConnected ? 'Select a player' : '(disconnected)'}
         </MenuItem>
         {state.players.map((player) => (
           <MenuItem key={player.uid} value={player.uid}>
@@ -92,9 +90,9 @@ const ServerToolbarActions = () => {
         variant="contained"
         color="primary"
         onClick={handleConnect}
-        disabled={state.isConnected}
+        disabled={isConnected}
       >
-        {state.isConnected ? 'Connected' : 'Connect'}
+        {isConnected ? 'Connected' : 'Connect'}
       </Button>
 
       <Typography variant="body1">
