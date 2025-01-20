@@ -66,8 +66,11 @@ class GameData {
   }
 
   public static set(key: number, value: string, type: GameEntity, language: string): void {
-      this.entities[language][key] = value;
-      this.entityTypes[key] = type;
+    if (!this.entities[language]) {
+      this.entities[language] = {};
+    }
+    this.entities[language][key] = value;
+    this.entityTypes[key] = type;
   }
 
   public static getAllMainMissions(): Record<string, number> {
