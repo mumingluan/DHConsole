@@ -120,17 +120,17 @@ export default function Inventory() {
           <SearchIcon />
         </IconButton>
       </Box>
-      <List dense={true} sx={{ minHeight: '100px', maxWidth: '600px' }}>
+      <List dense={true} sx={{ minHeight: '100px', maxWidth: '500px' }}>
         {Object.entries(searchResults).map(([id, name]) => (
           <ListItem key={id} secondaryAction={
-            <React.Fragment>
+            <Box sx={{ display: 'flex', alignItems: 'center', maxHeight: '80%' }}>
               <TextField
                 type="number"
                 label="Count"
                 value={sendItemCounts[Number(id)]}
                 onChange={(e) => setSendItemCounts({ ...sendItemCounts, [Number(id)]: Number(e.target.value) })}
                 margin="dense"
-                sx={{ maxWidth: '60px', maxHeight: '100%' }}
+                sx={{ maxWidth: '80px' }}
               />
               <Button
                 variant="contained"
@@ -140,7 +140,7 @@ export default function Inventory() {
                 disabled={loading}>
                 Send
               </Button>
-            </React.Fragment>
+            </Box>
           }>
             <ListItemText primary={name} secondary={id} slotProps={{ primary: { variant: 'body1' } }} />
           </ListItem>
