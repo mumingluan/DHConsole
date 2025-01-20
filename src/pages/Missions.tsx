@@ -22,14 +22,16 @@ const Missions = () => {
   const [searchResults, setSearchResults] = useState<Record<number, string>>({});
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [waiting, setWaiting] = useState(false);
   const { language } = useLanguageContext();
   const { playerUid, isConnected } = usePlayerContext();
 
   useEffect(() => {
     setLoading(true);
-    GameData.loadMainMission(language);
-    GameData.loadSubMission(language);
-    setLoading(false);
+    Promise.all([
+      GameData.loadMainMission(language),
+      GameData.loadSubMission(language),
+    ]).then(() => setLoading(false));
   }, [language, isConnected]);
 
   const fetchMissions = async () => {
@@ -49,22 +51,28 @@ const Missions = () => {
     fetchMissions();
   }, [playerUid, isConnected]);
 
-  const handleCompleteSubMission = (subMissionId: number) => {
+  const handleSkipSubMission = (subMissionId: number) => {
+    setWaiting(true);
     CommandService.finishSubMission(subMissionId);
     setCompletedSubMissions((prev) => [...prev, subMissionId]);
     fetchMissions();
+    setWaiting(false);
   };
 
-  const handleCompleteMainMission = (mainMissionId: number) => {
+  const handleSkipMainMission = (mainMissionId: number) => {
+    setWaiting(true);
     CommandService.finishMainMission(mainMissionId);
     setCompletedMainMissions((prev) => [...prev, mainMissionId]);
     fetchMissions();
+    setWaiting(false);
   };
   
 
   const handleAcceptMission = (missionId: number) => {
+    setWaiting(true);
     CommandService.acceptMainMission(missionId);
     fetchMissions();
+    setWaiting(false);
   };
 
   const handleSearch = () => {
@@ -97,7 +105,7 @@ const Missions = () => {
       <Box flex={1} paddingRight={2} borderRight="1px solid #ccc">
         <Box display="flex" alignItems="center">
           <Typography variant="h6">Current Missions</Typography>
-          <IconButton color="primary" onClick={fetchMissions} style={{ marginLeft: 2 }}>
+          <IconButton color="primary" onClick={fetchMissions} style={{ marginLeft: 2 }} disabled={waiting}>
             <RefreshIcon />
           </IconButton>
         </Box>
@@ -116,22 +124,19 @@ const Missions = () => {
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
               <ListItem secondaryAction={
-                <Button variant="outlined" color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
-                  Complete All
+                <Button variant="contained" color="secondary" onClick={() => handleSkipMainMission(Number(mainMissionId))} disabled={waiting}>
+                  Skip All
                 </Button>
               } >
-                <ListItemIcon sx={{ width: '16px', height: '16px' }}>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} secondary={`(${mainMissionId})`} />
+                <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} />
               </ListItem>
               {subMissions.map((subMissionId) => (
                 <ListItem key={subMissionId} secondaryAction={
-                  <Button variant="outlined" color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
-                    Complete
+                  <Button variant="contained" color="secondary" onClick={() => handleSkipSubMission(subMissionId)} disabled={waiting}>
+                    Skip
                   </Button>
                 } >
-                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`(${subMissionId})`} sx={{ marginLeft: '48px' }} />
+                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} sx={{ marginLeft: '32px' }} />
                 </ListItem>
               ))}
             </React.Fragment>
@@ -141,20 +146,23 @@ const Missions = () => {
 
       <Box flex={1} paddingLeft={2}>
         <Typography variant="h6">Accept New Missions</Typography>
-        <Typography variant="subtitle1">Recently Completed</Typography>
+        <Typography variant="subtitle1">Recently Skipped Main Missions</Typography>
         <List>
-          {completedMainMissions.map((id) => (
+          {completedMainMissions.slice(-5).map((id) => (
             <ListItem key={id} secondaryAction={
-              <Button variant="outlined" color="secondary" onClick={() => handleAcceptMission(Number(id))}>
+              <Button variant="contained" color="secondary" onClick={() => handleAcceptMission(Number(id))} disabled={waiting}>
                 Reaccept
               </Button>
             } >
-              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`(${id} main)`} />
+              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`${id} (main)`} />
             </ListItem>
           ))}
-          {completedSubMissions.map((id) => (
+        </List>
+        <Typography variant="subtitle1">Recently Skipped Sub Missions</Typography>
+        <List>
+          {completedSubMissions.slice(-5).map((id) => (
             <ListItem key={id}>
-              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`(${id} sub)`} />
+              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`${id} (sub)`} />
             </ListItem>
           ))}
         </List>
@@ -174,11 +182,12 @@ const Missions = () => {
         </Box>
         <List>
           {Object.entries(searchResults).map(([id, name]) => (
-            <ListItem key={id}>
-              <ListItemText primary={name} />
-              <ListItemButton onClick={() => handleAcceptMission(Number(id))}>
+            <ListItem key={id} secondaryAction={
+              <Button variant="contained" color="secondary" onClick={() => handleAcceptMission(Number(id))} disabled={waiting}>
                 Accept
-              </ListItemButton>
+              </Button>
+            } >
+              <ListItemText primary={name} />
             </ListItem>
           ))}
         </List>
