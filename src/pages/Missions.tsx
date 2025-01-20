@@ -36,6 +36,9 @@ const Missions = () => {
       ]);
       setLoading(false);
     };
+    if (!isConnected) {
+      return;
+    }
     loadMissions();
   }, [language, isConnected]);
 
@@ -45,7 +48,6 @@ const Missions = () => {
     }
     const missions = await CommandService.getCurrentMissions();
     setCurrentMissions(missions);
-    console.log(missions);
     const mainMissionIds = Object.keys(missions).map(Number);
     setCompletedMainMissions((prev) => prev.filter(id => !mainMissionIds.includes(id)));
     const subMissionIds = Object.values(missions).flat();
@@ -81,6 +83,10 @@ const Missions = () => {
   };
 
   const handleSearch = () => {
+    if (searchTerm === '') {
+      setSearchResults({});
+      return;
+    }
     const results = GameData.getAllMainMissions(language);
     const filteredResults = Object.entries(results).filter(([, value]) =>
       value.toLowerCase().includes(searchTerm.toLowerCase())

@@ -38,6 +38,9 @@ const CommandPage: React.FC = () => {
                     Run
                 </Button>
             </Box>
+            <Typography variant="body2">
+                Tip: don't include the "/" prefix.
+            </Typography>
             <Paper elevation={3} sx={{ padding: 2, mt: 2 }}>
                 <Typography variant="h6" gutterBottom>
                     [Command Output]

@@ -95,13 +95,14 @@ const ServerToolbarActions = () => {
         {isConnected ? 'Connected' : 'Connect'}
       </Button>
 
-      <Typography variant="body1">
-        Server Time: {state.serverTime || '--'}
-      </Typography>
-
-      <Typography variant="body1">
-        Memory Used: {state.serverMemory || '--'}
-      </Typography>
+      <Box display="flex" flexDirection="column">
+        <Typography variant="body2">
+          Server Time: {state.serverTime || '--'}
+        </Typography>
+        <Typography variant="body2">
+          Memory Used: {state.serverMemory || '--'}
+        </Typography>
+      </Box>
 
       <Box marginLeft="auto">
         <ThemeSwitcher />

@@ -16,18 +16,9 @@ const NAVIGATION: Navigation = [
     title: 'Manage Game Data',
   },
   {
+    segment: 'characters',
     title: 'Characters',
     icon: <PeopleIcon />,
-  },
-  {
-    segment: 'equipment',
-    title: 'Equipment',
-    icon: <StarsIcon />,
-  },
-  {
-    segment: 'relics',
-    title: 'Relics',
-    icon: <DiamondIcon />,
   },
   {
     segment: 'missions',
@@ -52,7 +43,7 @@ const NAVIGATION: Navigation = [
 ];
 
 const BRANDING = {
-  title: 'Danheng Console',
+  title: 'DH Console',
 };
 
 export default function App() {

@@ -5,9 +5,7 @@ import Index from './pages/Index';
 import Account from './pages/Account';
 import Characters from './pages/Characters';
 import Inventory from './pages/Inventory';
-import Equipment from './pages/Equipment';
 import Missions from './pages/Missions';
-import Relics from './pages/Relics';
 import Layout from './layouts/Console';
 import App from './App';
 import Command from './pages/Command';
@@ -37,16 +35,8 @@ const router = createBrowserRouter([
             Component: Inventory,
           },
           {
-            path: 'equipment',
-            Component: Equipment,
-          },
-          {
             path: 'missions',
             Component: Missions,
-          },
-          {
-            path: 'relics',
-            Component: Relics,
           },
           {
             path: 'command',

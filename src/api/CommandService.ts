@@ -41,7 +41,7 @@ class CommandService {
     }
     const command = `gametext avatar #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
-    return this.parseKeyValuePairs(result);
+    return this.parseGameText(result);
   }
 
   static async loadItemGameText(lang: string): Promise<Record<number, string>> {
@@ -50,7 +50,7 @@ class CommandService {
     }
     const command = `gametext item #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
-    return this.parseKeyValuePairs(result);
+    return this.parseGameText(result);
   }
 
   static async loadMainMissionGameText(lang: string): Promise<Record<number, string>> {
@@ -59,7 +59,7 @@ class CommandService {
     }
     const command = `gametext mainmission #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
-    return this.parseKeyValuePairs(result);
+    return this.parseGameText(result);
   }
 
   static async loadSubMissionGameText(lang: string): Promise<Record<number, string>> {
@@ -68,13 +68,19 @@ class CommandService {
     }
     const command = `gametext submission #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
-    return this.parseKeyValuePairs(result);
+    return this.parseGameText(result);
   }
 
   static async setAvatarLevel(avatarId: number, level: number): Promise<{ avatarId: number; level: number }> {
     const command = `avatar level ${avatarId} ${level}`;
     const result = await this.executeCommand(command);
     return { avatarId, level: parseInt(result, 10) || level };
+  }
+
+  static async getInventory(): Promise<Record<number, number>> {
+    const command = `fetch inventory`;
+    const result = await this.executeCommand(command);
+    return this.parseItemList(result);
   }
 
   static async giveItem(itemId: number, count = 1): Promise<{ itemId: number; count: number }> {
@@ -113,7 +119,19 @@ class CommandService {
     return result;
   }
 
-  private static parseKeyValuePairs(response: string): Record<number, string> {
+  static async removeUnusedRelics(): Promise<string> {
+    const command = `remove relics`;
+    const result = await this.executeCommand(command);
+    return result;
+  }
+
+  static async removeUnusedEquipment(): Promise<string> {
+    const command = `remove equipment`;
+    const result = await this.executeCommand(command);
+    return result;
+  }
+
+  private static parseGameText(response: string): Record<number, string> {
     const lines = response.split('\n');
     const data: Record<number, string> = {};
     for (const line of lines) {
@@ -124,6 +142,19 @@ class CommandService {
     }
     return data;
   }
+
+  private static parseItemList(response: string): Record<number, number> {
+    const lines = response.split('\n');
+    const data: Record<number, number> = {};
+    for (const line of lines) {
+      const [id, value] = line.split(':');
+      if (id && value) {
+        data[parseInt(id, 10)] = parseInt(value, 10);
+      }
+    }
+    return data;
+  }
+
 
   private static parseLists(response: string): Record<number, number[]> {
     const lines = response.split('\n');
