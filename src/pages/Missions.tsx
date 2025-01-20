@@ -94,7 +94,7 @@ const Missions = () => {
 
   return (
     <Box display="flex" height="100%">
-      <Box flex={1} padding={2} borderRight="1px solid #ccc">
+      <Box flex={1} paddingRight={2} borderRight="1px solid #ccc">
         <Box display="flex" alignItems="center">
           <Typography variant="h6">Current Missions</Typography>
           <IconButton color="primary" onClick={fetchMissions} style={{ marginLeft: 2 }}>
@@ -116,22 +116,22 @@ const Missions = () => {
           {filteredMissions.map(([mainMissionId, subMissions]) => (
             <React.Fragment key={mainMissionId}>
               <ListItem secondaryAction={
-                <Button color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
+                <Button variant="outlined" color="secondary" onClick={() => handleCompleteMainMission(Number(mainMissionId))}>
                   Complete All
                 </Button>
               } >
-                <ListItemIcon>
+                <ListItemIcon sx={{ width: '16px', height: '16px' }}>
                   <AssignmentIcon />
                 </ListItemIcon>
                 <ListItemText primary={`${GameData.get(Number(mainMissionId), language)}`} secondary={`(${mainMissionId})`} />
               </ListItem>
               {subMissions.map((subMissionId) => (
-                <ListItem key={subMissionId} style={{ marginLeft: '48px' }} secondaryAction={
-                  <Button color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
+                <ListItem key={subMissionId} secondaryAction={
+                  <Button variant="outlined" color="secondary" onClick={() => handleCompleteSubMission(subMissionId)}>
                     Complete
                   </Button>
                 } >
-                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`(${subMissionId})`} />
+                  <ListItemText primary={`${GameData.get(Number(subMissionId), language)}`} secondary={`(${subMissionId})`} sx={{ marginLeft: '48px' }} />
                 </ListItem>
               ))}
             </React.Fragment>
@@ -139,13 +139,13 @@ const Missions = () => {
         </List>
       </Box>
 
-      <Box flex={1} padding={2}>
+      <Box flex={1} paddingLeft={2}>
         <Typography variant="h6">Accept New Missions</Typography>
         <Typography variant="subtitle1">Recently Completed</Typography>
         <List>
           {completedMainMissions.map((id) => (
             <ListItem key={id} secondaryAction={
-              <Button color="secondary" onClick={() => handleAcceptMission(Number(id))}>
+              <Button variant="outlined" color="secondary" onClick={() => handleAcceptMission(Number(id))}>
                 Reaccept
               </Button>
             } >
