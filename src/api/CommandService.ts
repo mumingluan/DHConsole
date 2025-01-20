@@ -23,6 +23,7 @@ class CommandService {
 
   static async executeCommand(command: string): Promise<string> {
     try {
+      console.log('Executing command:', command);
       const response = await MuipService.executeCommand(command, this.playerUid);
       if (response.code !== 0) {
         throw new Error(`Command failed: ${response.message}`);
@@ -38,7 +39,7 @@ class CommandService {
     if (!this.languageMap[lang]) {
       throw new Error(`Invalid language code: ${lang}`);
     }
-    const command = `/gametext avatar #${this.languageMap[lang]}`;
+    const command = `gametext avatar #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
     return this.parseKeyValuePairs(result);
   }
@@ -47,7 +48,7 @@ class CommandService {
     if (!this.languageMap[lang]) {
       throw new Error(`Invalid language code: ${lang}`);
     }
-    const command = `/gametext item #${this.languageMap[lang]}`;
+    const command = `gametext item #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
     return this.parseKeyValuePairs(result);
   }
@@ -56,7 +57,7 @@ class CommandService {
     if (!this.languageMap[lang]) {
       throw new Error(`Invalid language code: ${lang}`);
     }
-    const command = `/gametext mainmission #${this.languageMap[lang]}`;
+    const command = `gametext mainmission #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
     return this.parseKeyValuePairs(result);
   }
@@ -65,49 +66,49 @@ class CommandService {
     if (!this.languageMap[lang]) {
       throw new Error(`Invalid language code: ${lang}`);
     }
-    const command = `/gametext submission #${this.languageMap[lang]}`;
+    const command = `gametext submission #${this.languageMap[lang]}`;
     const result = await this.executeCommand(command);
     return this.parseKeyValuePairs(result);
   }
 
   static async setAvatarLevel(avatarId: number, level: number): Promise<{ avatarId: number; level: number }> {
-    const command = `/avatar level ${avatarId} ${level}`;
+    const command = `avatar level ${avatarId} ${level}`;
     const result = await this.executeCommand(command);
     return { avatarId, level: parseInt(result, 10) || level };
   }
 
   static async giveItem(itemId: number, count = 1): Promise<{ itemId: number; count: number }> {
-    const command = `/give ${itemId} x${count}`;
+    const command = `give ${itemId} x${count}`;
     const result = await this.executeCommand(command);
     return { itemId, count: parseInt(result, 10) || count };
   }
 
   static async setPlayerLevel(level: number): Promise<{ level: number }> {
-    const command = `/setlevel ${level}`;
+    const command = `setlevel ${level}`;
     const result = await this.executeCommand(command);
     return { level: parseInt(result, 10) || level };
   }
 
   static async getCurrentMissions(): Promise<Record<number, number[]>> {
-    const command = `/mission running`;
+    const command = `mission running`;
     const result = await this.executeCommand(command);
     return this.parseLists(result);
   }
 
   static async finishMainMission(mainMissionId: number): Promise<string> {
-    const command = `/mission finishmain ${mainMissionId}`;
+    const command = `mission finishmain ${mainMissionId}`;
     const result = await this.executeCommand(command);
     return result;
   }
 
   static async finishSubMission(subMissionId: number): Promise<string> {
-    const command = `/mission finish ${subMissionId}`;
+    const command = `mission finish ${subMissionId}`;
     const result = await this.executeCommand(command);
     return result;
   }
 
   static async acceptMainMission(mainMissionId: number): Promise<string> {
-    const command = `/mission reaccept ${mainMissionId}`;
+    const command = `mission reaccept ${mainMissionId}`;
     const result = await this.executeCommand(command);
     return result;
   }
@@ -128,12 +129,15 @@ class CommandService {
     const lines = response.split('\n');
     const data: Record<number, number[]> = {};
     let currentMainId = null;
-    for (const line of lines) {
-      if (line.endsWith(':')) {
-        currentMainId = parseInt(line.replace(':', ''), 10);
-        data[currentMainId] = [];
+    for (const line of lines.slice(1)) {
+      if (line.includes('Main task')) {
+        const mainTaskMatch = line.match(/Main task (\d+):/);
+        if (mainTaskMatch && mainTaskMatch[1]) {
+          currentMainId = parseInt(mainTaskMatch[1], 10);
+          data[currentMainId] = [];
+        }
       } else if (currentMainId) {
-        const subIds = line.trim().split(',').map(Number);
+        const subIds = line.trim().split('、').map(Number);
         data[currentMainId].push(...subIds);
       }
     }
