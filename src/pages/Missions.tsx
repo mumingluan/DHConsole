@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Chip, List, ListItem, ListItemText, Divider, TextField, IconButton } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
+import { Search as SearchIcon, Refresh as RefreshIcon } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
 import { useLanguageContext } from '../store/languageContext';
@@ -9,9 +9,9 @@ import { usePlayerContext } from '../store/playerContext';
 const missionCategories = [
   { label: 'Main Story', prefix: '1', icon: 'Book' },
   { label: 'Side Story', prefix: '2|5|6|7', icon: 'LocalLibrary' },
-  { label: 'World Quest', prefix: '4', icon: 'Map' },
-  { label: 'Daily Quest', prefix: '3', icon: 'Event' },
-  { label: 'Event Quests', prefix: '8', icon: 'Star' },
+  { label: 'World', prefix: '4', icon: 'Map' },
+  { label: 'Daily', prefix: '3', icon: 'Event' },
+  { label: 'Event', prefix: '8', icon: 'Star' },
 ];
 
 const Missions = () => {
@@ -19,7 +19,7 @@ const Missions = () => {
   const [completedMainMissions, setCompletedMainMissions] = useState<number[]>([]);
   const [completedSubMissions, setCompletedSubMissions] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<Record<string, number>>({});
+  const [searchResults, setSearchResults] = useState<Record<number, string>>({});
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const { language } = useLanguageContext();
   const { playerUid } = usePlayerContext();
@@ -62,9 +62,9 @@ const Missions = () => {
   };
 
   const handleSearch = () => {
-    const results = GameData.getAllMainMissions();
-    const filteredResults = Object.entries(results).filter(([name]) =>
-      name.toLowerCase().includes(searchTerm.toLowerCase())
+    const results = GameData.getAllMainMissions(language);
+    const filteredResults = Object.entries(results).filter(([, value]) =>
+      value.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(Object.fromEntries(filteredResults));
   };
@@ -88,11 +88,13 @@ const Missions = () => {
 
   return (
     <Box display="flex" height="100%">
-      <Button variant="contained" color="primary" onClick={fetchMissions}>
-        Fetch Missions
-      </Button>
       <Box flex={1} padding={2} borderRight="1px solid #ccc">
-        <Typography variant="h6">Current Missions</Typography>
+        <Box display="flex" alignItems="center">
+          <Typography variant="h6">Current Missions</Typography>
+          <IconButton color="primary" onClick={fetchMissions} style={{ marginLeft: 2 }}>
+            <RefreshIcon />
+          </IconButton>
+        </Box>
         <Box display="flex" flexWrap="wrap" marginBottom={2}>
           {missionCategories.map((category) => (
             <Chip
@@ -165,11 +167,11 @@ const Missions = () => {
           </IconButton>
         </Box>
         <List>
-          {Object.entries(searchResults).map(([name, id]) => (
+          {Object.entries(searchResults).map(([id, name]) => (
             <ListItem key={id}>
               <ListItemText primary={name} />
               <Box display="flex" justifyContent="flex-end">
-                <Button variant="contained" color="primary" onClick={() => handleAcceptMission(id)}>
+                <Button variant="contained" color="primary" onClick={() => handleAcceptMission(Number(id))}>
                   Accept
                 </Button>
               </Box>

@@ -73,14 +73,17 @@ class GameData {
     this.entityTypes[key] = type;
   }
 
-  public static getAllMainMissions(): Record<string, number> {
-    // TODO: Implement this
-    return {"Demo": 123};
-  }
-
-  public static getAllSubMissions(mainMissionId: number): Record<string, number> {
-    // TODO: Implement this
-    return {"Demo": 123};
+  public static getAllMainMissions(language: string): Record<number, string> {
+    if (!this.entities[language]) {
+      return {};
+    }
+    const result: Record<number, string> = {};
+    for (const key in this.entities[language]) {
+      if (this.entityTypes[key] === GameEntity.MainMission) {
+        result[key] = this.entities[language][key];
+      }
+    }
+    return result;
   }
 }
 
