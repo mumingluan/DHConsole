@@ -32,7 +32,7 @@ const ServerToolbarActions = () => {
       }));
 
       if (serverInfo.onlinePlayers.length > 0) {
-        setPlayerUid(serverInfo.onlinePlayers[0].uid);
+        updatePlayerUid(serverInfo.onlinePlayers[0].uid);
       }
     } catch (error) {
       console.error('Error fetching server information:', error);

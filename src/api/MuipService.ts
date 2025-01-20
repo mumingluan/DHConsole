@@ -5,7 +5,8 @@ const API_BASE_URL = 'http://127.0.0.1:443/muip';
 
 class MuipService {
   private static readonly MIN_CALL_INTERVAL: number = 100;
-  private static readonly ADMIN_KEY: string = '06c55324-6246-4e9a-be06-bf37f9accf1a';
+  // TODO: change to accept user input
+  private static readonly ADMIN_KEY: string = '5f6e8ba5-5663-44ad-a15c-4add78ddd983';
   private static lastCallTimestamp: number = 0;
   private static callQueue: Promise<void> = Promise.resolve();
   private static rsaPublicKey: string = '';
@@ -39,7 +40,7 @@ class MuipService {
         bytes[i] = binaryString.charCodeAt(i);
       }
       const decodedMessage = decoder.decode(bytes);
-      return {code: response.data.code, message: decodedMessage};
+      return { code: response.data.code, message: decodedMessage };
     } catch (error) {
       console.error('Error executing command:', error);
       throw error;
