@@ -78,3 +78,4 @@ export const SUB_AFFIXES = [
     "StatusResistanceBase",
     "BreakDamageAddedRatioBase"
 ];
+export const RELIC_NAMES = ["", "Head", "Hand", "Body", "Foot", "Neck", "Object"];

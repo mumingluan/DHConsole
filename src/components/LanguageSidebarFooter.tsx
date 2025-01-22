@@ -42,7 +42,7 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
     const currentLanguage = languages.find(lang => lang.code === language);
 
     return (
-        <Box sx={{ padding: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Button onClick={handleClick} sx={{ padding: 1, borderRadius: '6px' }} >
                 <img src={flagUrl(currentLanguage?.flag || 'us')} alt={currentLanguage?.name} width="24" height="18" />
                 {mini ? null : (

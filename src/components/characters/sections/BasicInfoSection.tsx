@@ -10,6 +10,8 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import { Character } from '../../../api/CharacterInfo';
 import CommandService from '../../../api/CommandService';
+import GameData from '../../../store/gameData';
+import { useLanguageContext } from '../../../store/languageContext';
 
 interface BasicInfoSectionProps {
     characterId: number;
@@ -18,6 +20,7 @@ interface BasicInfoSectionProps {
 }
 
 export default function BasicInfoSection({ characterId, characterInfo, onUpdate }: BasicInfoSectionProps) {
+    const { language } = useLanguageContext();
     const [isEditing, setIsEditing] = React.useState(false);
     const [level, setLevel] = React.useState(characterInfo.level || 1);
     const [rank, setRank] = React.useState(characterInfo.rank || 0);
@@ -35,6 +38,11 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
 
     return (
         <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, marginBottom: 2 }}>
+                <Typography variant="h5">{GameData.get(characterId, language)}</Typography>
+                <Typography variant="body2" color="text.secondary">ID: {characterId}</Typography>
+                {characterInfo.pathId !== 0 && <Typography variant="body2" color="text.secondary">(Path: {characterInfo.pathId})</Typography>}
+            </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <Typography variant="h6">Basic Information</Typography>
                 <IconButton size="small" onClick={() => setIsEditing(!isEditing)} sx={{ ml: 1 }}>

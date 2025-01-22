@@ -100,7 +100,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
                             selected={characterId === selectedCharacterId}
                             onClick={() => onCharacterSelect(characterId)}
                         >
-                            <ListItemText primary={GameData.get(characterId, language)} />
+                            <ListItemText primary={GameData.get(characterId, language)} slotProps={{ primary: { variant: 'body1' } }} />
                         </ListItemButton>
                     </ListItem>
                 ))}

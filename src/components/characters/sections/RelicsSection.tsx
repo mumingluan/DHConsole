@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import EditIcon from '@mui/icons-material/Edit';
-import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES } from '../../../api/CharacterInfo';
+import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES, RELIC_NAMES } from '../../../api/CharacterInfo';
 import CommandService from '../../../api/CommandService';
 import GameData from '../../../store/gameData';
 import { useLanguageContext } from '../../../store/languageContext';
@@ -162,7 +162,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
         <Card variant="outlined">
             <CardContent sx={{ padding: 3 }}>
                 <Typography variant="subtitle2" gutterBottom>
-                    Relic {index + 1}
+                    {RELIC_NAMES[index]}
                 </Typography>
                 <Stack spacing={2}>
                     <TextField
@@ -191,7 +191,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                         affix={mainAffix}
 
                         level={relic.level || 15} // Fixed level for main affix
-                        isEditable={index >= 2}
+                        isEditable={isEditing && index > 2}
                         isMain={true}
                     />
 
