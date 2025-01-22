@@ -90,7 +90,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 60 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
                         <Typography>
                             Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
                         </Typography>

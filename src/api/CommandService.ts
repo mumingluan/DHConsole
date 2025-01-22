@@ -253,7 +253,7 @@ class CommandService {
           var charFields: { key: string, value: number }[] =
             match[2].split(',').map(field => {
               var splitted = field.trim().split(':');
-              return { key: splitted[0], value: parseInt(splitted[1], 10) };
+              return { key: splitted[0].trim(), value: parseInt(splitted[1].trim(), 10) };
             });
           result = {
             ...result,
@@ -287,7 +287,7 @@ class CommandService {
           var fields: { key: string, value: string }[] =
             match[2].split(',').map(field => {
               var splitted = field.trim().split(':');
-              return { key: splitted[0], value: splitted[1] };
+              return { key: splitted[0].trim(), value: splitted[1].trim() };
             });
           var subAffixes = fields.filter(field => field.key === 'subAffixes').map(field => {
             return field.value.trim().split('|').map(sub => {

@@ -82,39 +82,17 @@ function AffixRow({
             )}
             {isEditable && !isMain ? (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: 120 }}>
-                    <ButtonGroup>
-                        <Button
-                            size="small"
-                            sx={{ padding: '0 4px', width: '12px' }}
-                            onClick={() => {
-                                const newLevel = Math.max(level - 1, 0);
-                                onLevelChange?.(newLevel);
-                            }}
-                        >
-                            -
-                        </Button>
-                        <TextField
-                            type="number"
-                            size="small"
-                            value={level}
-                            onChange={(e) => {
-                                const newLevel = Math.max(0, Math.min(Number(e.target.value), availableLevels));
-                                onLevelChange?.(newLevel);
-                            }}
-                            inputProps={{ min: 0, max: availableLevels }}
-                            sx={{ width: 40 }}
-                        />
-                        <Button
-                            size="small"
-                            sx={{ padding: '0 4px', width: '12px' }}
-                            onClick={() => {
-                                const newLevel = Math.min(level + 1, availableLevels);
-                                onLevelChange?.(newLevel);
-                            }}
-                        >
-                            +
-                        </Button>
-                    </ButtonGroup>
+                    <TextField
+                        type="number"
+                        size="small"
+                        value={level}
+                        onChange={(e) => {
+                            const newLevel = Math.max(0, Math.min(Number(e.target.value), availableLevels));
+                            onLevelChange?.(newLevel);
+                        }}
+                        inputProps={{ min: 0, max: availableLevels }}
+                        sx={{ width: 40 }}
+                    />
                 </Box>
             ) : (
                 <Typography variant="body2" sx={{ width: 80, textAlign: 'right' }}>
@@ -187,12 +165,13 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
 
                     <AffixRow
                         pos={index}
+                        key={0}
                         label="Main"
                         affix={mainAffix}
-
                         level={relic.level || 15} // Fixed level for main affix
                         isEditable={isEditing && index > 2}
                         isMain={true}
+                        onAffixChange={(name) => handleMainAffixChange(name)}
                     />
 
                     <Divider />
