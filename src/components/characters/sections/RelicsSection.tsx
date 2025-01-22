@@ -81,10 +81,11 @@ function AffixRow({
                 </Typography>
             )}
             {isEditable && !isMain ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: 80 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: 120 }}>
                     <ButtonGroup>
                         <Button
                             size="small"
+                            sx={{ padding: '0 4px', width: '12px' }}
                             onClick={() => {
                                 const newLevel = Math.max(level - 1, 0);
                                 onLevelChange?.(newLevel);
@@ -105,6 +106,7 @@ function AffixRow({
                         />
                         <Button
                             size="small"
+                            sx={{ padding: '0 4px', width: '12px' }}
                             onClick={() => {
                                 const newLevel = Math.min(level + 1, availableLevels);
                                 onLevelChange?.(newLevel);
@@ -116,7 +118,7 @@ function AffixRow({
                 </Box>
             ) : (
                 <Typography variant="body2" sx={{ width: 80, textAlign: 'right' }}>
-                        + {level}
+                        {isMain ? 'Lv. ' : '+ '} {level}
                 </Typography>
             )}
         </Box>

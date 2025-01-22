@@ -22,7 +22,7 @@ export default function Inventory() {
   var allItems: Record<number, string> = {};
 
   useEffect(() => {
-    const fetchInventory = async () => {
+    const fetchItems = async () => {
       setLoading(true);
       await GameData.loadItem(language);
       setLoading(false);
@@ -30,7 +30,7 @@ export default function Inventory() {
     if (!isConnected) {
       return;
     }
-    fetchInventory();
+    fetchItems();
   }, [language, isConnected]);
 
   const fetchItems = async () => {

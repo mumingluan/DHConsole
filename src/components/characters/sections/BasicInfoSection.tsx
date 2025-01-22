@@ -51,7 +51,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         onChange={(e) => setLevel(Number(e.target.value))}
                         inputProps={{ min: 1, max: 80 }}
                         size="small"
-                        sx={{ width: '100px' }}
+                        sx={{ width: '60px' }}
                     />
                     <TextField
                         label="Eidolon"
@@ -60,7 +60,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         onChange={(e) => setRank(Number(e.target.value))}
                         inputProps={{ min: 0, max: 6 }}
                         size="small"
-                        sx={{ width: '100px' }}
+                        sx={{ width: '60px' }}
                     />
                     <TextField
                         label="Talent Level"
@@ -69,7 +69,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         onChange={(e) => setTalent(Number(e.target.value))}
                         inputProps={{ min: 1, max: 10 }}
                         size="small"
-                        sx={{ width: '100px' }}
+                        sx={{ width: '60px' }}
                     />
                     <Button variant="contained" onClick={handleSave} size="small">
                         Save
