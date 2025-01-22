@@ -19,7 +19,7 @@ export default function Characters() {
           </Paper>
         </Grid>
         <Grid size={9}>
-          <Paper sx={{ p: 2 }}>
+          <Paper sx={{ p: 2, minHeight: 'calc(100vh - 80px)', overflow: 'auto' }}>
             {selectedCharacterId ? (
               <CharacterDetails characterId={selectedCharacterId} />
             ) : (

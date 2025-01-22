@@ -91,7 +91,7 @@ function AffixRow({
                             onLevelChange?.(newLevel);
                         }
                     }}
-                    inputProps={{ min: 1, max: Math.min(maxLevel, availableLevels) }}
+                    inputProps={{ min: 0, max: Math.min(maxLevel, availableLevels) }}
                     sx={{ width: 80 }}
                 />
             ) : (
@@ -107,10 +107,10 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
     const { language } = useLanguageContext();
     const [mainAffix, setMainAffix] = React.useState<string>(relic.mainAffix || '');
     const [subAffixes, setSubAffixes] = React.useState<Array<{ name: string; level: number }>>([
-        { name: relic.subAffixes?.[0] || '', level: relic.subAffixLevels?.[0] || 1 },
-        { name: relic.subAffixes?.[1] || '', level: relic.subAffixLevels?.[1] || 1 },
-        { name: relic.subAffixes?.[2] || '', level: relic.subAffixLevels?.[2] || 1 },
-        { name: relic.subAffixes?.[3] || '', level: relic.subAffixLevels?.[3] || 1 },
+        { name: relic.subAffixes?.[0] || '', level: relic.subAffixLevels?.[0] || 0 },
+        { name: relic.subAffixes?.[1] || '', level: relic.subAffixLevels?.[1] || 0 },
+        { name: relic.subAffixes?.[2] || '', level: relic.subAffixLevels?.[2] || 0 },
+        { name: relic.subAffixes?.[3] || '', level: relic.subAffixLevels?.[3] || 0 },
     ]);
 
     const totalSubAffixLevels = subAffixes.reduce((sum, affix) => sum + affix.level, 0);
@@ -189,9 +189,9 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                         />
                     ))}
 
-                    {isEditing && totalSubAffixLevels > 9 && (
+                    {isEditing && totalSubAffixLevels > 5 && (
                         <Typography color="error" variant="caption">
-                            Total sub affix levels cannot exceed 9 (current: {totalSubAffixLevels})
+                            Total sub affix upgrade levels cannot exceed 5 (current: {totalSubAffixLevels})
                         </Typography>
                     )}
                 </Stack>
