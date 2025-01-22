@@ -75,7 +75,7 @@ function AffixRow({
                 </TextField>
             ) : (
                 <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                    {label}: {affixId ? GameData.get(affixId, language) : 'Empty'}
+                        [{label}] {affixId ? GameData.get(affixId, language) : 'Empty'}
                 </Typography>
             )}
             {isEditable && !isMain ? (
@@ -171,7 +171,7 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
                     {subAffixes.map((subAffix, subIndex) => (
                         <AffixRow
                             key={subIndex}
-                            label={`Sub ${subIndex + 1}`}
+                            label="Sub"
                             affixId={subAffix.id}
                             level={subAffix.level}
                             isEditable={isEditing}

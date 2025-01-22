@@ -53,6 +53,8 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         label="Light Cone"
                         value={equipId}
                         onChange={(e) => setEquipId(Number(e.target.value))}
+                        size="small"
+                        sx={{ width: '100px' }}
                     >
                         {Object.entries(GameData.getAllItems(language)).map(([id, name]) => (
                             <MenuItem key={id} value={id}>
@@ -66,6 +68,8 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         value={equipLevel}
                         onChange={(e) => setEquipLevel(Number(e.target.value))}
                         inputProps={{ min: 1, max: 80 }}
+                        size="small"
+                        sx={{ width: '100px' }}
                     />
                     <TextField
                         label="Superimposition"
@@ -73,8 +77,10 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         value={equipRank}
                         onChange={(e) => setEquipRank(Number(e.target.value))}
                         inputProps={{ min: 1, max: 5 }}
+                        size="small"
+                        sx={{ width: '100px' }}
                     />
-                    <Button variant="contained" onClick={handleSave} sx={{ flex: 1 }}>
+                    <Button variant="contained" onClick={handleSave} size="small">
                         Save
                     </Button>
                 </Box>

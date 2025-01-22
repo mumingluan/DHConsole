@@ -31,7 +31,7 @@ export default function CharacterDetails({ characterId }: CharacterDetailsProps)
     }
 
     return (
-        <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="column" minHeight="100%">
             <BasicInfoSection
                 characterId={characterId}
                 characterInfo={characterInfo}
