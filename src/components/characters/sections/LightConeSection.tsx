@@ -26,6 +26,12 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
     const [equipRank, setEquipRank] = React.useState(characterInfo.equipRank || 1);
     const { language } = useLanguageContext();
 
+    React.useEffect(() => {
+        setEquipId(characterInfo.equipId || 0);
+        setEquipLevel(characterInfo.equipLevel || 1);
+        setEquipRank(characterInfo.equipRank || 1);
+    }, [characterInfo]);
+
     const handleSave = async () => {
         try {
             await CommandService.setCharacterEquip(characterId, equipId, equipLevel, equipRank);
@@ -46,7 +52,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
             </Box>
 
             {isEditing ? (
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         select
                         label="Light Cone"
@@ -84,7 +90,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap', paddingRight: 3 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 60 }}>
                         <Typography>
                             Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
                         </Typography>

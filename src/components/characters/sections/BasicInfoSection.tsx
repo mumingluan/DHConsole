@@ -24,7 +24,13 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
     const [isEditing, setIsEditing] = React.useState(false);
     const [level, setLevel] = React.useState(characterInfo.level || 1);
     const [rank, setRank] = React.useState(characterInfo.rank || 0);
-    const [talent, setTalent] = React.useState(1);
+    const [talent, setTalent] = React.useState(Math.max(...Object.values(characterInfo.talent || { 1: 10 })));
+
+    React.useEffect(() => {
+        setLevel(characterInfo.level || 1);
+        setRank(characterInfo.rank || 0);
+        setTalent(Math.max(...Object.values(characterInfo.talent || { 1: 10 })));
+    }, [characterInfo]);
 
     const handleSave = async () => {
         try {
@@ -38,8 +44,8 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, marginBottom: 2 }}>
-                <Typography variant="h5">{GameData.get(characterId, language)}</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'end', gap: 4, mb: 2 }}>
+                <Typography variant="h4">{GameData.get(characterId, language)}</Typography>
                 <Typography variant="body2" color="text.secondary">ID: {characterId}</Typography>
                 {characterInfo.pathId !== 0 && <Typography variant="body2" color="text.secondary">(Path: {characterInfo.pathId})</Typography>}
             </Box>
@@ -51,7 +57,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
             </Box>
 
             {isEditing ? (
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         label="Level"
                         type="number"
@@ -84,7 +90,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap', paddingRight: 3 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 60 }}>
                     <Typography>Level: {characterInfo.level}</Typography>
                     <Typography>Rank: {characterInfo.rank}</Typography>
                     <Typography>

@@ -226,6 +226,10 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
     const [isEditing, setIsEditing] = React.useState(false);
     const [relics, setRelics] = React.useState<Record<number, Relic>>(characterInfo.relics || {});
 
+    React.useEffect(() => {
+        setRelics(characterInfo.relics || {});
+    }, [characterInfo]);
+
     const handleRelicChange = (index: number, relic: Relic) => {
         setRelics(prev => ({ ...prev, [index]: relic }));
     };
