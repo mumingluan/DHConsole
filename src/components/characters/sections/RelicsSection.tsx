@@ -118,7 +118,6 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
         newSubAffixes[index] = { ...newSubAffixes[index], [field]: value };
         setSubAffixes(newSubAffixes);
 
-        // Update the parent component
         onRelicChange(index, {
             ...relic,
             subAffixIds: newSubAffixes.map(a => a.id),
@@ -126,7 +125,6 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
         });
     };
 
-    // Get main affix ID based on relic position
     const getMainAffixId = () => {
         if (index === 0 || index === 1) return 1;
         // Add logic for other positions if needed
@@ -149,37 +147,27 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
                         disabled={!isEditing}
                         fullWidth
                     >
-                        {Object.entries(GameData.getAllItems(language)).map(([id, name]) => (
-                            <MenuItem key={id} value={id}>
-                                {name}
-                            </MenuItem>
-                        ))}
+                        {Object.entries(GameData.getAllItems(language))
+                            .filter(([id]) => id.startsWith('61')) // Filter for relic items
+                            .map(([id, name]) => (
+                                <MenuItem key={id} value={id}>
+                                    {GameData.get(Number(id), language)}
+                                </MenuItem>
+                            ))}
                     </TextField>
-
-                    <TextField
-                        size="small"
-                        type="number"
-                        label="Level"
-                        value={relic.level || 0}
-                        onChange={(e) => onRelicChange(index, { ...relic, level: Number(e.target.value) })}
-                        disabled={!isEditing}
-                        inputProps={{ min: 0, max: 15 }}
-                    />
 
                     <Divider />
 
-                    {/* Main Affix */}
                     <AffixRow
                         label="Main"
                         affixId={getMainAffixId()}
-                        level={15}
+                        level={relic.level || 15} // Fixed level for main affix
                         isEditable={false}
                         isMain={true}
                     />
 
                     <Divider />
 
-                    {/* Sub Affixes */}
                     {subAffixes.map((subAffix, subIndex) => (
                         <AffixRow
                             key={subIndex}

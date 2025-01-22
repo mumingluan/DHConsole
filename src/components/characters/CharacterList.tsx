@@ -21,7 +21,7 @@ interface CharacterListProps {
 
 export default function CharacterList({ selectedCharacterId, onCharacterSelect }: CharacterListProps) {
     const [ownedCharacters, setOwnedCharacters] = React.useState<number[]>([]);
-    const [newCharacterId, setNewCharacterId] = React.useState<number>(0);
+    const [newCharacterId, setNewCharacterId] = React.useState<number | ''>('');
     const [loading, setLoading] = React.useState<boolean>(false);
     const { language } = useLanguageContext();
     const { playerUid, isConnected } = usePlayerContext();
@@ -54,13 +54,16 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
     const handleAddCharacter = async () => {
         if (!newCharacterId) return;
         try {
-            await CommandService.giveItem(newCharacterId);
+            await CommandService.giveItem(Number(newCharacterId));
             await loadOwnedCharacters();
-            setNewCharacterId(0);
+            setNewCharacterId('');
         } catch (error) {
             console.error('Failed to add character:', error);
         }
     };
+
+    const availableCharacters = Object.entries(GameData.getAllAvatars(language))
+        .filter(([id]) => !ownedCharacters.includes(Number(id)));
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -73,10 +76,11 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
                     onChange={(e) => setNewCharacterId(Number(e.target.value))}
                     label="Add Character"
                     sx={{ mb: 1 }}
+                    disabled={!isConnected || loading}
                 >
-                    {ownedCharacters.map((id) => (
+                    {availableCharacters.map(([id, name]) => (
                         <MenuItem key={id} value={id}>
-                            {GameData.get(id, language)}
+                            {name}
                         </MenuItem>
                     ))}
                 </TextField>
@@ -84,7 +88,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
                     fullWidth
                     variant="contained"
                     onClick={handleAddCharacter}
-                    disabled={!newCharacterId}
+                    disabled={!newCharacterId || !isConnected || loading}
                 >
                     Add Character
                 </Button>

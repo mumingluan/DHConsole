@@ -7,10 +7,10 @@ export default function Characters() {
   const [selectedCharacterId, setSelectedCharacterId] = React.useState<number | null>(null);
 
   return (
-    <Box sx={{ height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
-      <Grid container spacing={2} sx={{ height: '100%' }}>
+    <Box>
+      <Grid container spacing={2}>
         <Grid item xs={3}>
-          <Paper sx={{ height: '100%', overflow: 'hidden' }}>
+          <Paper sx={{ height: 'calc(100vh - 80px)', overflow: 'auto' }}>
             <CharacterList
               selectedCharacterId={selectedCharacterId}
               onCharacterSelect={setSelectedCharacterId}
@@ -18,7 +18,7 @@ export default function Characters() {
           </Paper>
         </Grid>
         <Grid item xs={9}>
-          <Paper sx={{ height: '100%', overflow: 'auto', p: 2 }}>
+          <Paper sx={{ p: 2 }}>
             {selectedCharacterId ? (
               <CharacterDetails characterId={selectedCharacterId} />
             ) : (

@@ -43,13 +43,14 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
             </Box>
 
             {isEditing ? (
-                <Stack spacing={2}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         label="Level"
                         type="number"
                         value={level}
                         onChange={(e) => setLevel(Number(e.target.value))}
                         inputProps={{ min: 1, max: 80 }}
+                        size="small"
                     />
                     <TextField
                         label="Rank"
@@ -57,6 +58,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         value={rank}
                         onChange={(e) => setRank(Number(e.target.value))}
                         inputProps={{ min: 0, max: 6 }}
+                        size="small"
                     />
                     <TextField
                         label="Talent Level"
@@ -64,13 +66,14 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         value={talent}
                         onChange={(e) => setTalent(Number(e.target.value))}
                         inputProps={{ min: 1, max: 10 }}
+                        size="small"
                     />
-                    <Button variant="contained" onClick={handleSave}>
+                    <Button variant="contained" onClick={handleSave} size="small">
                         Save
                     </Button>
-                </Stack>
+                </Box>
             ) : (
-                <Stack spacing={1}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <Typography>Level: {characterInfo.level}</Typography>
                     <Typography>Rank: {characterInfo.rank}</Typography>
                     <Typography>
@@ -78,7 +81,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                             .map(([key, value]) => `${value}`)
                             .join(', ')}
                     </Typography>
-                </Stack>
+                    </Box>
             )}
         </Box>
     );

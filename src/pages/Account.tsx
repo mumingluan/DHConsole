@@ -84,7 +84,7 @@ export default function Account() {
   };
 
   return (
-    <Box sx={{ maxWidth: 1200, margin: '0 auto', p: 3 }}>
+    <Box sx={{ width: 600, margin: '0 auto', p: 3 }}>
       {/* Player Info Section */}
       <Card sx={{ mb: 4 }}>
         <CardContent>
@@ -93,29 +93,31 @@ export default function Account() {
           </Typography>
           <Divider sx={{ mb: 3 }} />
 
-          <Grid container spacing={4} alignItems="center">
-            <Grid size={{ xs: 12, md: 6 }}>
+          <Box display="flex" justifyContent="space-around" alignItems="center">
+            <Box>
               <Stack spacing={2}>
                 <Typography variant="subtitle1">Level</Typography>
                 <Stack direction="row" spacing={2}>
                   <TextField
                     size="small"
+                    sx={{ width: 80 }} // Increased width to make it appear longer
                     value={editLevel}
                     onChange={(e) => setEditLevel(e.target.value)}
                     type="number"
                     inputProps={{ min: 1, max: 80 }}
                   />
                   <Button variant="contained" onClick={handleLevelChange}>
-                    Update Level
+                    Update
                   </Button>
                 </Stack>
               </Stack>
-            </Grid>
+            </Box>
 
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Box>
               <Stack spacing={2}>
                 <Typography variant="subtitle1">Gender</Typography>
                 <ToggleButtonGroup
+                  size="small"
                   value={playerInfo.gender}
                   exclusive
                   onChange={handleGenderChange}
@@ -129,8 +131,8 @@ export default function Account() {
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Stack>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </CardContent>
       </Card>
 
@@ -143,14 +145,16 @@ export default function Account() {
           <Divider sx={{ mb: 3 }} />
 
           <Stack spacing={3}>
+            <Typography variant="h6" sx={{ mb: 2 }}>Unlock All</Typography>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                 <Button
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.unlockAllCharacters, 'All characters unlocked')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Unlock All Characters
+                  Characters
                 </Button>
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -158,8 +162,9 @@ export default function Account() {
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.unlockAllCollectibles, 'All collectibles unlocked')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Unlock All Collectibles
+                  Collectibles
                 </Button>
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -167,8 +172,9 @@ export default function Account() {
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.unlockAllFurniture, 'All furniture unlocked')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Unlock All Furniture
+                  Furniture
                 </Button>
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -176,20 +182,23 @@ export default function Account() {
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.unlockAllPets, 'All pets unlocked')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Unlock All Pets
+                  Pets
                 </Button>
               </Grid>
             </Grid>
 
+            <Typography variant="h6" sx={{ mt: 3, mb: 2 }}>Max All</Typography>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 4 }}>
                 <Button
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.setAllCharactersMaxLevel, 'All characters set to max level')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Max All Characters Level
+                  Character Level
                 </Button>
               </Grid>
               <Grid size={{ xs: 12, sm: 4 }}>
@@ -197,8 +206,9 @@ export default function Account() {
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.setAllCharactersMaxRank, 'All characters set to max rank')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Max All Characters Rank
+                  Character Rank
                 </Button>
               </Grid>
               <Grid size={{ xs: 12, sm: 4 }}>
@@ -206,8 +216,9 @@ export default function Account() {
                   fullWidth
                   variant="outlined"
                   onClick={() => handleUnlockAction(CommandService.setAllCharactersMaxTalent, 'All characters set to max talent')}
+                  sx={{ textTransform: 'none' }}
                 >
-                  Max All Characters Talent
+                  Character Talent
                 </Button>
               </Grid>
             </Grid>

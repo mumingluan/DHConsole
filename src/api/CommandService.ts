@@ -87,7 +87,7 @@ class CommandService {
   static async getOwnedCharacters(): Promise<number[]> {
     const command = `fetch owned`;
     const result = await this.executeCommand(command);
-    return this.parseNumberList(result);
+    return this.parseNumberList(result).filter((value, index, self) => self.indexOf(value) === index);
   }
 
   static async getCharacterInfo(characterId: number): Promise<CharacterInfo> {

@@ -47,13 +47,12 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
             </Box>
 
             {isEditing ? (
-                <Stack spacing={2}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         select
                         label="Light Cone"
                         value={equipId}
                         onChange={(e) => setEquipId(Number(e.target.value))}
-                        fullWidth
                     >
                         {Object.entries(GameData.getAllItems(language)).map(([id, name]) => (
                             <MenuItem key={id} value={id}>
@@ -75,18 +74,18 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         onChange={(e) => setEquipRank(Number(e.target.value))}
                         inputProps={{ min: 1, max: 5 }}
                     />
-                    <Button variant="contained" onClick={handleSave}>
+                    <Button variant="contained" onClick={handleSave} sx={{ flex: 1 }}>
                         Save
                     </Button>
-                </Stack>
+                </Box>
             ) : (
-                <Stack spacing={1}>
-                    <Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
+                        <Typography>
                         Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : 'None'}
                     </Typography>
-                    <Typography>Level: {characterInfo.equipLevel || 'N/A'}</Typography>
-                    <Typography>Superimposition: {characterInfo.equipRank || 'N/A'}</Typography>
-                </Stack>
+                        <Typography>Level: {characterInfo.equipLevel || 'N/A'}</Typography>
+                        <Typography>Superimposition: {characterInfo.equipRank || 'N/A'}</Typography>
+                    </Box>
             )}
         </Box>
     );
