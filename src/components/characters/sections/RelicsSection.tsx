@@ -175,10 +175,10 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                         fullWidth
                     >
                         {Object.entries(GameData.getAllItems(language))
-                            .filter(([id]) => id.startsWith('61')) // Filter for relic items
+                            .filter(([id]) => { return Number(id) > 60000 && Number(id) < 70000 }) // Filter for relic items
                             .map(([id, name]) => (
                                 <MenuItem key={id} value={id}>
-                                    {GameData.get(Number(id), language)}
+                                    {name}
                                 </MenuItem>
                             ))}
                     </TextField>
@@ -250,7 +250,7 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
             </Box>
 
             <Grid container spacing={2}>
-                {Array.from({ length: 6 }, (_, i) => (
+                {Array.from([1, 2, 3, 4, 5, 6], (i) => (
                     <Grid size={{ xs: 12, sm: 6 }} key={i}>
                         <RelicCard
                             pos={i}

@@ -56,6 +56,7 @@ const OBJECT_MAIN_AFFIXES = [
 ];
 
 export const MAIN_AFFIXES = [
+    [], // enum value starts from 1
     HEAD_MAIN_AFFIXES,
     HAND_MAIN_AFFIXES,
     BODY_MAIN_AFFIXES,

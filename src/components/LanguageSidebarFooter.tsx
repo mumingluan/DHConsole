@@ -45,9 +45,11 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
         <Box sx={{ padding: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Button onClick={handleClick} sx={{ padding: 1, borderRadius: '6px' }} >
                 <img src={flagUrl(currentLanguage?.flag || 'us')} alt={currentLanguage?.name} width="24" height="18" />
-                <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif', color: "text.primary" }}>
-                    {currentLanguage?.name}
-                </Typography>
+                {mini ? null : (
+                    <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif', color: "text.primary" }}>
+                        {currentLanguage?.name}
+                    </Typography>
+                )}
             </Button>
             <Menu
                 anchorEl={anchorEl}
@@ -67,11 +69,9 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
                         <Grid key={lang.code} size={6}>
                             <MenuItem onClick={() => handleMenuItemClick(lang.code)} sx={{ borderRadius: '6px' }} >
                                 <img src={flagUrl(lang.flag)} alt={lang.name} width="24" height="18" />
-                                {mini ? null : (
-                                    <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif' }}>
-                                        {lang.name}
-                                    </Typography>
-                                )}
+                                <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif' }}>
+                                    {lang.name}
+                                </Typography>
                             </MenuItem>
                         </Grid>
                     ))}
