@@ -10,6 +10,7 @@ import {
     Stack,
     MenuItem,
     Divider,
+    ButtonGroup,
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import EditIcon from '@mui/icons-material/Edit';
@@ -53,15 +54,14 @@ function AffixRow({
     isMain,
     onAffixChange,
     onLevelChange,
-    maxLevel = 3,
-    availableLevels = 3
+    availableLevels = 5
 }: AffixRowProps) {
     const { language } = useLanguageContext();
     const possibleAffixes = isMain ? MAIN_AFFIXES[pos] : SUB_AFFIXES;
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            {isEditable && !isMain ? (
+            {isEditable ? (
                 <TextField
                     select
                     size="small"
@@ -81,22 +81,42 @@ function AffixRow({
                 </Typography>
             )}
             {isEditable && !isMain ? (
-                <TextField
-                    type="number"
-                    size="small"
-                    value={level}
-                    onChange={(e) => {
-                        const newLevel = Math.min(Number(e.target.value), maxLevel);
-                        if (newLevel <= availableLevels) {
-                            onLevelChange?.(newLevel);
-                        }
-                    }}
-                    inputProps={{ min: 0, max: Math.min(maxLevel, availableLevels) }}
-                    sx={{ width: 80 }}
-                />
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: 80 }}>
+                    <ButtonGroup>
+                        <Button
+                            size="small"
+                            onClick={() => {
+                                const newLevel = Math.max(level - 1, 0);
+                                onLevelChange?.(newLevel);
+                            }}
+                        >
+                            -
+                        </Button>
+                        <TextField
+                            type="number"
+                            size="small"
+                            value={level}
+                            onChange={(e) => {
+                                const newLevel = Math.max(0, Math.min(Number(e.target.value), availableLevels));
+                                onLevelChange?.(newLevel);
+                            }}
+                            inputProps={{ min: 0, max: availableLevels }}
+                            sx={{ width: 40 }}
+                        />
+                        <Button
+                            size="small"
+                            onClick={() => {
+                                const newLevel = Math.min(level + 1, availableLevels);
+                                onLevelChange?.(newLevel);
+                            }}
+                        >
+                            +
+                        </Button>
+                    </ButtonGroup>
+                </Box>
             ) : (
                 <Typography variant="body2" sx={{ width: 80, textAlign: 'right' }}>
-                    Lv. {level}
+                        + {level}
                 </Typography>
             )}
         </Box>
@@ -114,7 +134,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
     ]);
 
     const totalSubAffixLevels = subAffixes.reduce((sum, affix) => sum + affix.level, 0);
-    const availableLevels = 9 - totalSubAffixLevels;
+    const availableLevels = 5 - totalSubAffixLevels;
 
     const handleSubAffixChange = (index: number, field: 'name' | 'level', value: string | number) => {
         const newSubAffixes = [...subAffixes];

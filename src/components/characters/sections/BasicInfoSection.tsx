@@ -81,6 +81,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                     <Typography>Rank: {characterInfo.rank}</Typography>
                     <Typography>
                         Talents: {Object.entries(characterInfo.talent || {})
+                                .slice(0, 4)
                             .map(([key, value]) => `${value}`)
                             .join(', ')}
                     </Typography>

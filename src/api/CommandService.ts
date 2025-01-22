@@ -247,7 +247,7 @@ class CommandService {
     const lines = response.split('\n');
     var result: Character = {};
     for (const line of lines) {
-      const match = line.match(/[(\w+)] (.*)/);
+      const match = line.match(/\[(.*)\] (.*)/);
       if (match && match[1] && match[2]) {
         if (match[1].trim() === 'Character') {
           var charFields: { key: string, value: number }[] =
@@ -291,7 +291,7 @@ class CommandService {
             });
           var subAffixes = fields.filter(field => field.key === 'subAffixes').map(field => {
             return field.value.trim().split('|').map(sub => {
-              var subMatch = sub.match(/(\w+):(\d+)+(\d+)/);
+              var subMatch = sub.match(/(\w+)\-(\d+)\+(\d+)/);
               return { name: subMatch![1], level: parseInt(subMatch![2], 10), step: parseInt(subMatch![3], 10) };
             });
           })[0];
@@ -299,7 +299,7 @@ class CommandService {
             result.relics = {};
           }
           result.relics[relicIndex] = {
-            relicId: parseInt(fields.find(field => field.key === 'relicId')?.value!, 10),
+            relicId: parseInt(fields.find(field => field.key === 'id')?.value!, 10),
             level: parseInt(fields.find(field => field.key === 'level')?.value!, 10),
             mainAffix: fields.find(field => field.key === 'mainAffix')?.value!,
             subAffixes: subAffixes.map(sub => sub.name),

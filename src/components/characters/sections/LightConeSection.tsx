@@ -5,7 +5,6 @@ import {
     IconButton,
     TextField,
     Button,
-    Stack,
     MenuItem,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -87,10 +86,10 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
             ) : (
                     <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap', paddingRight: 3 }}>
                         <Typography>
-                        Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : 'None'}
-                    </Typography>
-                        <Typography>Level: {characterInfo.equipLevel || 'N/A'}</Typography>
-                        <Typography>Superimposition: {characterInfo.equipRank || 'N/A'}</Typography>
+                            Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
+                        </Typography>
+                        <Typography>Level: {characterInfo.equipLevel || '--'}</Typography>
+                        <Typography>Superimposition: {characterInfo.equipRank || '--'}</Typography>
                     </Box>
             )}
         </Box>
