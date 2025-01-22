@@ -1,4 +1,5 @@
 import MuipService from './MuipService';
+import { CharacterInfo, Relic } from './CharacterInfo';
 
 class CommandService {
   static readonly languageMap: Record<string, string> = {
@@ -71,12 +72,6 @@ class CommandService {
     return this.parseGameText(result);
   }
 
-  static async setAvatarLevel(avatarId: number, level: number): Promise<{ avatarId: number; level: number }> {
-    const command = `avatar level ${avatarId} ${level}`;
-    const result = await this.executeCommand(command);
-    return { avatarId, level: parseInt(result, 10) || level };
-  }
-
   static async getInventory(): Promise<Record<number, number>> {
     const command = `fetch inventory`;
     const result = await this.executeCommand(command);
@@ -89,10 +84,89 @@ class CommandService {
     return { itemId, count: parseInt(result, 10) || count };
   }
 
-  static async setPlayerLevel(level: number): Promise<{ level: number }> {
-    const command = `setlevel ${level}`;
+  static async getOwnedCharacters(): Promise<number[]> {
+    const command = `fetch owned`;
     const result = await this.executeCommand(command);
-    return { level: parseInt(result, 10) || level };
+    return this.parseNumberList(result);
+  }
+
+  static async getCharacterInfo(characterId: number): Promise<CharacterInfo> {
+    const command = `fetch avatar ${characterId}`;
+    const result = await this.executeCommand(command);
+    return this.parseCharacterInfo(result);
+  }
+
+  static async setCharacterBasicInfo(characterId: number, level: number, rank: number, talent: number): Promise<void> {
+    const command = `avatar ${characterId} l${level} r${rank} t${talent}`;
+    await this.executeCommand(command);
+  }
+
+  static async setCharacterEquip(characterId: number, equipId: number, equipLevel: number, equipRank: number): Promise<void> {
+    const command = `avatar ${characterId} e${equipId} l${equipLevel} r${equipRank}`;
+    await this.executeCommand(command);
+  }
+
+  static async setCharacterRelic(characterId: number, relics: Record<number, Relic>): Promise<void> {
+    const command = `avatar ${characterId} relics ${JSON.stringify(relics)}`;
+    await this.executeCommand(command);
+  }
+
+  static async getPlayerInfo(): Promise<{ level: number, gender: number }> {
+    const command = `fetch player`;
+    const result = await this.executeCommand(command);
+    const match = result.match(/level: (\d+), gender: (\d+)/);
+    if (!match || match.length < 3) {
+      throw new Error('Failed to parse player info');
+    }
+    return { level: parseInt(match[1], 10), gender: parseInt(match[2], 10) };
+  }
+
+  static async setPlayerLevel(level: number): Promise<void> {
+    const command = `setlevel ${level}`;
+    await this.executeCommand(command);
+  }
+
+  static async setPlayerGender(gender: number): Promise<void> {
+    if (gender !== 1 && gender !== 2) {
+      throw new Error('Invalid gender');
+    }
+    const command = `hero ${gender}`;
+    await this.executeCommand(command);
+  }
+
+  static async unlockAllCollectibles(): Promise<void> {
+    const command = `giveall unlock`;
+    await this.executeCommand(command);
+  }
+
+  static async unlockAllFurniture(): Promise<void> {
+    const command = `giveall train`;
+    await this.executeCommand(command);
+  }
+
+  static async unlockAllPets(): Promise<void> {
+    const command = `giveall pet`;
+    await this.executeCommand(command);
+  }
+
+  static async unlockAllCharacters(): Promise<void> {
+    const command = `giveall avatar`;
+    await this.executeCommand(command);
+  }
+
+  static async setAllCharactersMaxLevel(): Promise<void> {
+    const command = `avatar -1 level 80`;
+    await this.executeCommand(command);
+  }
+
+  static async setAllCharactersMaxRank(): Promise<void> {
+    const command = `avatar -1 rank 6`;
+    await this.executeCommand(command);
+  }
+
+  static async setAllCharactersMaxTalent(): Promise<void> {
+    const command = `avatar -1 talent 10`;
+    await this.executeCommand(command);
   }
 
   static async getCurrentMissions(): Promise<Record<number, number[]>> {
@@ -153,6 +227,80 @@ class CommandService {
       }
     }
     return data;
+  }
+
+  private static parseNumberList(response: string): number[] {
+    const lines = response.split(',');
+    return lines.map(line => parseInt(line.trim(), 10));
+  }
+
+  private static parseCharacterInfo(response: string): CharacterInfo {
+    const lines = response.split('\n');
+    var result: CharacterInfo = {};
+    for (const line of lines) {
+      const match = line.match(/[(\w+)] (.*)/);
+      if (match && match[1] && match[2]) {
+        if (match[1].trim() === 'Character') {
+          var charFields: { key: string, value: number }[] =
+            match[2].split(',').map(field => {
+              var splitted = field.trim().split(':');
+              return { key: splitted[0], value: parseInt(splitted[1], 10) };
+            });
+          result = {
+            ...result,
+            pathId: charFields.find(field => field.key === 'path')?.value,
+            level: charFields.find(field => field.key === 'level')?.value,
+            rank: charFields.find(field => field.key === 'rank')?.value,
+          };
+        } else if (match[1].trim() === 'Talent') {
+          var levels = match[2].trim().split('|').map(level => {
+            var splitted = level.trim().split(':');
+            return { [parseInt(splitted[0], 10)]: parseInt(splitted[1], 10) };
+          }).reduce((acc, curr) => ({ ...acc, ...curr }), {});
+          result = {
+            ...result,
+            talent: levels,
+          }
+        } else if (match[1].trim() === 'Equip') {
+          var equipFields: { key: string, value: number }[] =
+            match[2].split(',').map(field => {
+              var splitted = field.trim().split(':');
+              return { key: splitted[0], value: parseInt(splitted[1], 10) };
+            });
+          result = {
+            ...result,
+            equipId: equipFields.find(field => field.key === 'id')?.value,
+            equipLevel: equipFields.find(field => field.key === 'level')?.value,
+            equipRank: equipFields.find(field => field.key === 'rank')?.value,
+          }
+        } else if (match[1].trim().startsWith('Relic')) {
+          var relicIndex = parseInt(match[1].trim().split(' ')[1], 10);
+          var fields: { key: string, value: string }[] =
+            match[2].split(',').map(field => {
+              var splitted = field.trim().split(':');
+              return { key: splitted[0], value: splitted[1] };
+            });
+          var subAffixes = fields.filter(field => field.key === 'subAffixes').map(field => {
+            return field.value.trim().split('|').map(sub => {
+              var subMatch = sub.match(/(\d+): (\d+)+(\d+)/);
+              return { id: parseInt(subMatch![1], 10), level: parseInt(subMatch![2], 10), step: parseInt(subMatch![3], 10) };
+            });
+          })[0];
+          if (!result.relics) {
+            result.relics = {};
+          }
+          result.relics[relicIndex] = {
+            relicId: parseInt(fields.find(field => field.key === 'relicId')?.value!, 10),
+            level: parseInt(fields.find(field => field.key === 'level')?.value!, 10),
+            mainAffixId: parseInt(fields.find(field => field.key === 'mainAffix')?.value!, 10),
+            subAffixIds: subAffixes.map(sub => sub.id),
+            subAffixLevels: subAffixes.map(sub => sub.level),
+            subAffixSteps: subAffixes.map(sub => sub.step),
+          };
+        }
+      }
+    }
+    return result;
   }
 
 

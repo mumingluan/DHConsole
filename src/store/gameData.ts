@@ -13,7 +13,7 @@ class GameData {
   // loaded pairs of language and GameEntities as tuples
   static loadedEntities: Set<[GameEntity, string]> = new Set();
 
-  public static async loadAvatar(language: string): Promise<void> {
+  public static async loadCharacter(language: string): Promise<void> {
     if (this.loadedEntities.has([GameEntity.Avatar, language])) {
       return;
     }
