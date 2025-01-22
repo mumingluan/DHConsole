@@ -4,14 +4,14 @@ import BasicInfoSection from './sections/BasicInfoSection';
 import LightConeSection from './sections/LightConeSection';
 import RelicsSection from './sections/RelicsSection';
 import CommandService from '../../api/CommandService';
-import { CharacterInfo } from '../../api/CharacterInfo';
+import { Character } from '../../api/CharacterInfo';
 
 interface CharacterDetailsProps {
     characterId: number;
 }
 
 export default function CharacterDetails({ characterId }: CharacterDetailsProps) {
-    const [characterInfo, setCharacterInfo] = React.useState<CharacterInfo | null>(null);
+    const [characterInfo, setCharacterInfo] = React.useState<Character | null>(null);
 
     React.useEffect(() => {
         loadCharacterInfo();

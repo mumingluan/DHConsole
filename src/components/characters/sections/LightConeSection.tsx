@@ -9,14 +9,14 @@ import {
     MenuItem,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { CharacterInfo } from '../../../api/CharacterInfo';
+import { Character } from '../../../api/CharacterInfo';
 import CommandService from '../../../api/CommandService';
 import GameData from '../../../store/gameData';
 import { useLanguageContext } from '../../../store/languageContext';
 
 interface LightConeSectionProps {
     characterId: number;
-    characterInfo: CharacterInfo;
+    characterInfo: Character;
     onUpdate: () => void;
 }
 
@@ -85,7 +85,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap', paddingRight: 3 }}>
                         <Typography>
                         Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : 'None'}
                     </Typography>

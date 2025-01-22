@@ -1,5 +1,5 @@
 import MuipService from './MuipService';
-import { CharacterInfo, Relic } from './CharacterInfo';
+import { Character, Relic } from './CharacterInfo';
 
 class CommandService {
   static readonly languageMap: Record<string, string> = {
@@ -72,6 +72,15 @@ class CommandService {
     return this.parseGameText(result);
   }
 
+  static async loadAffixGameText(lang: string): Promise<Record<number, string>> {
+    if (!this.languageMap[lang]) {
+      throw new Error(`Invalid language code: ${lang}`);
+    }
+    const command = `gametext affix #${this.languageMap[lang]}`;
+    const result = await this.executeCommand(command);
+    return this.parseGameText(result);
+  }
+
   static async getInventory(): Promise<Record<number, number>> {
     const command = `fetch inventory`;
     const result = await this.executeCommand(command);
@@ -90,7 +99,7 @@ class CommandService {
     return this.parseNumberList(result).filter((value, index, self) => self.indexOf(value) === index);
   }
 
-  static async getCharacterInfo(characterId: number): Promise<CharacterInfo> {
+  static async getCharacterInfo(characterId: number): Promise<Character> {
     const command = `fetch avatar ${characterId}`;
     const result = await this.executeCommand(command);
     return this.parseCharacterInfo(result);
@@ -234,9 +243,9 @@ class CommandService {
     return lines.map(line => parseInt(line.trim(), 10));
   }
 
-  private static parseCharacterInfo(response: string): CharacterInfo {
+  private static parseCharacterInfo(response: string): Character {
     const lines = response.split('\n');
-    var result: CharacterInfo = {};
+    var result: Character = {};
     for (const line of lines) {
       const match = line.match(/[(\w+)] (.*)/);
       if (match && match[1] && match[2]) {
@@ -282,8 +291,8 @@ class CommandService {
             });
           var subAffixes = fields.filter(field => field.key === 'subAffixes').map(field => {
             return field.value.trim().split('|').map(sub => {
-              var subMatch = sub.match(/(\d+): (\d+)+(\d+)/);
-              return { id: parseInt(subMatch![1], 10), level: parseInt(subMatch![2], 10), step: parseInt(subMatch![3], 10) };
+              var subMatch = sub.match(/(\w+): (\d+)+(\d+)/);
+              return { name: subMatch![1], level: parseInt(subMatch![2], 10), step: parseInt(subMatch![3], 10) };
             });
           })[0];
           if (!result.relics) {
@@ -292,8 +301,8 @@ class CommandService {
           result.relics[relicIndex] = {
             relicId: parseInt(fields.find(field => field.key === 'relicId')?.value!, 10),
             level: parseInt(fields.find(field => field.key === 'level')?.value!, 10),
-            mainAffixId: parseInt(fields.find(field => field.key === 'mainAffix')?.value!, 10),
-            subAffixIds: subAffixes.map(sub => sub.id),
+            mainAffix: fields.find(field => field.key === 'mainAffix')?.value!,
+            subAffixes: subAffixes.map(sub => sub.name),
             subAffixLevels: subAffixes.map(sub => sub.level),
             subAffixSteps: subAffixes.map(sub => sub.step),
           };

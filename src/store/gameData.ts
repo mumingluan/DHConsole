@@ -10,7 +10,6 @@ enum GameEntity {
 class GameData {
   static entities: Record<string, Record<GameEntity, Record<number, string>>> = {}; // Map of Language to EntityType to ID to name
   static entityTypes: Record<number, GameEntity> = {}; // Map of ID to entity type
-  // loaded pairs of language and GameEntities as tuples
   static loadedEntities: Set<[GameEntity, string]> = new Set();
 
   public static async loadCharacter(language: string): Promise<void> {
@@ -57,10 +56,7 @@ class GameData {
     if (!this.entities[language]) {
       return "ERROR_NOT_LOADED";
     }
-    if (!this.entityTypes[key]) {
-      return "ERROR_NOT_FOUND";
-    }
-    if (!this.entities[language][this.entityTypes[key]]) {
+    if (!this.entityTypes[key] || !this.entities[language][this.entityTypes[key]]) {
       return "ERROR_NOT_FOUND";
     }
     return this.entities[language][this.entityTypes[key]][key];

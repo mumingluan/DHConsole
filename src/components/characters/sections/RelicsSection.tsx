@@ -13,39 +13,41 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import EditIcon from '@mui/icons-material/Edit';
-import { CharacterInfo, Relic } from '../../../api/CharacterInfo';
+import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES } from '../../../api/CharacterInfo';
 import CommandService from '../../../api/CommandService';
 import GameData from '../../../store/gameData';
 import { useLanguageContext } from '../../../store/languageContext';
 
 interface RelicSectionProps {
     characterId: number;
-    characterInfo: CharacterInfo;
+    characterInfo: Character;
     onUpdate: () => void;
 }
 
 interface RelicCardProps {
-    index: number;
+    pos: number;
     relic: Relic;
     isEditing: boolean;
-    onRelicChange: (index: number, relic: Relic) => void;
+    onRelicChange: (pos: number, relic: Relic) => void;
 }
 
 interface AffixRowProps {
+    pos: number;
     label: string;
-    affixId: number;
+    affix: string;
     level: number;
     isEditable: boolean;
     isMain?: boolean;
-    onAffixChange?: (id: number) => void;
+    onAffixChange?: (affix: string) => void;
     onLevelChange?: (level: number) => void;
     maxLevel?: number;
     availableLevels?: number;
 }
 
 function AffixRow({
+    pos,
     label,
-    affixId,
+    affix,
     level,
     isEditable,
     isMain,
@@ -55,6 +57,7 @@ function AffixRow({
     availableLevels = 3
 }: AffixRowProps) {
     const { language } = useLanguageContext();
+    const possibleAffixes = isMain ? MAIN_AFFIXES[pos] : SUB_AFFIXES;
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -62,20 +65,19 @@ function AffixRow({
                 <TextField
                     select
                     size="small"
-                    value={affixId || ''}
-                    onChange={(e) => onAffixChange?.(Number(e.target.value))}
+                    value={affix || ''}
+                    onChange={(e) => onAffixChange?.(e.target.value)}
                     sx={{ flexGrow: 1 }}
                 >
-                    {/* Replace with actual affix IDs */}
-                    {[1, 2, 3, 4, 5].map((id) => (
-                        <MenuItem key={id} value={id}>
-                            {GameData.get(id, language)}
+                    {possibleAffixes.map((name) => (
+                        <MenuItem key={name} value={name}>
+                            {name}
                         </MenuItem>
                     ))}
                 </TextField>
             ) : (
                 <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                        [{label}] {affixId ? GameData.get(affixId, language) : 'Empty'}
+                        [{label}] {affix || '<Empty>'}
                 </Typography>
             )}
             {isEditable && !isMain ? (
@@ -101,34 +103,37 @@ function AffixRow({
     );
 }
 
-function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
+function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardProps) {
     const { language } = useLanguageContext();
-    const [subAffixes, setSubAffixes] = React.useState<Array<{ id: number; level: number }>>([
-        { id: relic.subAffixIds?.[0] || 0, level: relic.subAffixLevels?.[0] || 1 },
-        { id: relic.subAffixIds?.[1] || 0, level: relic.subAffixLevels?.[1] || 1 },
-        { id: relic.subAffixIds?.[2] || 0, level: relic.subAffixLevels?.[2] || 1 },
-        { id: relic.subAffixIds?.[3] || 0, level: relic.subAffixLevels?.[3] || 1 },
+    const [mainAffix, setMainAffix] = React.useState<string>(relic.mainAffix || '');
+    const [subAffixes, setSubAffixes] = React.useState<Array<{ name: string; level: number }>>([
+        { name: relic.subAffixes?.[0] || '', level: relic.subAffixLevels?.[0] || 1 },
+        { name: relic.subAffixes?.[1] || '', level: relic.subAffixLevels?.[1] || 1 },
+        { name: relic.subAffixes?.[2] || '', level: relic.subAffixLevels?.[2] || 1 },
+        { name: relic.subAffixes?.[3] || '', level: relic.subAffixLevels?.[3] || 1 },
     ]);
 
     const totalSubAffixLevels = subAffixes.reduce((sum, affix) => sum + affix.level, 0);
     const availableLevels = 9 - totalSubAffixLevels;
 
-    const handleSubAffixChange = (index: number, field: 'id' | 'level', value: number) => {
+    const handleSubAffixChange = (index: number, field: 'name' | 'level', value: string | number) => {
         const newSubAffixes = [...subAffixes];
         newSubAffixes[index] = { ...newSubAffixes[index], [field]: value };
         setSubAffixes(newSubAffixes);
 
         onRelicChange(index, {
             ...relic,
-            subAffixIds: newSubAffixes.map(a => a.id),
+            subAffixes: newSubAffixes.map(a => a.name),
             subAffixLevels: newSubAffixes.map(a => a.level),
         });
     };
 
-    const getMainAffixId = () => {
-        if (index === 0 || index === 1) return 1;
-        // Add logic for other positions if needed
-        return relic.mainAffixId || 1;
+    const handleMainAffixChange = (value: string) => {
+        setMainAffix(value);
+        onRelicChange(index, {
+            ...relic,
+            mainAffix: value,
+        });
     };
 
     return (
@@ -159,8 +164,10 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
                     <Divider />
 
                     <AffixRow
+                        pos={index}
                         label="Main"
-                        affixId={getMainAffixId()}
+                        affix={mainAffix}
+
                         level={relic.level || 15} // Fixed level for main affix
                         isEditable={index >= 2}
                         isMain={true}
@@ -170,12 +177,13 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
 
                     {subAffixes.map((subAffix, subIndex) => (
                         <AffixRow
+                            pos={index}
                             key={subIndex}
                             label="Sub"
-                            affixId={subAffix.id}
+                            affix={subAffix.name}
                             level={subAffix.level}
                             isEditable={isEditing}
-                            onAffixChange={(id) => handleSubAffixChange(subIndex, 'id', id)}
+                            onAffixChange={(name) => handleSubAffixChange(subIndex, 'name', name)}
                             onLevelChange={(level) => handleSubAffixChange(subIndex, 'level', level)}
                             availableLevels={availableLevels + subAffix.level}
                         />
@@ -223,7 +231,7 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
                 {Array.from({ length: 6 }, (_, i) => (
                     <Grid size={{ xs: 12, sm: 6 }} key={i}>
                         <RelicCard
-                            index={i}
+                            pos={i}
                             relic={relics[i] || {}}
                             isEditing={isEditing}
                             onRelicChange={handleRelicChange}
