@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useLanguageContext } from '../store/languageContext';
 import { Button, Menu, MenuItem, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
+import { SidebarFooterProps } from '@toolpad/core/DashboardLayout';
 
-const LanguageSidebarFooter: React.FC = () => {
+const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFooterProps) => {
     const { language, setLanguage } = useLanguageContext();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -66,9 +67,11 @@ const LanguageSidebarFooter: React.FC = () => {
                         <Grid key={lang.code} size={6}>
                             <MenuItem onClick={() => handleMenuItemClick(lang.code)} sx={{ borderRadius: '6px' }} >
                                 <img src={flagUrl(lang.flag)} alt={lang.name} width="24" height="18" />
-                                <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif' }}>
-                                    {lang.name}
-                                </Typography>
+                                {mini ? null : (
+                                    <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif' }}>
+                                        {lang.name}
+                                    </Typography>
+                                )}
                             </MenuItem>
                         </Grid>
                     ))}

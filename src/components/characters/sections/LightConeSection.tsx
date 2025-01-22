@@ -47,7 +47,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
             </Box>
 
             {isEditing ? (
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         select
                         label="Light Cone"
@@ -79,7 +79,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
                         <Typography>
                         Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : 'None'}
                     </Typography>

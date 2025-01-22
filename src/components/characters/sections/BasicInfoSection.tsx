@@ -43,7 +43,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
             </Box>
 
             {isEditing ? (
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         label="Level"
                         type="number"
@@ -53,7 +53,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         size="small"
                     />
                     <TextField
-                        label="Rank"
+                        label="Eidolon"
                         type="number"
                         value={rank}
                         onChange={(e) => setRank(Number(e.target.value))}
@@ -73,7 +73,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 2, flexWrap: 'wrap' }}>
                     <Typography>Level: {characterInfo.level}</Typography>
                     <Typography>Rank: {characterInfo.rank}</Typography>
                     <Typography>

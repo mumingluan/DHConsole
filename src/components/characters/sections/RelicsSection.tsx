@@ -133,7 +133,7 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
 
     return (
         <Card variant="outlined">
-            <CardContent>
+            <CardContent sx={{ padding: 3 }}>
                 <Typography variant="subtitle2" gutterBottom>
                     Relic {index + 1}
                 </Typography>
@@ -162,7 +162,7 @@ function RelicCard({ index, relic, isEditing, onRelicChange }: RelicCardProps) {
                         label="Main"
                         affixId={getMainAffixId()}
                         level={relic.level || 15} // Fixed level for main affix
-                        isEditable={false}
+                        isEditable={index >= 2}
                         isMain={true}
                     />
 
