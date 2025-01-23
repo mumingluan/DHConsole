@@ -5,16 +5,18 @@ import CommandService from '../api/CommandService';
 import GameData from '../store/gameData';
 import { useLanguageContext } from '../store/languageContext';
 import { usePlayerContext } from '../store/playerContext';
+import { useTranslation } from 'react-i18next';
 
 const missionCategories = [
-  { label: 'Main Story', prefix: '1', icon: 'Book' },
-  { label: 'Side Story', prefix: '2|5|6|7', icon: 'LocalLibrary' },
-  { label: 'World', prefix: '4', icon: 'Map' },
-  { label: 'Daily', prefix: '3', icon: 'Event' },
-  { label: 'Event', prefix: '8', icon: 'Star' },
+  { label: 'mainStory', prefix: '1', icon: 'Book' },
+  { label: 'sideStory', prefix: '2|5|6|7', icon: 'LocalLibrary' },
+  { label: 'world', prefix: '4', icon: 'Map' },
+  { label: 'daily', prefix: '3', icon: 'Event' },
+  { label: 'event', prefix: '8', icon: 'Star' },
 ];
 
 const Missions = () => {
+  const { t } = useTranslation();
   const [currentMissions, setCurrentMissions] = useState<Record<number, number[]>>({});
   const [completedMainMissions, setCompletedMainMissions] = useState<number[]>([]);
   const [completedSubMissions, setCompletedSubMissions] = useState<number[]>([]);
@@ -120,7 +122,7 @@ const Missions = () => {
     <Box display="flex" height="100%">
       <Box flex={1} paddingRight={2} borderRight="1px solid #ccc">
         <Box display="flex" alignItems="center">
-          <Typography variant="h6">Current Missions</Typography>
+          <Typography variant="h6">{t('missions.sections.currentMissions')}</Typography>
           <IconButton color="primary" onClick={fetchMissions} style={{ marginLeft: 2 }} disabled={waiting}>
             <RefreshIcon />
           </IconButton>
@@ -129,7 +131,7 @@ const Missions = () => {
           {missionCategories.map((category) => (
             <Chip
               key={category.label}
-              label={`${category.label} (${missionCounts.find(count => count.label === category.label)?.count || 0})`}
+              label={`${t(`missions.categories.${category.label}`)} (${missionCounts.find(count => count.label === category.label)?.count || 0})`}
               onClick={() => toggleCategory(category.prefix)}
               color={selectedCategories.includes(category.prefix) ? 'primary' : 'default'}
               style={{ margin: 4 }}
@@ -138,7 +140,7 @@ const Missions = () => {
         </Box>
         <Box display="flex" alignItems="center" marginBottom={2}>
           <Typography variant="body2">
-            Show unnamed missions
+            {t('missions.labels.showUnnamedMissions')}
           </Typography>
           <Switch
             checked={showUnnamedMissions}
@@ -156,12 +158,12 @@ const Missions = () => {
                   onClick={() => handleSkipMainMission(Number(mainMissionId))}
                   disabled={waiting}
                   sx={{ textTransform: 'none' }}>
-                  Skip All
+                  {t('missions.actions.skipAll')}
                 </Button>
               } >
                 <ListItemText
                   primary={`${GameData.get(Number(mainMissionId), language)}`}
-                  secondary={`${mainMissionId} (main)`}
+                  secondary={`${mainMissionId} (${t('missions.labels.main')})`}
                   slotProps={{ primary: { variant: 'body1' } }}
                 />
               </ListItem>
@@ -173,12 +175,12 @@ const Missions = () => {
                     onClick={() => handleSkipSubMission(subMissionId)}
                     disabled={waiting}
                     sx={{ textTransform: 'none' }}>
-                    Skip
+                    {t('missions.actions.skip')}
                   </Button>
                 } >
                   <ListItemText
                     primary={`${GameData.get(Number(subMissionId), language)}`}
-                    secondary={`${subMissionId} (sub)`}
+                    secondary={`${subMissionId} (${t('missions.labels.sub')})`}
                     slotProps={{ primary: { variant: 'body1' } }}
                     sx={{ marginLeft: '24px' }}
                   />
@@ -190,7 +192,7 @@ const Missions = () => {
       </Box>
 
       <Box flex={1} paddingLeft={2}>
-        <Typography variant="h6">Recent Skip History</Typography>
+        <Typography variant="h6">{t('missions.sections.recentSkipHistory')}</Typography>
         <List>
           {completedMainMissions.slice(-5).map((id) => (
             <ListItem key={id} secondaryAction={
@@ -200,27 +202,33 @@ const Missions = () => {
                 onClick={() => handleAcceptMission(Number(id))}
                 disabled={waiting}
                 sx={{ textTransform: 'none' }}>
-                Reaccept
+                {t('missions.actions.reaccept')}
               </Button>
             } >
-              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`${id} (main)`} />
+              <ListItemText
+                primary={`${GameData.get(Number(id), language)}`}
+                secondary={`${id} (${t('missions.labels.main')})`}
+              />
             </ListItem>
           ))}
         </List>
         <List>
           {completedSubMissions.slice(-5).map((id) => (
             <ListItem key={id}>
-              <ListItemText primary={`${GameData.get(Number(id), language)}`} secondary={`${id} (sub)`} />
+              <ListItemText
+                primary={`${GameData.get(Number(id), language)}`}
+                secondary={`${id} (${t('missions.labels.sub')})`}
+              />
             </ListItem>
           ))}
         </List>
         <Divider style={{ margin: '16px 0' }} />
-        <Typography variant="h6">Accept New Missions</Typography>
+        <Typography variant="h6">{t('missions.sections.acceptNewMissions')}</Typography>
         <Box display="flex" alignItems="center" marginBottom={2}>
           <TextField
             fullWidth
             variant="outlined"
-            placeholder="Search missions..."
+            placeholder={t('missions.labels.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -237,10 +245,13 @@ const Missions = () => {
                 onClick={() => handleAcceptMission(Number(id))}
                 disabled={waiting}
                 sx={{ textTransform: 'none' }}>
-                Accept
+                {t('missions.actions.accept')}
               </Button>
             } >
-              <ListItemText primary={name} secondary={`${id} (main)`} />
+              <ListItemText
+                primary={name}
+                secondary={`${id} (${t('missions.labels.main')})`}
+              />
             </ListItem>
           ))}
         </List>

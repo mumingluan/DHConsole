@@ -3,10 +3,12 @@ import { useLanguageContext } from '../store/languageContext';
 import { Button, Menu, MenuItem, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { SidebarFooterProps } from '@toolpad/core/DashboardLayout';
+import { useTranslation } from 'react-i18next';
 
 const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFooterProps) => {
     const { language, setLanguage } = useLanguageContext();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const { i18n } = useTranslation();
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -18,6 +20,7 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
 
     const handleMenuItemClick = (langCode: string) => {
         setLanguage(langCode);
+        i18n.changeLanguage(langCode);
         console.log('Setting language to', langCode);
         handleClose();
     };

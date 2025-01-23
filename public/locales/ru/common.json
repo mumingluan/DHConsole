@@ -1,0 +1,177 @@
+{
+    "save": "Сохранить",
+    "affix": {
+        "HPDelta": "Здоровье",
+        "AttackDelta": "Атака",
+        "DefenceDelta": "Защита",
+        "HPAddedRatio": "Здоровье %",
+        "AttackAddedRatio": "Атака %",
+        "DefenceAddedRatio": "Защита %",
+        "CriticalChanceBase": "Шанс крит. удара",
+        "CriticalDamageBase": "Крит. урон",
+        "HealRatioBase": "Увеличение лечения",
+        "StatusProbabilityBase": "Шанс эффекта",
+        "StatusResistanceBase": "Сопротивление эффекту",
+        "SpeedDelta": "Скорость",
+        "PhysicalAddedRatio": "Физ. урон",
+        "FireAddedRatio": "Огненный урон",
+        "IceAddedRatio": "Ледяной урон",
+        "ThunderAddedRatio": "Электрический урон",
+        "WindAddedRatio": "Ветровой урон",
+        "QuantumAddedRatio": "Квантовый урон",
+        "ImaginaryAddedRatio": "Воображаемый урон",
+        "BreakDamageAddedRatioBase": "Эффект разрушения",
+        "SPRatioBase": "Скорость восстановления энергии"
+    },
+    "character": {
+        "lightCone": {
+            "title": "Световой конус"
+        },
+        "relic": {
+            "title": "Реликвии",
+            "labels": {
+                "main": "Основной",
+                "sub": "Дополнительный",
+                "empty": "<Пусто>",
+                "level": "Уровень",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "Сохранить все реликвии"
+            },
+            "errors": {
+                "saveFailed": "Не удалось сохранить реликвии",
+                "maxLevels": "Общий уровень улучшения дополнительных аффиксов не может превышать 5 (текущий: {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "Основная информация",
+            "level": "Уровень",
+            "eidolon": "Эйдолон",
+            "talentLevel": "Уровень таланта",
+            "path": "Путь"
+        },
+        "pickPrompt": "Выберите персонажа для просмотра деталей",
+        "list": {
+            "addCharacter": "Добавить персонажа"
+        },
+        "selectPrompt": "Выберите персонажа для просмотра деталей"
+    },
+    "server": {
+        "selectPlayer": "Выберите игрока",
+        "disconnected": "(отключено)",
+        "connect": "Подключить",
+        "connected": "Подключено",
+        "serverTime": "Время сервера",
+        "memoryUsed": "Используемая память"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "Информация об игроке",
+            "level": "Уровень",
+            "gender": "Пол",
+            "update": "Обновить",
+            "male": "Мужской",
+            "female": "Женский"
+        },
+        "controls": {
+            "title": "Управление аккаунтом",
+            "unlockAll": "Разблокировать все",
+            "maxAll": "Максимизировать все",
+            "buttons": {
+                "characters": "Персонажи",
+                "collectibles": "Коллекции",
+                "furniture": "Мебель",
+                "pets": "Питомцы",
+                "characterLevel": "Уровень персонажа",
+                "characterRank": "Ранг персонажа",
+                "characterTalent": "Талант персонажа"
+            }
+        },
+        "messages": {
+            "loadError": "Не удалось загрузить информацию об игроке",
+            "levelRangeError": "Уровень должен быть от 1 до 80",
+            "levelSuccess": "Уровень успешно обновлен",
+            "levelError": "Не удалось обновить уровень",
+            "genderSuccess": "Пол успешно обновлен",
+            "genderError": "Не удалось обновить пол",
+            "actionError": "Не удалось выполнить действие",
+            "unlockSuccess": {
+                "characters": "Все персонажи разблокированы",
+                "collectibles": "Все коллекции разблокированы",
+                "furniture": "Вся мебель разблокирована",
+                "pets": "Все питомцы разблокированы",
+                "characterLevel": "Все персонажи установлены на максимальный уровень",
+                "characterRank": "Все персонажи установлены на максимальный ранг",
+                "characterTalent": "Все персонажи установлены на максимальный талант"
+            }
+        }
+    },
+    "command": {
+        "tip": "Совет: не включайте префикс \"/\".",
+        "input": "Ввод команды",
+        "placeholder": "Введите команду",
+        "run": "Выполнить",
+        "output": "[Вывод команды]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "Удалить неиспользуемые реликвии",
+            "removeUnusedEquipment": "Удалить неиспользуемое оборудование",
+            "send": "Отправить"
+        },
+        "sections": {
+            "sendItems": "Отправить предметы",
+            "inventory": "Инвентарь"
+        },
+        "search": {
+            "label": "Поиск предметов",
+            "count": "Количество"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "Вы уверены, что хотите удалить все неиспользуемые {{type}}?",
+                "content": "Это удалит все {{type}}, которые в настоящее время не экипированы персонажами.",
+                "cancel": "Отмена",
+                "confirm": "Подтвердить"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "Текущие миссии",
+            "recentSkipHistory": "Недавняя история пропусков",
+            "acceptNewMissions": "Принять новые миссии"
+        },
+        "categories": {
+            "mainStory": "Основная история",
+            "sideStory": "Побочная история",
+            "world": "Мир",
+            "daily": "Ежедневные",
+            "event": "События"
+        },
+        "actions": {
+            "skipAll": "Пропустить все",
+            "skip": "Пропустить",
+            "reaccept": "Принять снова",
+            "accept": "Принять"
+        },
+        "labels": {
+            "showUnnamedMissions": "Показать безымянные миссии",
+            "searchPlaceholder": "Поиск миссий...",
+            "main": "основная",
+            "sub": "дополнительная"
+        }
+    },
+    "navigation": {
+        "header": "Управление данными игры",
+        "title": "Консоль DH",
+        "segments": {
+            "characters": "Персонажи",
+            "missions": "Миссии",
+            "inventory": "Инвентарь",
+            "account": "Аккаунт",
+            "command": "Команда"
+        }
+    }
+}

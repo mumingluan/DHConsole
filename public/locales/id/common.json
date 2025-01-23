@@ -1,0 +1,177 @@
+{
+    "save": "Simpan",
+    "affix": {
+        "HPDelta": "HP",
+        "AttackDelta": "ATK",
+        "DefenceDelta": "DEF",
+        "HPAddedRatio": "HP %",
+        "AttackAddedRatio": "ATK %",
+        "DefenceAddedRatio": "DEF %",
+        "CriticalChanceBase": "Peluang Crit",
+        "CriticalDamageBase": "Kerusakan Crit",
+        "HealRatioBase": "Peningkatan Penyembuhan",
+        "StatusProbabilityBase": "Tingkat Hit Efek",
+        "StatusResistanceBase": "Resistensi Efek",
+        "SpeedDelta": "SPD",
+        "PhysicalAddedRatio": "Peningkatan Kerusakan Fisik",
+        "FireAddedRatio": "Peningkatan Kerusakan Api",
+        "IceAddedRatio": "Peningkatan Kerusakan Es",
+        "ThunderAddedRatio": "Peningkatan Kerusakan Petir",
+        "WindAddedRatio": "Peningkatan Kerusakan Angin",
+        "QuantumAddedRatio": "Peningkatan Kerusakan Kuantum",
+        "ImaginaryAddedRatio": "Peningkatan Kerusakan Imajiner",
+        "BreakDamageAddedRatioBase": "Efek Break",
+        "SPRatioBase": "Tingkat Regenerasi Energi"
+    },
+    "character": {
+        "lightCone": {
+            "title": "Kerucut Cahaya"
+        },
+        "relic": {
+            "title": "Relik",
+            "labels": {
+                "main": "Utama",
+                "sub": "Tambahan",
+                "empty": "<Kosong>",
+                "level": "Lv.",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "Simpan Semua Relik"
+            },
+            "errors": {
+                "saveFailed": "Gagal menyimpan relik",
+                "maxLevels": "Total level peningkatan afiks tambahan tidak boleh melebihi 5 (saat ini: {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "Informasi Dasar",
+            "level": "Level",
+            "eidolon": "Eidolon",
+            "talentLevel": "Level Bakat",
+            "path": "Jalur"
+        },
+        "pickPrompt": "Pilih karakter untuk melihat detail",
+        "list": {
+            "addCharacter": "Tambah Karakter"
+        },
+        "selectPrompt": "Pilih karakter untuk melihat detail"
+    },
+    "server": {
+        "selectPlayer": "Pilih pemain",
+        "disconnected": "(terputus)",
+        "connect": "Hubungkan",
+        "connected": "Terhubung",
+        "serverTime": "Waktu Server",
+        "memoryUsed": "Memori Digunakan"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "Info Pemain",
+            "level": "Level",
+            "gender": "Jenis Kelamin",
+            "update": "Perbarui",
+            "male": "Pria",
+            "female": "Wanita"
+        },
+        "controls": {
+            "title": "Kontrol Akun",
+            "unlockAll": "Buka Semua",
+            "maxAll": "Maksimalkan Semua",
+            "buttons": {
+                "characters": "Karakter",
+                "collectibles": "Koleksi",
+                "furniture": "Furnitur",
+                "pets": "Hewan Peliharaan",
+                "characterLevel": "Level Karakter",
+                "characterRank": "Peringkat Karakter",
+                "characterTalent": "Bakat Karakter"
+            }
+        },
+        "messages": {
+            "loadError": "Gagal memuat info pemain",
+            "levelRangeError": "Level harus antara 1 dan 80",
+            "levelSuccess": "Level berhasil diperbarui",
+            "levelError": "Gagal memperbarui level",
+            "genderSuccess": "Jenis kelamin berhasil diperbarui",
+            "genderError": "Gagal memperbarui jenis kelamin",
+            "actionError": "Aksi gagal",
+            "unlockSuccess": {
+                "characters": "Semua karakter dibuka",
+                "collectibles": "Semua koleksi dibuka",
+                "furniture": "Semua furnitur dibuka",
+                "pets": "Semua hewan peliharaan dibuka",
+                "characterLevel": "Semua karakter diatur ke level maksimum",
+                "characterRank": "Semua karakter diatur ke peringkat maksimum",
+                "characterTalent": "Semua karakter diatur ke bakat maksimum"
+            }
+        }
+    },
+    "command": {
+        "tip": "Tip: jangan sertakan awalan \"/\".",
+        "input": "Input Perintah",
+        "placeholder": "Masukkan perintah",
+        "run": "Jalankan",
+        "output": "[Output Perintah]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "Hapus Relik yang Tidak Digunakan",
+            "removeUnusedEquipment": "Hapus Peralatan yang Tidak Digunakan",
+            "send": "Kirim"
+        },
+        "sections": {
+            "sendItems": "Kirim Barang",
+            "inventory": "Inventaris"
+        },
+        "search": {
+            "label": "Cari Barang",
+            "count": "Jumlah"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "Apakah Anda yakin ingin menghapus semua {{type}} yang tidak digunakan?",
+                "content": "Ini akan menghapus semua {{type}} yang tidak dipakai oleh karakter mana pun saat ini.",
+                "cancel": "Batal",
+                "confirm": "Konfirmasi"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "Misi Saat Ini",
+            "recentSkipHistory": "Riwayat Lewati Terbaru",
+            "acceptNewMissions": "Terima Misi Baru"
+        },
+        "categories": {
+            "mainStory": "Cerita Utama",
+            "sideStory": "Cerita Sampingan",
+            "world": "Dunia",
+            "daily": "Harian",
+            "event": "Acara"
+        },
+        "actions": {
+            "skipAll": "Lewati Semua",
+            "skip": "Lewati",
+            "reaccept": "Terima Kembali",
+            "accept": "Terima"
+        },
+        "labels": {
+            "showUnnamedMissions": "Tampilkan misi tanpa nama",
+            "searchPlaceholder": "Cari misi...",
+            "main": "utama",
+            "sub": "tambahan"
+        }
+    },
+    "navigation": {
+        "header": "Kelola Data Game",
+        "title": "Konsol DH",
+        "segments": {
+            "characters": "Karakter",
+            "missions": "Misi",
+            "inventory": "Inventaris",
+            "account": "Akun",
+            "command": "Perintah"
+        }
+    }
+}

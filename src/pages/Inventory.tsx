@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useLanguageContext } from '../store/languageContext';
 import { usePlayerContext } from '../store/playerContext';
 import { useDialogs, DialogProps } from '@toolpad/core/useDialogs';
+import { useTranslation } from 'react-i18next';
 
 export default function Inventory() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,6 +20,7 @@ export default function Inventory() {
   const { language } = useLanguageContext();
   const { playerUid, isConnected } = usePlayerContext();
   const dialogs = useDialogs();
+  const { t } = useTranslation();
   var allItems: Record<number, string> = {};
 
   useEffect(() => {
@@ -64,24 +66,24 @@ export default function Inventory() {
 
   function confirmRemoval({ payload, open, onClose }: DialogProps<string, boolean>) {
     return <Dialog open={open} onClose={() => onClose(false)}>
-      <DialogTitle>Are you sure you want to remove all unused {payload}?</DialogTitle>
-      <DialogContent>This will remove all {payload} that no characters currently equip.</DialogContent>
+      <DialogTitle>{t('inventory.dialog.removeConfirm.title', { type: payload })}</DialogTitle>
+      <DialogContent>{t('inventory.dialog.removeConfirm.content', { type: payload })}</DialogContent>
       <DialogActions>
-        <Button onClick={() => onClose(false)}>Cancel</Button>
-        <Button onClick={() => onClose(true)}>Confirm</Button>
+        <Button onClick={() => onClose(false)}>{t('inventory.dialog.removeConfirm.cancel')}</Button>
+        <Button onClick={() => onClose(true)}>{t('inventory.dialog.removeConfirm.confirm')}</Button>
       </DialogActions>
     </Dialog>
   }
 
   const handleRemoveEquipment = async () => {
-    const confirmed = await dialogs.open(confirmRemoval, 'light cones');
+    const confirmed = await dialogs.open(confirmRemoval, t('character.lightCone.title'));
     if (confirmed) {
       await CommandService.removeUnusedEquipment();
     }
   };
 
   const handleRemoveRelics = async () => {
-    const confirmed = await dialogs.open(confirmRemoval, 'relics');
+    const confirmed = await dialogs.open(confirmRemoval, t('character.relic.title'));
     if (confirmed) {
       await CommandService.removeUnusedRelics();
     }
@@ -96,7 +98,7 @@ export default function Inventory() {
           onClick={handleRemoveRelics}
           startIcon={<DeleteIcon />}
           sx={{ textTransform: 'none' }}>
-          Remove Unused Relics
+          {t('inventory.actions.removeUnusedRelics')}
         </Button>
         <Button
           variant="contained"
@@ -104,14 +106,14 @@ export default function Inventory() {
           onClick={handleRemoveEquipment}
           startIcon={<DeleteIcon />}
           sx={{ textTransform: 'none' }}>
-          Remove Unused Equipment
+          {t('inventory.actions.removeUnusedEquipment')}
         </Button>
       </Box>
-      <Typography variant="h6">Send Items</Typography>
+      <Typography variant="h6">{t('inventory.sections.sendItems')}</Typography>
       <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', maxWidth: '60%' }}>
         <TextField
           fullWidth
-          label="Search Items"
+          label={t('inventory.search.label')}
           variant="outlined"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -126,7 +128,7 @@ export default function Inventory() {
             <Box sx={{ display: 'flex', alignItems: 'center', maxHeight: '80%' }}>
               <TextField
                 type="number"
-                label="Count"
+                label={t('inventory.search.count')}
                 value={sendItemCounts[Number(id)]}
                 onChange={(e) => setSendItemCounts({ ...sendItemCounts, [Number(id)]: Number(e.target.value) })}
                 margin="dense"
@@ -138,7 +140,7 @@ export default function Inventory() {
                 onClick={() => handleSendItem(Number(id), sendItemCounts[Number(id)])}
                 sx={{ marginLeft: '10px', textTransform: 'none' }}
                 disabled={loading}>
-                Send
+                {t('inventory.actions.send')}
               </Button>
             </Box>
           }>
@@ -148,7 +150,7 @@ export default function Inventory() {
       </List>
 
       <Divider style={{ margin: '16px 0' }} />
-      <Typography variant="h6">Inventory</Typography>
+      <Typography variant="h6">{t('inventory.sections.inventory')}</Typography>
       <Grid container spacing={2}>
         {Object.entries(items).map(([id, count]) => (
           <Grid key={id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>

@@ -1,0 +1,177 @@
+{
+    "save": "저장",
+    "affix": {
+        "HPDelta": "HP",
+        "AttackDelta": "공격력",
+        "DefenceDelta": "방어력",
+        "HPAddedRatio": "HP %",
+        "AttackAddedRatio": "공격력 %",
+        "DefenceAddedRatio": "방어력 %",
+        "CriticalChanceBase": "치명타 확률",
+        "CriticalDamageBase": "치명타 피해",
+        "HealRatioBase": "치유량 증가",
+        "StatusProbabilityBase": "효과 적중",
+        "StatusResistanceBase": "효과 저항",
+        "SpeedDelta": "속도",
+        "PhysicalAddedRatio": "물리 피해 증가",
+        "FireAddedRatio": "화염 속성 피해 증가",
+        "IceAddedRatio": "얼음 속성 피해 증가",
+        "ThunderAddedRatio": "번개 속성 피해 증가",
+        "WindAddedRatio": "바람 속성 피해 증가",
+        "QuantumAddedRatio": "양자 피해 증가",
+        "ImaginaryAddedRatio": "허수 피해 증가",
+        "BreakDamageAddedRatioBase": "파괴 효과",
+        "SPRatioBase": "에너지 회복률"
+    },
+    "character": {
+        "lightCone": {
+            "title": "빛의 원뿔"
+        },
+        "relic": {
+            "title": "유물",
+            "labels": {
+                "main": "주 옵션",
+                "sub": "부 옵션",
+                "empty": "<비어 있음>",
+                "level": "레벨",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "모든 유물 저장"
+            },
+            "errors": {
+                "saveFailed": "유물 저장 실패",
+                "maxLevels": "부 옵션 업그레이드 레벨의 총합은 5를 초과할 수 없습니다 (현재: {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "기본 정보",
+            "level": "레벨",
+            "eidolon": "명운",
+            "talentLevel": "특성 레벨",
+            "path": "운명"
+        },
+        "pickPrompt": "상세 정보를 보려면 캐릭터를 선택하세요",
+        "list": {
+            "addCharacter": "캐릭터 추가"
+        },
+        "selectPrompt": "상세 정보를 보려면 캐릭터를 선택하세요"
+    },
+    "server": {
+        "selectPlayer": "플레이어 선택",
+        "disconnected": "(연결 끊김)",
+        "connect": "연결",
+        "connected": "연결됨",
+        "serverTime": "서버 시간",
+        "memoryUsed": "메모리 사용량"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "플레이어 정보",
+            "level": "레벨",
+            "gender": "성별",
+            "update": "업데이트",
+            "male": "남성",
+            "female": "여성"
+        },
+        "controls": {
+            "title": "계정 제어",
+            "unlockAll": "모두 잠금 해제",
+            "maxAll": "모두 최대화",
+            "buttons": {
+                "characters": "캐릭터",
+                "collectibles": "수집품",
+                "furniture": "가구",
+                "pets": "펫",
+                "characterLevel": "캐릭터 레벨",
+                "characterRank": "캐릭터 등급",
+                "characterTalent": "캐릭터 특성"
+            }
+        },
+        "messages": {
+            "loadError": "플레이어 정보 로드 실패",
+            "levelRangeError": "레벨은 1에서 80 사이여야 합니다",
+            "levelSuccess": "레벨이 성공적으로 업데이트되었습니다",
+            "levelError": "레벨 업데이트 실패",
+            "genderSuccess": "성별이 성공적으로 업데이트되었습니다",
+            "genderError": "성별 업데이트 실패",
+            "actionError": "작업 실패",
+            "unlockSuccess": {
+                "characters": "모든 캐릭터가 잠금 해제되었습니다",
+                "collectibles": "모든 수집품이 잠금 해제되었습니다",
+                "furniture": "모든 가구가 잠금 해제되었습니다",
+                "pets": "모든 펫이 잠금 해제되었습니다",
+                "characterLevel": "모든 캐릭터가 최대 레벨로 설정되었습니다",
+                "characterRank": "모든 캐릭터가 최대 등급으로 설정되었습니다",
+                "characterTalent": "모든 캐릭터가 최대 특성으로 설정되었습니다"
+            }
+        }
+    },
+    "command": {
+        "tip": "팁: \"/\" 접두사를 포함하지 마세요.",
+        "input": "명령어 입력",
+        "placeholder": "명령어 입력",
+        "run": "실행",
+        "output": "[명령어 출력]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "사용하지 않는 유물 제거",
+            "removeUnusedEquipment": "사용하지 않는 장비 제거",
+            "send": "보내기"
+        },
+        "sections": {
+            "sendItems": "아이템 보내기",
+            "inventory": "인벤토리"
+        },
+        "search": {
+            "label": "아이템 검색",
+            "count": "수량"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "사용하지 않는 {{type}}을 모두 제거하시겠습니까?",
+                "content": "이 작업은 현재 어떤 캐릭터도 장착하지 않은 모든 {{type}}을 제거합니다.",
+                "cancel": "취소",
+                "confirm": "확인"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "현재 임무",
+            "recentSkipHistory": "최근 스킵 기록",
+            "acceptNewMissions": "새로운 임무 수락"
+        },
+        "categories": {
+            "mainStory": "메인 스토리",
+            "sideStory": "사이드 스토리",
+            "world": "월드",
+            "daily": "일일",
+            "event": "이벤트"
+        },
+        "actions": {
+            "skipAll": "모두 스킵",
+            "skip": "스킵",
+            "reaccept": "재수락",
+            "accept": "수락"
+        },
+        "labels": {
+            "showUnnamedMissions": "이름 없는 임무 표시",
+            "searchPlaceholder": "임무 검색...",
+            "main": "메인",
+            "sub": "서브"
+        }
+    },
+    "navigation": {
+        "header": "게임 데이터 관리",
+        "title": "DH 콘솔",
+        "segments": {
+            "characters": "캐릭터",
+            "missions": "임무",
+            "inventory": "인벤토리",
+            "account": "계정",
+            "command": "명령어"
+        }
+    }
+}

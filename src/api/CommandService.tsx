@@ -143,38 +143,42 @@ class CommandService {
     await this.executeCommand(command);
   }
 
-  static async unlockAllCollectibles(): Promise<void> {
-    const command = `giveall unlock`;
+  static async unlockAll(itemType: string): Promise<void> {
+    var command: string;
+    switch (itemType) {
+      case 'characters':
+        command = `giveall avatar`;
+        break;
+      case 'collectibles':
+        command = `giveall unlock`;
+        break;
+      case 'furniture':
+        command = `giveall train`;
+        break;
+      case 'pets':
+        command = `giveall pet`;
+        break;
+      default:
+        throw new Error(`Invalid item type: ${itemType}`);
+    }
     await this.executeCommand(command);
   }
 
-  static async unlockAllFurniture(): Promise<void> {
-    const command = `giveall train`;
-    await this.executeCommand(command);
-  }
-
-  static async unlockAllPets(): Promise<void> {
-    const command = `giveall pet`;
-    await this.executeCommand(command);
-  }
-
-  static async unlockAllCharacters(): Promise<void> {
-    const command = `giveall avatar`;
-    await this.executeCommand(command);
-  }
-
-  static async setAllCharactersMaxLevel(): Promise<void> {
-    const command = `avatar -1 level 80`;
-    await this.executeCommand(command);
-  }
-
-  static async setAllCharactersMaxRank(): Promise<void> {
-    const command = `avatar -1 rank 6`;
-    await this.executeCommand(command);
-  }
-
-  static async setAllCharactersMaxTalent(): Promise<void> {
-    const command = `avatar -1 talent 10`;
+  static async maxAll(itemType: string): Promise<void> {
+    var command: string;
+    switch (itemType) {
+      case 'characterLevel':
+        command = `avatar -1 level 80`;
+        break;
+      case 'characterRank':
+        command = `avatar -1 rank 6`;
+        break;
+      case 'characterTalent':
+        command = `avatar -1 talent 10`;
+        break;
+      default:
+        throw new Error(`Invalid item type: ${itemType}`);
+    }
     await this.executeCommand(command);
   }
 

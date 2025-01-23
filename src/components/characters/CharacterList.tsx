@@ -9,6 +9,7 @@ import {
     Button,
     MenuItem,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import CommandService from '../../api/CommandService';
 import { useLanguageContext } from '../../store/languageContext';
 import { usePlayerContext } from '../../store/playerContext';
@@ -20,6 +21,7 @@ interface CharacterListProps {
 }
 
 export default function CharacterList({ selectedCharacterId, onCharacterSelect }: CharacterListProps) {
+    const { t } = useTranslation();
     const [ownedCharacters, setOwnedCharacters] = React.useState<number[]>([]);
     const [newCharacterId, setNewCharacterId] = React.useState<number | ''>('');
     const [loading, setLoading] = React.useState<boolean>(false);
@@ -74,7 +76,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
                     size="small"
                     value={newCharacterId}
                     onChange={(e) => setNewCharacterId(Number(e.target.value))}
-                    label="Add Character"
+                    label={t('character.list.addCharacter')}
                     sx={{ mb: 1 }}
                     disabled={!isConnected || loading}
                 >
@@ -90,7 +92,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
                     onClick={handleAddCharacter}
                     disabled={!newCharacterId || !isConnected || loading}
                 >
-                    Add Character
+                    {t('character.list.addCharacter')}
                 </Button>
             </Box>
             <List sx={{ flexGrow: 1, overflow: 'auto' }}>

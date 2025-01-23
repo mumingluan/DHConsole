@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Box, Paper } from '@mui/material';
 import Grid from '@mui/material/Grid2';
+import { useTranslation } from 'react-i18next';
 import CharacterList from '../components/characters/CharacterList';
 import CharacterDetails from '../components/characters/CharacterDetails';
 
 export default function Characters() {
+  const { t } = useTranslation();
   const [selectedCharacterId, setSelectedCharacterId] = React.useState<number | null>(null);
 
   return (
@@ -24,7 +26,7 @@ export default function Characters() {
               <CharacterDetails characterId={selectedCharacterId} />
             ) : (
               <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                Select a character to view details
+                  {t('character.selectPrompt')}
               </Box>
             )}
           </Paper>

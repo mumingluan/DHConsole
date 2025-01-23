@@ -1,0 +1,177 @@
+{
+    "save": "Save",
+    "affix": {
+        "HPDelta": "HP",
+        "AttackDelta": "ATK",
+        "DefenceDelta": "DEF",
+        "HPAddedRatio": "HP %",
+        "AttackAddedRatio": "ATK %",
+        "DefenceAddedRatio": "DEF %",
+        "CriticalChanceBase": "CRIT Rate",
+        "CriticalDamageBase": "CRIT DMG",
+        "HealRatioBase": "Outgoing Healing Boost",
+        "StatusProbabilityBase": "Effect Hit Rate",
+        "StatusResistanceBase": "Effect RES",
+        "SpeedDelta": "SPD",
+        "PhysicalAddedRatio": "Physical DMG Boost",
+        "FireAddedRatio": "Fire DMG Boost",
+        "IceAddedRatio": "Ice DMG Boost",
+        "ThunderAddedRatio": "Lightning DMG Boost",
+        "WindAddedRatio": "Wind DMG Boost",
+        "QuantumAddedRatio": "Quantum DMG Boost",
+        "ImaginaryAddedRatio": "Imaginary DMG Boost",
+        "BreakDamageAddedRatioBase": "Break Effect",
+        "SPRatioBase": "Energy Regeneration Rate"
+    },
+    "character": {
+        "lightCone": {
+            "title": "Light Cone"
+        },
+        "relic": {
+            "title": "Relics",
+            "labels": {
+                "main": "Main",
+                "sub": "Sub",
+                "empty": "<Empty>",
+                "level": "Lv.",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "Save All Relics"
+            },
+            "errors": {
+                "saveFailed": "Failed to save relics",
+                "maxLevels": "Total sub affix upgrade levels cannot exceed 5 (current: {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "Basic Information",
+            "level": "Level",
+            "eidolon": "Eidolon",
+            "talentLevel": "Talent Level",
+            "path": "Path"
+        },
+        "pickPrompt": "Pick a character to view details",
+        "list": {
+            "addCharacter": "Add Character"
+        },
+        "selectPrompt": "Select a character to view details"
+    },
+    "server": {
+        "selectPlayer": "Select a player",
+        "disconnected": "(disconnected)",
+        "connect": "Connect",
+        "connected": "Connected",
+        "serverTime": "Server Time",
+        "memoryUsed": "Memory Used"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "Player Info",
+            "level": "Level",
+            "gender": "Gender",
+            "update": "Update",
+            "male": "Male",
+            "female": "Female"
+        },
+        "controls": {
+            "title": "Account Controls",
+            "unlockAll": "Unlock All",
+            "maxAll": "Max All",
+            "buttons": {
+                "characters": "Characters",
+                "collectibles": "Collectibles",
+                "furniture": "Furniture",
+                "pets": "Pets",
+                "characterLevel": "Character Level",
+                "characterRank": "Character Rank",
+                "characterTalent": "Character Talent"
+            }
+        },
+        "messages": {
+            "loadError": "Failed to load player info",
+            "levelRangeError": "Level must be between 1 and 80",
+            "levelSuccess": "Level updated successfully",
+            "levelError": "Failed to update level",
+            "genderSuccess": "Gender updated successfully",
+            "genderError": "Failed to update gender",
+            "actionError": "Action failed",
+            "unlockSuccess": {
+                "characters": "All characters unlocked",
+                "collectibles": "All collectibles unlocked",
+                "furniture": "All furniture unlocked",
+                "pets": "All pets unlocked",
+                "characterLevel": "All characters set to max level",
+                "characterRank": "All characters set to max rank",
+                "characterTalent": "All characters set to max talent"
+            }
+        }
+    },
+    "command": {
+        "tip": "Tip: don't include the \"/\" prefix.",
+        "input": "Command Input",
+        "placeholder": "Enter command",
+        "run": "Run",
+        "output": "[Command Output]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "Remove Unused Relics",
+            "removeUnusedEquipment": "Remove Unused Equipment",
+            "send": "Send"
+        },
+        "sections": {
+            "sendItems": "Send Items",
+            "inventory": "Inventory"
+        },
+        "search": {
+            "label": "Search Items",
+            "count": "Count"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "Are you sure you want to remove all unused {{type}}?",
+                "content": "This will remove all {{type}} that no characters currently equip.",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "Current Missions",
+            "recentSkipHistory": "Recent Skip History",
+            "acceptNewMissions": "Accept New Missions"
+        },
+        "categories": {
+            "mainStory": "Main Story",
+            "sideStory": "Side Story",
+            "world": "World",
+            "daily": "Daily",
+            "event": "Event"
+        },
+        "actions": {
+            "skipAll": "Skip All",
+            "skip": "Skip",
+            "reaccept": "Reaccept",
+            "accept": "Accept"
+        },
+        "labels": {
+            "showUnnamedMissions": "Show unnamed missions",
+            "searchPlaceholder": "Search missions...",
+            "main": "main",
+            "sub": "sub"
+        }
+    },
+    "navigation": {
+        "header": "Manage Game Data",
+        "title": "DH Console",
+        "segments": {
+            "characters": "Characters",
+            "missions": "Missions",
+            "inventory": "Inventory",
+            "account": "Account",
+            "command": "Command"
+        }
+    }
+}

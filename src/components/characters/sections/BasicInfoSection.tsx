@@ -12,6 +12,7 @@ import { Character } from '../../../api/CharacterInfo';
 import CommandService from '../../../api/CommandService';
 import GameData from '../../../store/gameData';
 import { useLanguageContext } from '../../../store/languageContext';
+import { useTranslation } from 'react-i18next';
 
 interface BasicInfoSectionProps {
     characterId: number;
@@ -21,6 +22,7 @@ interface BasicInfoSectionProps {
 
 export default function BasicInfoSection({ characterId, characterInfo, onUpdate }: BasicInfoSectionProps) {
     const { language } = useLanguageContext();
+    const { t } = useTranslation();
     const [isEditing, setIsEditing] = React.useState(false);
     const [level, setLevel] = React.useState(characterInfo.level || 1);
     const [rank, setRank] = React.useState(characterInfo.rank || 0);
@@ -47,10 +49,14 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
             <Box sx={{ display: 'flex', alignItems: 'end', gap: 4, mb: 2 }}>
                 <Typography variant="h4">{GameData.get(characterId, language)}</Typography>
                 <Typography variant="body2" color="text.secondary">ID: {characterId}</Typography>
-                {characterInfo.pathId !== 0 && <Typography variant="body2" color="text.secondary">(Path: {characterInfo.pathId})</Typography>}
+                {characterInfo.pathId !== 0 && (
+                    <Typography variant="body2" color="text.secondary">
+                        ({t('character.basicInfo.path')}: {characterInfo.pathId})
+                    </Typography>
+                )}
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Typography variant="h6">Basic Information</Typography>
+                <Typography variant="h6">{t('character.basicInfo.title')}</Typography>
                 <IconButton size="small" onClick={() => setIsEditing(!isEditing)} sx={{ ml: 1 }}>
                     <EditIcon />
                 </IconButton>
@@ -59,7 +65,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
             {isEditing ? (
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
-                        label="Level"
+                        label={t('character.basicInfo.level')}
                         type="number"
                         value={level}
                         onChange={(e) => setLevel(Number(e.target.value))}
@@ -68,7 +74,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         sx={{ width: '60px' }}
                     />
                     <TextField
-                        label="Eidolon"
+                        label={t('character.basicInfo.eidolon')}
                         type="number"
                         value={rank}
                         onChange={(e) => setRank(Number(e.target.value))}
@@ -77,7 +83,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         sx={{ width: '60px' }}
                     />
                     <TextField
-                        label="Talent Level"
+                        label={t('character.basicInfo.talentLevel')}
                         type="number"
                         value={talent}
                         onChange={(e) => setTalent(Number(e.target.value))}
@@ -86,15 +92,19 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                         sx={{ width: '60px' }}
                     />
                     <Button variant="contained" onClick={handleSave} size="small">
-                        Save
+                        {t('save')}
                     </Button>
                 </Box>
             ) : (
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
-                    <Typography>Level: {characterInfo.level}</Typography>
-                    <Typography>Rank: {characterInfo.rank}</Typography>
                     <Typography>
-                        Talents: {Object.entries(characterInfo.talent || {})
+                            {t('character.basicInfo.level')}: {characterInfo.level}
+                        </Typography>
+                        <Typography>
+                            {t('character.basicInfo.eidolon')}: {characterInfo.rank}
+                        </Typography>
+                        <Typography>
+                            {t('character.basicInfo.talentLevel')}: {Object.entries(characterInfo.talent || {})
                                 .slice(0, 4)
                             .map(([key, value]) => `${value}`)
                             .join(', ')}

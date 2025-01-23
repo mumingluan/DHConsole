@@ -12,6 +12,7 @@ import { Character } from '../../../api/CharacterInfo';
 import CommandService from '../../../api/CommandService';
 import GameData from '../../../store/gameData';
 import { useLanguageContext } from '../../../store/languageContext';
+import { useTranslation } from 'react-i18next';
 
 interface LightConeSectionProps {
     characterId: number;
@@ -25,6 +26,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
     const [equipLevel, setEquipLevel] = React.useState(characterInfo.equipLevel || 1);
     const [equipRank, setEquipRank] = React.useState(characterInfo.equipRank || 1);
     const { language } = useLanguageContext();
+    const { t } = useTranslation();
 
     React.useEffect(() => {
         setEquipId(characterInfo.equipId || 0);
@@ -45,7 +47,9 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Typography variant="h6">Light Cone</Typography>
+                <Typography variant="h5" gutterBottom>
+                    {t('character.lightCone.title')}
+                </Typography>
                 <IconButton size="small" onClick={() => setIsEditing(!isEditing)} sx={{ ml: 1 }}>
                     <EditIcon />
                 </IconButton>

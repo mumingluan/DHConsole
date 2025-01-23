@@ -1,0 +1,177 @@
+{
+    "save": "保存",
+    "affix": {
+        "HPDelta": "生命值",
+        "AttackDelta": "攻擊力",
+        "DefenceDelta": "防禦力",
+        "HPAddedRatio": "生命值 %",
+        "AttackAddedRatio": "攻擊力 %",
+        "DefenceAddedRatio": "防禦力 %",
+        "CriticalChanceBase": "暴擊率",
+        "CriticalDamageBase": "暴擊傷害",
+        "HealRatioBase": "治療加成",
+        "StatusProbabilityBase": "效果命中",
+        "StatusResistanceBase": "效果抵抗",
+        "SpeedDelta": "速度",
+        "PhysicalAddedRatio": "物理傷害加成",
+        "FireAddedRatio": "火屬性傷害加成",
+        "IceAddedRatio": "冰屬性傷害加成",
+        "ThunderAddedRatio": "雷屬性傷害加成",
+        "WindAddedRatio": "風屬性傷害加成",
+        "QuantumAddedRatio": "量子傷害加成",
+        "ImaginaryAddedRatio": "虛數傷害加成",
+        "BreakDamageAddedRatioBase": "破盾傷害加成",
+        "SPRatioBase": "能量回復率"
+    },
+    "character": {
+        "lightCone": {
+            "title": "光錐"
+        },
+        "relic": {
+            "title": "遺器",
+            "labels": {
+                "main": "主詞條",
+                "sub": "副詞條",
+                "empty": "<空>",
+                "level": "等級",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "保存所有遺器"
+            },
+            "errors": {
+                "saveFailed": "保存遺器失敗",
+                "maxLevels": "副詞條升級總等級不能超過5（當前：{{total}}）"
+            }
+        },
+        "basicInfo": {
+            "title": "基本信息",
+            "level": "等級",
+            "eidolon": "星魂",
+            "talentLevel": "技能等級",
+            "path": "命途"
+        },
+        "pickPrompt": "選擇角色查看詳情",
+        "list": {
+            "addCharacter": "添加角色"
+        },
+        "selectPrompt": "選擇角色查看詳情"
+    },
+    "server": {
+        "selectPlayer": "選擇玩家",
+        "disconnected": "(未連接)",
+        "connect": "連接",
+        "connected": "已連接",
+        "serverTime": "伺服器時間",
+        "memoryUsed": "記憶體使用"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "玩家信息",
+            "level": "等級",
+            "gender": "性別",
+            "update": "更新",
+            "male": "男",
+            "female": "女"
+        },
+        "controls": {
+            "title": "帳號控制",
+            "unlockAll": "全部解鎖",
+            "maxAll": "全部最大化",
+            "buttons": {
+                "characters": "角色",
+                "collectibles": "收藏品",
+                "furniture": "傢俱",
+                "pets": "寵物",
+                "characterLevel": "角色等級",
+                "characterRank": "角色命座",
+                "characterTalent": "角色天賦"
+            }
+        },
+        "messages": {
+            "loadError": "加載玩家信息失敗",
+            "levelRangeError": "等級必須在1到80之間",
+            "levelSuccess": "等級更新成功",
+            "levelError": "等級更新失敗",
+            "genderSuccess": "性別更新成功",
+            "genderError": "性別更新失敗",
+            "actionError": "操作失敗",
+            "unlockSuccess": {
+                "characters": "已解鎖所有角色",
+                "collectibles": "已解鎖所有收藏品",
+                "furniture": "已解鎖所有傢俱",
+                "pets": "已解鎖所有寵物",
+                "characterLevel": "所有角色已設置為最高等級",
+                "characterRank": "所有角色已設置為最高命座",
+                "characterTalent": "所有角色已設置為最高天賦"
+            }
+        }
+    },
+    "command": {
+        "tip": "提示：不要包含 \"/\" 前綴",
+        "input": "命令輸入",
+        "placeholder": "輸入命令",
+        "run": "運行",
+        "output": "[命令輸出]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "移除未使用的遺器",
+            "removeUnusedEquipment": "移除未使用的裝備",
+            "send": "發送"
+        },
+        "sections": {
+            "sendItems": "發送物品",
+            "inventory": "背包"
+        },
+        "search": {
+            "label": "搜索物品",
+            "count": "數量"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "確定要移除所有未使用的{{type}}嗎？",
+                "content": "這將移除所有角色當前未裝備的{{type}}。",
+                "cancel": "取消",
+                "confirm": "確認"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "當前任務",
+            "recentSkipHistory": "最近跳過記錄",
+            "acceptNewMissions": "接受新任務"
+        },
+        "categories": {
+            "mainStory": "主線任務",
+            "sideStory": "支線任務",
+            "world": "世界任務",
+            "daily": "日常任務",
+            "event": "活動任務"
+        },
+        "actions": {
+            "skipAll": "全部跳過",
+            "skip": "跳過",
+            "reaccept": "重新接受",
+            "accept": "接受"
+        },
+        "labels": {
+            "showUnnamedMissions": "顯示未命名任務",
+            "searchPlaceholder": "搜索任務...",
+            "main": "主線",
+            "sub": "支線"
+        }
+    },
+    "navigation": {
+        "header": "遊戲數據管理",
+        "title": "DH 控制台",
+        "segments": {
+            "characters": "角色",
+            "missions": "任務",
+            "inventory": "背包",
+            "account": "帳號",
+            "command": "命令"
+        }
+    }
+}

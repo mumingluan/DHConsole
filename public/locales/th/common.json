@@ -1,0 +1,177 @@
+{
+    "save": "บันทึก",
+    "affix": {
+        "HPDelta": "HP",
+        "AttackDelta": "พลังโจมตี",
+        "DefenceDelta": "พลังป้องกัน",
+        "HPAddedRatio": "HP %",
+        "AttackAddedRatio": "พลังโจมตี %",
+        "DefenceAddedRatio": "พลังป้องกัน %",
+        "CriticalChanceBase": "อัตราคริติคอล",
+        "CriticalDamageBase": "ความเสียหายคริติคอล",
+        "HealRatioBase": "การฟื้นฟู HP",
+        "StatusProbabilityBase": "อัตราการติดสถานะ",
+        "StatusResistanceBase": "ต้านทานสถานะ",
+        "SpeedDelta": "ความเร็ว",
+        "PhysicalAddedRatio": "เพิ่มความเสียหายกายภาพ",
+        "FireAddedRatio": "เพิ่มความเสียหายไฟ",
+        "IceAddedRatio": "เพิ่มความเสียหายน้ำแข็ง",
+        "ThunderAddedRatio": "เพิ่มความเสียหายสายฟ้า",
+        "WindAddedRatio": "เพิ่มความเสียหายลม",
+        "QuantumAddedRatio": "เพิ่มความเสียหายควอนตัม",
+        "ImaginaryAddedRatio": "เพิ่มความเสียหายจินตภาพ",
+        "BreakDamageAddedRatioBase": "เพิ่มความเสียหายเบรก",
+        "SPRatioBase": "อัตราการฟื้นฟูพลังงาน"
+    },
+    "character": {
+        "lightCone": {
+            "title": "โคนแสง"
+        },
+        "relic": {
+            "title": "วัตถุโบราณ",
+            "labels": {
+                "main": "หลัก",
+                "sub": "รอง",
+                "empty": "<ว่างเปล่า>",
+                "level": "ระดับ",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "บันทึกวัตถุโบราณทั้งหมด"
+            },
+            "errors": {
+                "saveFailed": "การบันทึกวัตถุโบราณล้มเหลว",
+                "maxLevels": "ระดับการอัปเกรดรองทั้งหมดต้องไม่เกิน 5 (ปัจจุบัน: {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "ข้อมูลพื้นฐาน",
+            "level": "ระดับ",
+            "eidolon": "อีโดลอน",
+            "talentLevel": "ระดับพรสวรรค์",
+            "path": "เส้นทาง"
+        },
+        "pickPrompt": "เลือกตัวละครเพื่อดูรายละเอียด",
+        "list": {
+            "addCharacter": "เพิ่มตัวละคร"
+        },
+        "selectPrompt": "เลือกตัวละครเพื่อดูรายละเอียด"
+    },
+    "server": {
+        "selectPlayer": "เลือกผู้เล่น",
+        "disconnected": "(ไม่ได้เชื่อมต่อ)",
+        "connect": "เชื่อมต่อ",
+        "connected": "เชื่อมต่อแล้ว",
+        "serverTime": "เวลาของเซิร์ฟเวอร์",
+        "memoryUsed": "การใช้หน่วยความจำ"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "ข้อมูลผู้เล่น",
+            "level": "ระดับ",
+            "gender": "เพศ",
+            "update": "อัปเดต",
+            "male": "ชาย",
+            "female": "หญิง"
+        },
+        "controls": {
+            "title": "การควบคุมบัญชี",
+            "unlockAll": "ปลดล็อกทั้งหมด",
+            "maxAll": "สูงสุดทั้งหมด",
+            "buttons": {
+                "characters": "ตัวละคร",
+                "collectibles": "ของสะสม",
+                "furniture": "เฟอร์นิเจอร์",
+                "pets": "สัตว์เลี้ยง",
+                "characterLevel": "ระดับตัวละคร",
+                "characterRank": "อันดับตัวละคร",
+                "characterTalent": "พรสวรรค์ตัวละคร"
+            }
+        },
+        "messages": {
+            "loadError": "การโหลดข้อมูลผู้เล่นล้มเหลว",
+            "levelRangeError": "ระดับต้องอยู่ระหว่าง 1 ถึง 80",
+            "levelSuccess": "อัปเดตระดับสำเร็จ",
+            "levelError": "การอัปเดตระดับล้มเหลว",
+            "genderSuccess": "อัปเดตเพศสำเร็จ",
+            "genderError": "การอัปเดตเพศล้มเหลว",
+            "actionError": "การดำเนินการล้มเหลว",
+            "unlockSuccess": {
+                "characters": "ปลดล็อกตัวละครทั้งหมดแล้ว",
+                "collectibles": "ปลดล็อกของสะสมทั้งหมดแล้ว",
+                "furniture": "ปลดล็อกเฟอร์นิเจอร์ทั้งหมดแล้ว",
+                "pets": "ปลดล็อกสัตว์เลี้ยงทั้งหมดแล้ว",
+                "characterLevel": "ตั้งค่าระดับตัวละครทั้งหมดเป็นสูงสุดแล้ว",
+                "characterRank": "ตั้งค่าอันดับตัวละครทั้งหมดเป็นสูงสุดแล้ว",
+                "characterTalent": "ตั้งค่าพรสวรรค์ตัวละครทั้งหมดเป็นสูงสุดแล้ว"
+            }
+        }
+    },
+    "command": {
+        "tip": "เคล็ดลับ: อย่ารวม \"/\" ไว้ข้างหน้า",
+        "input": "ป้อนคำสั่ง",
+        "placeholder": "ป้อนคำสั่ง",
+        "run": "รัน",
+        "output": "[ผลลัพธ์คำสั่ง]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "ลบวัตถุโบราณที่ไม่ได้ใช้",
+            "removeUnusedEquipment": "ลบอุปกรณ์ที่ไม่ได้ใช้",
+            "send": "ส่ง"
+        },
+        "sections": {
+            "sendItems": "ส่งไอเทม",
+            "inventory": "คลัง"
+        },
+        "search": {
+            "label": "ค้นหาไอเทม",
+            "count": "จำนวน"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "คุณแน่ใจหรือไม่ว่าต้องการลบ {{type}} ที่ไม่ได้ใช้ทั้งหมด?",
+                "content": "สิ่งนี้จะลบ {{type}} ทั้งหมดที่ไม่มีตัวละครใดใช้อยู่ในขณะนี้",
+                "cancel": "ยกเลิก",
+                "confirm": "ยืนยัน"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "ภารกิจปัจจุบัน",
+            "recentSkipHistory": "ประวัติการข้ามล่าสุด",
+            "acceptNewMissions": "ยอมรับภารกิจใหม่"
+        },
+        "categories": {
+            "mainStory": "เรื่องหลัก",
+            "sideStory": "เรื่องรอง",
+            "world": "โลก",
+            "daily": "รายวัน",
+            "event": "กิจกรรม"
+        },
+        "actions": {
+            "skipAll": "ข้ามทั้งหมด",
+            "skip": "ข้าม",
+            "reaccept": "ยอมรับใหม่",
+            "accept": "ยอมรับ"
+        },
+        "labels": {
+            "showUnnamedMissions": "แสดงภารกิจที่ไม่มีชื่อ",
+            "searchPlaceholder": "ค้นหาภารกิจ...",
+            "main": "หลัก",
+            "sub": "รอง"
+        }
+    },
+    "navigation": {
+        "header": "จัดการข้อมูลเกม",
+        "title": "DH คอนโซล",
+        "segments": {
+            "characters": "ตัวละคร",
+            "missions": "ภารกิจ",
+            "inventory": "คลัง",
+            "account": "บัญชี",
+            "command": "คำสั่ง"
+        }
+    }
+}

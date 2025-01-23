@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Box, Typography, Divider } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import BasicInfoSection from './sections/BasicInfoSection';
 import LightConeSection from './sections/LightConeSection';
 import RelicsSection from './sections/RelicsSection';
@@ -11,6 +12,7 @@ interface CharacterDetailsProps {
 }
 
 export default function CharacterDetails({ characterId }: CharacterDetailsProps) {
+    const { t } = useTranslation();
     const [characterInfo, setCharacterInfo] = React.useState<Character | null>(null);
 
     React.useEffect(() => {
@@ -27,7 +29,7 @@ export default function CharacterDetails({ characterId }: CharacterDetailsProps)
     };
 
     if (!characterInfo) {
-        return <Typography>Pick a character to view details</Typography>;
+        return <Typography>{t('character.pickPrompt')}</Typography>;
     }
 
     return (

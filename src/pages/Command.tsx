@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import CommandService from '../api/CommandService';
 import { TextField, Button, Box, Paper, Typography } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useTranslation } from 'react-i18next';
 
 const CommandPage: React.FC = () => {
+    const { t } = useTranslation();
     const [command, setCommand] = useState('');
     const [output, setOutput] = useState('');
 
@@ -19,17 +21,17 @@ const CommandPage: React.FC = () => {
     return (
         <Box sx={{ padding: 2 }}>
             <Typography variant="body2" color="text.secondary">
-                Tip: don't include the "/" prefix.
+                {t('command.tip')}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, maxWidth: '80%' }}>
                 <TextField
-                    label="Command Input"
+                    label={t('command.input')}
                     variant="outlined"
                     fullWidth
                     sx={{ marginRight: 2 }}
                     value={command}
                     onChange={(e) => setCommand(e.target.value)}
-                    placeholder="Enter command"
+                    placeholder={t('command.placeholder')}
                 />
                 <Button
                     variant="contained"
@@ -38,12 +40,12 @@ const CommandPage: React.FC = () => {
                     sx={{ padding: '8px 16px', fontSize: '1rem' }}
                     onClick={handleRunCommand}
                 >
-                    Run
+                    {t('command.run')}
                 </Button>
             </Box>
             <Paper elevation={3} sx={{ padding: 2, mt: 2 }}>
                 <Typography variant="h6" gutterBottom>
-                    [Command Output]
+                    {t('command.output')}
                 </Typography>
                 <Box sx={{ fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
                     {output}

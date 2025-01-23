@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Select, MenuItem, Typography, Box } from '@mui/material';
 import { ThemeSwitcher } from '@toolpad/core/DashboardLayout';
+import { useTranslation } from 'react-i18next';
 import MuipService from '../api/MuipService';
 import CommandService from '../api/CommandService';
 import { usePlayerContext } from '../store/playerContext';
@@ -12,6 +13,7 @@ interface ServerState {
 }
 
 const ServerToolbarActions = () => {
+  const { t } = useTranslation();
   const { playerUid, setPlayerUid, isConnected, setIsConnected } = usePlayerContext();
   const [state, setState] = React.useState<ServerState>({
     players: [],
@@ -77,7 +79,7 @@ const ServerToolbarActions = () => {
         sx={{ height: '45px', padding: '0 14px', boxSizing: 'border-box' }}
       >
         <MenuItem value="" disabled>
-          {isConnected ? 'Select a player' : '(disconnected)'}
+          {isConnected ? t('server.selectPlayer') : t('server.disconnected')}
         </MenuItem>
         {state.players.map((player) => (
           <MenuItem key={player.uid} value={player.uid}>
@@ -92,15 +94,15 @@ const ServerToolbarActions = () => {
         onClick={handleConnect}
         disabled={isConnected}
       >
-        {isConnected ? 'Connected' : 'Connect'}
+        {isConnected ? t('server.connected') : t('server.connect')}
       </Button>
 
       <Box display="flex" flexDirection="column">
         <Typography variant="body2">
-          Server Time: {state.serverTime || '--'}
+          {t('server.serverTime')}: {state.serverTime || '--'}
         </Typography>
         <Typography variant="body2">
-          Memory Used: {state.serverMemory || '--'}
+          {t('server.memoryUsed')}: {state.serverMemory || '--'}
         </Typography>
       </Box>
 

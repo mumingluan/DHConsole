@@ -19,8 +19,10 @@ import { Male, Female } from '@mui/icons-material';
 import CommandService from '../api/CommandService';
 import { usePlayerContext } from '../store/playerContext';
 import { useLanguageContext } from '../store/languageContext';
+import { useTranslation } from 'react-i18next';
 
 export default function Account() {
+  const { t } = useTranslation();
   const [playerInfo, setPlayerInfo] = useState<{ level: number; gender: number }>({ level: 1, gender: 1 });
   const [editLevel, setEditLevel] = useState<string>('');
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({
@@ -41,7 +43,7 @@ export default function Account() {
       setPlayerInfo(info);
       setEditLevel(info.level.toString());
     } catch (error) {
-      showSnackbar('Failed to load player info', 'error');
+      showSnackbar(t('account.messages.loadError'), 'error');
     }
   };
 
@@ -49,24 +51,24 @@ export default function Account() {
     try {
       const newLevel = parseInt(editLevel, 10);
       if (newLevel < 1 || newLevel > 80) {
-        throw new Error('Level must be between 1 and 80');
+        throw new Error(t('account.messages.levelRangeError'));
       }
       await CommandService.setPlayerLevel(newLevel);
       setPlayerInfo(prev => ({ ...prev, level: newLevel }));
-      showSnackbar('Level updated successfully', 'success');
+      showSnackbar(t('account.messages.levelSuccess'), 'success');
     } catch (error) {
-      showSnackbar('Failed to update level', 'error');
+      showSnackbar(t('account.messages.levelError'), 'error');
     }
   };
 
   const handleGenderChange = async (_: React.MouseEvent<HTMLElement>, newGender: number) => {
-    if (newGender === null) return; // Prevent deselection
+    if (newGender === null) return;
     try {
       await CommandService.setPlayerGender(newGender);
       setPlayerInfo(prev => ({ ...prev, gender: newGender }));
-      showSnackbar('Gender updated successfully', 'success');
+      showSnackbar(t('account.messages.genderSuccess'), 'success');
     } catch (error) {
-      showSnackbar('Failed to update gender', 'error');
+      showSnackbar(t('account.messages.genderError'), 'error');
     }
   };
 
@@ -74,12 +76,12 @@ export default function Account() {
     setSnackbar({ open: true, message, severity });
   };
 
-  const handleUnlockAction = async (action: () => Promise<void>, successMessage: string) => {
+  const handleUnlockAction = async (action: () => Promise<void>, successKey: string) => {
     try {
       await action();
-      showSnackbar(successMessage, 'success');
+      showSnackbar(t(`account.messages.unlockSuccess.${successKey}`), 'success');
     } catch (error) {
-      showSnackbar('Action failed', 'error');
+      showSnackbar(t('account.messages.actionError'), 'error');
     }
   };
 
@@ -89,25 +91,25 @@ export default function Account() {
       <Card sx={{ mb: 4 }}>
         <CardContent>
           <Typography variant="h5" gutterBottom>
-            Player Info
+            {t('account.playerInfo.title')}
           </Typography>
           <Divider sx={{ mb: 3 }} />
 
           <Box display="flex" justifyContent="space-around" alignItems="center">
             <Box>
               <Stack spacing={2}>
-                <Typography variant="subtitle1">Level</Typography>
+                <Typography variant="subtitle1">{t('account.playerInfo.level')}</Typography>
                 <Stack direction="row" spacing={2}>
                   <TextField
                     size="small"
-                    sx={{ width: 80 }} // Increased width to make it appear longer
+                    sx={{ width: 80 }}
                     value={editLevel}
                     onChange={(e) => setEditLevel(e.target.value)}
                     type="number"
                     inputProps={{ min: 1, max: 80 }}
                   />
                   <Button variant="contained" onClick={handleLevelChange}>
-                    Update
+                    {t('account.playerInfo.update')}
                   </Button>
                 </Stack>
               </Stack>
@@ -115,7 +117,7 @@ export default function Account() {
 
             <Box>
               <Stack spacing={2}>
-                <Typography variant="subtitle1">Gender</Typography>
+                <Typography variant="subtitle1">{t('account.playerInfo.gender')}</Typography>
                 <ToggleButtonGroup
                   size="small"
                   value={playerInfo.gender}
@@ -124,10 +126,10 @@ export default function Account() {
                   aria-label="gender"
                 >
                   <ToggleButton value={1} aria-label="male">
-                    <Male sx={{ mr: 1 }} /> Male
+                    <Male sx={{ mr: 1 }} /> {t('account.playerInfo.male')}
                   </ToggleButton>
                   <ToggleButton value={2} aria-label="female">
-                    <Female sx={{ mr: 1 }} /> Female
+                    <Female sx={{ mr: 1 }} /> {t('account.playerInfo.female')}
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Stack>
@@ -140,87 +142,41 @@ export default function Account() {
       <Card>
         <CardContent>
           <Typography variant="h5" gutterBottom>
-            Account Controls
+            {t('account.controls.title')}
           </Typography>
           <Divider sx={{ mb: 3 }} />
 
           <Stack spacing={3}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Unlock All</Typography>
+            <Typography variant="h6" sx={{ mb: 2 }}>{t('account.controls.unlockAll')}</Typography>
             <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.unlockAllCharacters, 'All characters unlocked')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Characters
-                </Button>
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.unlockAllCollectibles, 'All collectibles unlocked')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Collectibles
-                </Button>
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.unlockAllFurniture, 'All furniture unlocked')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Furniture
-                </Button>
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.unlockAllPets, 'All pets unlocked')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Pets
-                </Button>
-              </Grid>
+              {['characters', 'collectibles', 'furniture', 'pets'].map((item) => (
+                <Grid key={item} size={{ xs: 12, sm: 6, md: 3 }}>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={() => handleUnlockAction(() => CommandService.unlockAll(item), item)}
+                    sx={{ textTransform: 'none' }}
+                  >
+                    {t(`account.controls.buttons.${item}`)}
+                  </Button>
+                </Grid>
+              ))}
             </Grid>
 
-            <Typography variant="h6" sx={{ mt: 3, mb: 2 }}>Max All</Typography>
+            <Typography variant="h6" sx={{ mt: 3, mb: 2 }}>{t('account.controls.maxAll')}</Typography>
             <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 4 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.setAllCharactersMaxLevel, 'All characters set to max level')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Character Level
-                </Button>
-              </Grid>
-              <Grid size={{ xs: 12, sm: 4 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.setAllCharactersMaxRank, 'All characters set to max rank')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Character Rank
-                </Button>
-              </Grid>
-              <Grid size={{ xs: 12, sm: 4 }}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  onClick={() => handleUnlockAction(CommandService.setAllCharactersMaxTalent, 'All characters set to max talent')}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Character Talent
-                </Button>
-              </Grid>
+              {['characterLevel', 'characterRank', 'characterTalent'].map((item) => (
+                <Grid key={item} size={{ xs: 12, sm: 4 }}>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={() => handleUnlockAction(() => CommandService.maxAll(item), item)}
+                    sx={{ textTransform: 'none' }}
+                  >
+                    {t(`account.controls.buttons.${item}`)}
+                  </Button>
+                </Grid>
+              ))}
             </Grid>
           </Stack>
         </CardContent>

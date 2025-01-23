@@ -1,0 +1,177 @@
+{
+    "save": "保存",
+    "affix": {
+        "HPDelta": "生命",
+        "AttackDelta": "攻击",
+        "DefenceDelta": "防御",
+        "HPAddedRatio": "生命 %",
+        "AttackAddedRatio": "攻击 %",
+        "DefenceAddedRatio": "防御 %",
+        "CriticalChanceBase": "暴击率",
+        "CriticalDamageBase": "暴击伤害",
+        "HealRatioBase": "治疗加成",
+        "StatusProbabilityBase": "效果命中",
+        "StatusResistanceBase": "效果抵抗",
+        "SpeedDelta": "速度",
+        "PhysicalAddedRatio": "物理伤害加成",
+        "FireAddedRatio": "火属性伤害加成",
+        "IceAddedRatio": "冰属性伤害加成",
+        "ThunderAddedRatio": "雷属性伤害加成",
+        "WindAddedRatio": "风属性伤害加成",
+        "QuantumAddedRatio": "量子伤害加成",
+        "ImaginaryAddedRatio": "虚数伤害加成",
+        "BreakDamageAddedRatioBase": "破盾伤害加成",
+        "SPRatioBase": "能量回复率"
+    },
+    "character": {
+        "lightCone": {
+            "title": "光锥"
+        },
+        "relic": {
+            "title": "遗器",
+            "labels": {
+                "main": "主词条",
+                "sub": "副词条",
+                "empty": "<空>",
+                "level": "等级",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "保存所有遗器"
+            },
+            "errors": {
+                "saveFailed": "保存遗器失败",
+                "maxLevels": "副词条升级总等级不能超过5（当前：{{total}}）"
+            }
+        },
+        "basicInfo": {
+            "title": "基本信息",
+            "level": "等级",
+            "eidolon": "星魂",
+            "talentLevel": "技能等级",
+            "path": "命途"
+        },
+        "pickPrompt": "选择角色查看详情",
+        "list": {
+            "addCharacter": "添加角色"
+        },
+        "selectPrompt": "选择角色查看详情"
+    },
+    "server": {
+        "selectPlayer": "选择玩家",
+        "disconnected": "(未连接)",
+        "connect": "连接",
+        "connected": "已连接",
+        "serverTime": "服务器时间",
+        "memoryUsed": "内存使用"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "玩家信息",
+            "level": "等级",
+            "gender": "性别",
+            "update": "更新",
+            "male": "男",
+            "female": "女"
+        },
+        "controls": {
+            "title": "账号控制",
+            "unlockAll": "全部解锁",
+            "maxAll": "全部最大化",
+            "buttons": {
+                "characters": "角色",
+                "collectibles": "收藏品",
+                "furniture": "家具",
+                "pets": "宠物",
+                "characterLevel": "角色等级",
+                "characterRank": "角色命座",
+                "characterTalent": "角色天赋"
+            }
+        },
+        "messages": {
+            "loadError": "加载玩家信息失败",
+            "levelRangeError": "等级必须在1到80之间",
+            "levelSuccess": "等级更新成功",
+            "levelError": "等级更新失败",
+            "genderSuccess": "性别更新成功",
+            "genderError": "性别更新失败",
+            "actionError": "操作失败",
+            "unlockSuccess": {
+                "characters": "已解锁所有角色",
+                "collectibles": "已解锁所有收藏品",
+                "furniture": "已解锁所有家具",
+                "pets": "已解锁所有宠物",
+                "characterLevel": "所有角色已设置为最高等级",
+                "characterRank": "所有角色已设置为最高命座",
+                "characterTalent": "所有角色已设置为最高天赋"
+            }
+        }
+    },
+    "command": {
+        "tip": "提示：不要包含 \"/\" 前缀",
+        "input": "命令输入",
+        "placeholder": "输入命令",
+        "run": "运行",
+        "output": "[命令输出]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "移除未使用的遗器",
+            "removeUnusedEquipment": "移除未使用的装备",
+            "send": "发送"
+        },
+        "sections": {
+            "sendItems": "发送物品",
+            "inventory": "背包"
+        },
+        "search": {
+            "label": "搜索物品",
+            "count": "数量"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "确定要移除所有未使用的{{type}}吗？",
+                "content": "这将移除所有角色当前未装备的{{type}}。",
+                "cancel": "取消",
+                "confirm": "确认"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "当前任务",
+            "recentSkipHistory": "最近跳过记录",
+            "acceptNewMissions": "接受新任务"
+        },
+        "categories": {
+            "mainStory": "主线任务",
+            "sideStory": "支线任务",
+            "world": "世界任务",
+            "daily": "日常任务",
+            "event": "活动任务"
+        },
+        "actions": {
+            "skipAll": "全部跳过",
+            "skip": "跳过",
+            "reaccept": "重新接受",
+            "accept": "接受"
+        },
+        "labels": {
+            "showUnnamedMissions": "显示未命名任务",
+            "searchPlaceholder": "搜索任务...",
+            "main": "主线",
+            "sub": "支线"
+        }
+    },
+    "navigation": {
+        "header": "游戏数据管理",
+        "title": "DH 控制台",
+        "segments": {
+            "characters": "角色",
+            "missions": "任务",
+            "inventory": "背包",
+            "account": "账号",
+            "command": "命令"
+        }
+    }
+}

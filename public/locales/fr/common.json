@@ -1,0 +1,177 @@
+{
+    "save": "Enregistrer",
+    "affix": {
+        "HPDelta": "PV",
+        "AttackDelta": "ATQ",
+        "DefenceDelta": "DEF",
+        "HPAddedRatio": "PV %",
+        "AttackAddedRatio": "ATQ %",
+        "DefenceAddedRatio": "DEF %",
+        "CriticalChanceBase": "Taux CRIT",
+        "CriticalDamageBase": "DGT CRIT",
+        "HealRatioBase": "Soin Sortant",
+        "StatusProbabilityBase": "Taux d'Impact",
+        "StatusResistanceBase": "RES d'Effet",
+        "SpeedDelta": "VIT",
+        "PhysicalAddedRatio": "DGT Physique",
+        "FireAddedRatio": "DGT Feu",
+        "IceAddedRatio": "DGT Glace",
+        "ThunderAddedRatio": "DGT Foudre",
+        "WindAddedRatio": "DGT Vent",
+        "QuantumAddedRatio": "DGT Quantique",
+        "ImaginaryAddedRatio": "DGT Imaginaire",
+        "BreakDamageAddedRatioBase": "Effet de Rupture",
+        "SPRatioBase": "Taux de Régénération d'Énergie"
+    },
+    "character": {
+        "lightCone": {
+            "title": "Cône de Lumière"
+        },
+        "relic": {
+            "title": "Relique",
+            "labels": {
+                "main": "Principal",
+                "sub": "Secondaire",
+                "empty": "<Vide>",
+                "level": "Niv.",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "Enregistrer Toutes les Reliques"
+            },
+            "errors": {
+                "saveFailed": "Échec de l'enregistrement des reliques",
+                "maxLevels": "Le total des niveaux d'amélioration des affixes secondaires ne peut pas dépasser 5 (actuel : {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "Informations de Base",
+            "level": "Niveau",
+            "eidolon": "Éidolon",
+            "talentLevel": "Niveau de Talent",
+            "path": "Voie"
+        },
+        "pickPrompt": "Choisissez un personnage pour voir les détails",
+        "list": {
+            "addCharacter": "Ajouter un Personnage"
+        },
+        "selectPrompt": "Sélectionnez un personnage pour voir les détails"
+    },
+    "server": {
+        "selectPlayer": "Sélectionnez un joueur",
+        "disconnected": "(déconnecté)",
+        "connect": "Connecter",
+        "connected": "Connecté",
+        "serverTime": "Heure du Serveur",
+        "memoryUsed": "Mémoire Utilisée"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "Infos Joueur",
+            "level": "Niveau",
+            "gender": "Genre",
+            "update": "Mettre à jour",
+            "male": "Homme",
+            "female": "Femme"
+        },
+        "controls": {
+            "title": "Contrôles du Compte",
+            "unlockAll": "Tout Débloquer",
+            "maxAll": "Tout Maximiser",
+            "buttons": {
+                "characters": "Personnages",
+                "collectibles": "Objets de Collection",
+                "furniture": "Mobilier",
+                "pets": "Animaux",
+                "characterLevel": "Niveau de Personnage",
+                "characterRank": "Rang de Personnage",
+                "characterTalent": "Talent de Personnage"
+            }
+        },
+        "messages": {
+            "loadError": "Échec du chargement des infos joueur",
+            "levelRangeError": "Le niveau doit être compris entre 1 et 80",
+            "levelSuccess": "Niveau mis à jour avec succès",
+            "levelError": "Échec de la mise à jour du niveau",
+            "genderSuccess": "Genre mis à jour avec succès",
+            "genderError": "Échec de la mise à jour du genre",
+            "actionError": "Échec de l'action",
+            "unlockSuccess": {
+                "characters": "Tous les personnages débloqués",
+                "collectibles": "Tous les objets de collection débloqués",
+                "furniture": "Tout le mobilier débloqué",
+                "pets": "Tous les animaux débloqués",
+                "characterLevel": "Tous les personnages sont au niveau maximum",
+                "characterRank": "Tous les personnages sont au rang maximum",
+                "characterTalent": "Tous les talents de personnage sont au maximum"
+            }
+        }
+    },
+    "command": {
+        "tip": "Astuce : n'incluez pas le préfixe \"/\".",
+        "input": "Entrée de Commande",
+        "placeholder": "Entrez la commande",
+        "run": "Exécuter",
+        "output": "[Sortie de Commande]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "Supprimer les Reliques Inutilisées",
+            "removeUnusedEquipment": "Supprimer l'Équipement Inutilisé",
+            "send": "Envoyer"
+        },
+        "sections": {
+            "sendItems": "Envoyer des Objets",
+            "inventory": "Inventaire"
+        },
+        "search": {
+            "label": "Rechercher des Objets",
+            "count": "Quantité"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "Êtes-vous sûr de vouloir supprimer tous les {{type}} inutilisés ?",
+                "content": "Cela supprimera tous les {{type}} que les personnages n'équipent pas actuellement.",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "Missions Actuelles",
+            "recentSkipHistory": "Historique des Sauts Récents",
+            "acceptNewMissions": "Accepter de Nouvelles Missions"
+        },
+        "categories": {
+            "mainStory": "Histoire Principale",
+            "sideStory": "Histoire Secondaire",
+            "world": "Monde",
+            "daily": "Quotidien",
+            "event": "Événement"
+        },
+        "actions": {
+            "skipAll": "Tout Sauter",
+            "skip": "Sauter",
+            "reaccept": "Réaccepter",
+            "accept": "Accepter"
+        },
+        "labels": {
+            "showUnnamedMissions": "Afficher les missions sans nom",
+            "searchPlaceholder": "Rechercher des missions...",
+            "main": "principal",
+            "sub": "secondaire"
+        }
+    },
+    "navigation": {
+        "header": "Gérer les Données du Jeu",
+        "title": "Console DH",
+        "segments": {
+            "characters": "Personnages",
+            "missions": "Missions",
+            "inventory": "Inventaire",
+            "account": "Compte",
+            "command": "Commande"
+        }
+    }
+}

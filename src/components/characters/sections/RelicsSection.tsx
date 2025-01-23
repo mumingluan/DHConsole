@@ -18,6 +18,7 @@ import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES, RELIC_NAMES } from '../../
 import CommandService from '../../../api/CommandService';
 import GameData from '../../../store/gameData';
 import { useLanguageContext } from '../../../store/languageContext';
+import { useTranslation } from 'react-i18next';
 
 interface RelicSectionProps {
     characterId: number;
@@ -57,6 +58,7 @@ function AffixRow({
     availableLevels = 5
 }: AffixRowProps) {
     const { language } = useLanguageContext();
+    const { t } = useTranslation();
     const possibleAffixes = isMain ? MAIN_AFFIXES[pos] : SUB_AFFIXES;
 
     return (
@@ -77,7 +79,7 @@ function AffixRow({
                 </TextField>
             ) : (
                 <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                        [{label}] {affix || '<Empty>'}
+                        [{label}] {t('affix.' + affix) || t('character.relic.labels.empty')}
                 </Typography>
             )}
             {isEditable && !isMain ? (
@@ -96,7 +98,7 @@ function AffixRow({
                 </Box>
             ) : (
                 <Typography variant="body2" sx={{ width: 80, textAlign: 'right' }}>
-                        {isMain ? 'Lv. ' : '+ '} {level}
+                        {isMain ? `${t('character.relic.labels.level')} ` : `${t('character.relic.labels.plus')} `}{level}
                 </Typography>
             )}
         </Box>
@@ -105,6 +107,7 @@ function AffixRow({
 
 function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardProps) {
     const { language } = useLanguageContext();
+    const { t } = useTranslation();
     const [mainAffix, setMainAffix] = React.useState<string>(relic.mainAffix || '');
     const [subAffixes, setSubAffixes] = React.useState<Array<{ name: string; level: number }>>([
         { name: relic.subAffixes?.[0] || '', level: relic.subAffixLevels?.[0] || 0 },
@@ -146,7 +149,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                     <TextField
                         select
                         size="small"
-                        label="Relic"
+                        label={t('character.relic.title')}
                         value={relic.relicId || ''}
                         onChange={(e) => onRelicChange(index, { ...relic, relicId: Number(e.target.value) })}
                         disabled={!isEditing}
@@ -166,9 +169,9 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                     <AffixRow
                         pos={index}
                         key={0}
-                        label="Main"
+                        label={t('character.relic.labels.main')}
                         affix={mainAffix}
-                        level={relic.level || 15} // Fixed level for main affix
+                        level={relic.level || 15}
                         isEditable={isEditing && index > 2}
                         isMain={true}
                         onAffixChange={(name) => handleMainAffixChange(name)}
@@ -180,7 +183,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                         <AffixRow
                             pos={index}
                             key={subIndex}
-                            label="Sub"
+                            label={t('character.relic.labels.sub')}
                             affix={subAffix.name}
                             level={subAffix.level}
                             isEditable={isEditing}
@@ -192,7 +195,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
 
                     {isEditing && totalSubAffixLevels > 5 && (
                         <Typography color="error" variant="caption">
-                            Total sub affix upgrade levels cannot exceed 5 (current: {totalSubAffixLevels})
+                            {t('character.relic.errors.maxLevels', { total: totalSubAffixLevels })}
                         </Typography>
                     )}
                 </Stack>
@@ -202,6 +205,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
 }
 
 export default function RelicsSection({ characterId, characterInfo, onUpdate }: RelicSectionProps) {
+    const { t } = useTranslation();
     const [isEditing, setIsEditing] = React.useState(false);
     const [relics, setRelics] = React.useState<Record<number, Relic>>(characterInfo.relics || {});
 
@@ -219,14 +223,14 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
             onUpdate();
             setIsEditing(false);
         } catch (error) {
-            console.error('Failed to save relics:', error);
+            console.error(t('character.relic.errors.saveFailed'), error);
         }
     };
 
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Typography variant="h6">Relics</Typography>
+                <Typography variant="h6">{t('character.relic.title')}</Typography>
                 <IconButton size="small" onClick={() => setIsEditing(!isEditing)} sx={{ ml: 1 }}>
                     <EditIcon />
                 </IconButton>
@@ -248,7 +252,7 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
             {isEditing && (
                 <Box sx={{ mt: 2 }}>
                     <Button variant="contained" onClick={handleSave} fullWidth>
-                        Save All Relics
+                        {t('character.relic.actions.saveAll')}
                     </Button>
                 </Box>
             )}

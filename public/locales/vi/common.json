@@ -1,0 +1,177 @@
+{
+    "save": "Lưu",
+    "affix": {
+        "HPDelta": "HP",
+        "AttackDelta": "Tấn công",
+        "DefenceDelta": "Phòng thủ",
+        "HPAddedRatio": "HP %",
+        "AttackAddedRatio": "Tấn công %",
+        "DefenceAddedRatio": "Phòng thủ %",
+        "CriticalChanceBase": "Tỉ lệ bạo kích",
+        "CriticalDamageBase": "Sát thương bạo kích",
+        "HealRatioBase": "Tăng hồi phục",
+        "StatusProbabilityBase": "Tỉ lệ hiệu ứng",
+        "StatusResistanceBase": "Kháng hiệu ứng",
+        "SpeedDelta": "Tốc độ",
+        "PhysicalAddedRatio": "Tăng sát thương vật lý",
+        "FireAddedRatio": "Tăng sát thương lửa",
+        "IceAddedRatio": "Tăng sát thương băng",
+        "ThunderAddedRatio": "Tăng sát thương sét",
+        "WindAddedRatio": "Tăng sát thương gió",
+        "QuantumAddedRatio": "Tăng sát thương lượng tử",
+        "ImaginaryAddedRatio": "Tăng sát thương ảo",
+        "BreakDamageAddedRatioBase": "Hiệu quả phá giáp",
+        "SPRatioBase": "Tỉ lệ hồi năng lượng"
+    },
+    "character": {
+        "lightCone": {
+            "title": "Nón Ánh Sáng"
+        },
+        "relic": {
+            "title": "Di vật",
+            "labels": {
+                "main": "Chính",
+                "sub": "Phụ",
+                "empty": "<Trống>",
+                "level": "Cấp",
+                "plus": "+"
+            },
+            "actions": {
+                "saveAll": "Lưu tất cả di vật"
+            },
+            "errors": {
+                "saveFailed": "Lưu di vật thất bại",
+                "maxLevels": "Tổng cấp độ nâng cấp phụ không thể vượt quá 5 (hiện tại: {{total}})"
+            }
+        },
+        "basicInfo": {
+            "title": "Thông tin cơ bản",
+            "level": "Cấp độ",
+            "eidolon": "Tinh linh",
+            "talentLevel": "Cấp độ kỹ năng",
+            "path": "Đường đi"
+        },
+        "pickPrompt": "Chọn nhân vật để xem chi tiết",
+        "list": {
+            "addCharacter": "Thêm nhân vật"
+        },
+        "selectPrompt": "Chọn nhân vật để xem chi tiết"
+    },
+    "server": {
+        "selectPlayer": "Chọn người chơi",
+        "disconnected": "(Ngắt kết nối)",
+        "connect": "Kết nối",
+        "connected": "Đã kết nối",
+        "serverTime": "Thời gian máy chủ",
+        "memoryUsed": "Bộ nhớ đã sử dụng"
+    },
+    "account": {
+        "playerInfo": {
+            "title": "Thông tin người chơi",
+            "level": "Cấp độ",
+            "gender": "Giới tính",
+            "update": "Cập nhật",
+            "male": "Nam",
+            "female": "Nữ"
+        },
+        "controls": {
+            "title": "Điều khiển tài khoản",
+            "unlockAll": "Mở khóa tất cả",
+            "maxAll": "Tối đa hóa tất cả",
+            "buttons": {
+                "characters": "Nhân vật",
+                "collectibles": "Bộ sưu tập",
+                "furniture": "Nội thất",
+                "pets": "Thú cưng",
+                "characterLevel": "Cấp độ nhân vật",
+                "characterRank": "Hạng nhân vật",
+                "characterTalent": "Kỹ năng nhân vật"
+            }
+        },
+        "messages": {
+            "loadError": "Tải thông tin người chơi thất bại",
+            "levelRangeError": "Cấp độ phải nằm trong khoảng từ 1 đến 80",
+            "levelSuccess": "Cập nhật cấp độ thành công",
+            "levelError": "Cập nhật cấp độ thất bại",
+            "genderSuccess": "Cập nhật giới tính thành công",
+            "genderError": "Cập nhật giới tính thất bại",
+            "actionError": "Thao tác thất bại",
+            "unlockSuccess": {
+                "characters": "Tất cả nhân vật đã được mở khóa",
+                "collectibles": "Tất cả bộ sưu tập đã được mở khóa",
+                "furniture": "Tất cả nội thất đã được mở khóa",
+                "pets": "Tất cả thú cưng đã được mở khóa",
+                "characterLevel": "Tất cả nhân vật đã được đặt ở cấp độ tối đa",
+                "characterRank": "Tất cả nhân vật đã được đặt ở hạng tối đa",
+                "characterTalent": "Tất cả nhân vật đã được đặt ở kỹ năng tối đa"
+            }
+        }
+    },
+    "command": {
+        "tip": "Mẹo: không bao gồm tiền tố \"/\".",
+        "input": "Nhập lệnh",
+        "placeholder": "Nhập lệnh",
+        "run": "Chạy",
+        "output": "[Kết quả lệnh]"
+    },
+    "inventory": {
+        "actions": {
+            "removeUnusedRelics": "Xóa di vật không sử dụng",
+            "removeUnusedEquipment": "Xóa trang bị không sử dụng",
+            "send": "Gửi"
+        },
+        "sections": {
+            "sendItems": "Gửi vật phẩm",
+            "inventory": "Kho"
+        },
+        "search": {
+            "label": "Tìm kiếm vật phẩm",
+            "count": "Số lượng"
+        },
+        "dialog": {
+            "removeConfirm": {
+                "title": "Bạn có chắc chắn muốn xóa tất cả {{type}} không sử dụng?",
+                "content": "Điều này sẽ xóa tất cả {{type}} mà không nhân vật nào đang trang bị.",
+                "cancel": "Hủy",
+                "confirm": "Xác nhận"
+            }
+        }
+    },
+    "missions": {
+        "sections": {
+            "currentMissions": "Nhiệm vụ hiện tại",
+            "recentSkipHistory": "Lịch sử bỏ qua gần đây",
+            "acceptNewMissions": "Chấp nhận nhiệm vụ mới"
+        },
+        "categories": {
+            "mainStory": "Cốt truyện chính",
+            "sideStory": "Cốt truyện phụ",
+            "world": "Thế giới",
+            "daily": "Hàng ngày",
+            "event": "Sự kiện"
+        },
+        "actions": {
+            "skipAll": "Bỏ qua tất cả",
+            "skip": "Bỏ qua",
+            "reaccept": "Chấp nhận lại",
+            "accept": "Chấp nhận"
+        },
+        "labels": {
+            "showUnnamedMissions": "Hiển thị nhiệm vụ không tên",
+            "searchPlaceholder": "Tìm kiếm nhiệm vụ...",
+            "main": "chính",
+            "sub": "phụ"
+        }
+    },
+    "navigation": {
+        "header": "Quản lý dữ liệu trò chơi",
+        "title": "Bảng điều khiển DH",
+        "segments": {
+            "characters": "Nhân vật",
+            "missions": "Nhiệm vụ",
+            "inventory": "Kho",
+            "account": "Tài khoản",
+            "command": "Lệnh"
+        }
+    }
+}
