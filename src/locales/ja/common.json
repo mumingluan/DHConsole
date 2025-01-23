@@ -173,5 +173,22 @@
             "account": "アカウント",
             "command": "コマンド"
         }
+    },
+    "welcome": {
+        "title": "DH コンソールへようこそ！",
+        "subtitle": "あなたの強力なツール、Danheng サーバー管理",
+        "important": "重要: 始める前に",
+        "plugin": {
+            "title": "1. 必要なプラグインを YourPSPath/Plugins にインストール",
+            "button": "DHConsole コマンドプラグインを取得"
+        },
+        "updates": {
+            "title": "2. 最新の更新を取得",
+            "button": "DHConsole リポジトリを訪問"
+        },
+        "docs": {
+            "text": "詳細なセットアップ手順については、以下を参照してください",
+            "link": "ドキュメント"
+        }
     }
 }

@@ -9,8 +9,11 @@ import {
   Button,
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useTranslation } from 'react-i18next';
 
 export default function Index() {
+  const { t } = useTranslation('common');
+
   return (
     <Container maxWidth="md">
       <Box
@@ -34,11 +37,11 @@ export default function Index() {
             mb: 4,
           }}
         >
-          Welcome to DH Console!
+          {t('welcome.title')}
         </Typography>
 
         <Typography variant="h5" color="text.secondary" align="center">
-          Your powerful tool for Danheng Server management
+          {t('welcome.subtitle')}
         </Typography>
 
         <Paper
@@ -51,14 +54,13 @@ export default function Index() {
           }}
         >
           <Typography variant="h6" gutterBottom color="primary">
-            Important: Before You Begin
+            {t('welcome.important')}
           </Typography>
 
           <Stack spacing={3}>
-
             <Box>
               <Typography variant="subtitle1" gutterBottom>
-                1. Install Required Plugin to YourPSPath/Plugins
+                {t('welcome.plugin.title')}
               </Typography>
               <Button
                 variant="contained"
@@ -68,13 +70,13 @@ export default function Index() {
                 rel="noopener noreferrer"
                 sx={{ mt: 1, textTransform: 'none' }}
               >
-                Get DHConsole Commands Plugin
+                {t('welcome.plugin.button')}
               </Button>
             </Box>
 
             <Box>
               <Typography variant="subtitle1" gutterBottom>
-                2. Get the Latest Updates
+                {t('welcome.updates.title')}
               </Typography>
               <Button
                 variant="contained"
@@ -84,19 +86,18 @@ export default function Index() {
                 rel="noopener noreferrer"
                 sx={{ mt: 1, textTransform: 'none' }}
               >
-                Visit DHConsole Repository
+                {t('welcome.updates.button')}
               </Button>
             </Box>
 
-
             <Typography variant="body1" color="text.secondary">
-              For detailed setup instructions, please visit the{' '}
+              {t('welcome.docs.text')}{' '}
               <Link
                 href="https://github.com/Anyrainel/DHConsole#readme"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                documentation
+                {t('welcome.docs.link')}
               </Link>
               .
             </Typography>

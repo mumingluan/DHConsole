@@ -173,5 +173,22 @@
             "account": "Tài khoản",
             "command": "Lệnh"
         }
+    },
+    "welcome": {
+        "title": "Chào mừng đến với Bảng điều khiển DH!",
+        "subtitle": "Công cụ mạnh mẽ của bạn để quản lý máy chủ Danheng",
+        "important": "Quan trọng: Trước khi bạn bắt đầu",
+        "plugin": {
+            "title": "1. Cài đặt Plugin cần thiết vào YourPSPath/Plugins",
+            "button": "Nhận Plugin Lệnh DHConsole"
+        },
+        "updates": {
+            "title": "2. Nhận các bản cập nhật mới nhất",
+            "button": "Truy cập Kho lưu trữ DHConsole"
+        },
+        "docs": {
+            "text": "Để biết hướng dẫn cài đặt chi tiết, vui lòng truy cập",
+            "link": "tài liệu"
+        }
     }
 }

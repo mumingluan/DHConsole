@@ -173,5 +173,22 @@
             "account": "帳號",
             "command": "命令"
         }
+    },
+    "welcome": {
+        "title": "歡迎使用 DH 控制台！",
+        "subtitle": "您管理 Danheng 伺服器的強大工具",
+        "important": "重要提示：開始之前",
+        "plugin": {
+            "title": "1. 安裝所需插件到 YourPSPath/Plugins",
+            "button": "獲取 DHConsole 命令插件"
+        },
+        "updates": {
+            "title": "2. 獲取最新更新",
+            "button": "訪問 DHConsole 儲存庫"
+        },
+        "docs": {
+            "text": "有關詳細的設置說明，請訪問",
+            "link": "文檔"
+        }
     }
 }
