@@ -173,5 +173,22 @@
             "account": "Cuenta",
             "command": "Comando"
         }
+    },
+    "welcome": {
+        "title": "¡Bienvenido a la Consola DH!",
+        "subtitle": "Tu herramienta poderosa para la gestión del servidor Danheng",
+        "important": "Importante: Antes de Comenzar",
+        "plugin": {
+            "title": "1. Instala el Plugin Requerido en YourPSPath/Plugins",
+            "button": "Obtener el Plugin de Comandos de DHConsole"
+        },
+        "updates": {
+            "title": "2. Obtén las Últimas Actualizaciones",
+            "button": "Visitar el Repositorio de DHConsole"
+        },
+        "docs": {
+            "text": "Para instrucciones detalladas de configuración, por favor visita la",
+            "link": "documentación"
+        }
     }
 }

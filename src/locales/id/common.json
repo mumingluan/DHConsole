@@ -173,5 +173,22 @@
             "account": "Akun",
             "command": "Perintah"
         }
+    },
+    "welcome": {
+        "title": "Selamat Datang di Konsol DH!",
+        "subtitle": "Alat kuat Anda untuk manajemen Server Danheng",
+        "important": "Penting: Sebelum Anda Mulai",
+        "plugin": {
+            "title": "1. Instal Plugin yang Diperlukan ke YourPSPath/Plugins",
+            "button": "Dapatkan Plugin Perintah DHConsole"
+        },
+        "updates": {
+            "title": "2. Dapatkan Pembaruan Terbaru",
+            "button": "Kunjungi Repositori DHConsole"
+        },
+        "docs": {
+            "text": "Untuk instruksi pengaturan terperinci, silakan kunjungi",
+            "link": "dokumentasi"
+        }
     }
 }
