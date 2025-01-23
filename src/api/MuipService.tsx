@@ -99,7 +99,7 @@ class MuipService {
     }
   }
 
-  private static async createSession() {
+  private static async createSession(): Promise<{ sessionId: string; expireTimeStamp: number; rsaPublicKey: string }> {
     await this.enforceCallInterval();
     try {
       const response = await axios.post(`${API_BASE_URL}/create_session`, { key_type: 'PEM' });
@@ -113,7 +113,7 @@ class MuipService {
     }
   }
 
-  private static async authorizeAdmin() {
+  private static async authorizeAdmin(): Promise<any> {
     if (!this.sessionId) throw new Error('No session ID available');
     await this.enforceCallInterval();
     try {

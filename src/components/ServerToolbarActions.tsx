@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import MuipService from '../api/MuipService';
 import CommandService from '../api/CommandService';
 import { usePlayerContext } from '../store/playerContext';
+import { useSnackbar } from '../store/SnackbarContext';
 
 interface ServerState {
   players: { uid: number; name: string }[];
@@ -20,6 +21,12 @@ const ServerToolbarActions = () => {
     serverTime: '',
     serverMemory: '',
   });
+  const { showSnackbar } = useSnackbar();
+
+  const updatePlayerUid = (uid: number) => {
+    CommandService.setPlayerUid(uid);
+    setPlayerUid(uid);
+  }
 
   const fetchServerInfo = async () => {
     try {
@@ -33,8 +40,9 @@ const ServerToolbarActions = () => {
       if (serverInfo.onlinePlayers.length > 0) {
         updatePlayerUid(serverInfo.onlinePlayers[0].uid);
       }
+      setIsConnected(true);
     } catch (error) {
-      console.error('Error fetching server information:', error);
+      showSnackbar(t('server.messages.fetchError'), 'error');
       setIsConnected(false);
     }
   };
@@ -52,22 +60,6 @@ const ServerToolbarActions = () => {
       }
     };
   }, [isConnected]);
-
-  const handleConnect = async () => {
-    try {
-      await fetchServerInfo();
-      setIsConnected(true);
-    } catch (error) {
-      console.error('Connection failed:', error);
-      setIsConnected(false);
-      setPlayerUid(0);
-    }
-  };
-
-  const updatePlayerUid = (uid: number) => {
-    CommandService.setPlayerUid(uid);
-    setPlayerUid(uid);
-  }
 
   return (
     <Box display="flex" alignItems="center" gap={2}>
@@ -91,7 +83,7 @@ const ServerToolbarActions = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={handleConnect}
+        onClick={fetchServerInfo}
         disabled={isConnected}
       >
         {isConnected ? t('server.connected') : t('server.connect')}

@@ -20,18 +20,15 @@ import CommandService from '../api/CommandService';
 import { usePlayerContext } from '../store/playerContext';
 import { useLanguageContext } from '../store/languageContext';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from '../store/SnackbarContext';
 
 export default function Account() {
   const { t } = useTranslation();
   const [playerInfo, setPlayerInfo] = useState<{ level: number; gender: number }>({ level: 1, gender: 1 });
   const [editLevel, setEditLevel] = useState<string>('');
-  const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({
-    open: false,
-    message: '',
-    severity: 'success'
-  });
   const { playerUid, isConnected } = usePlayerContext();
   const { language } = useLanguageContext();
+  const { showSnackbar } = useSnackbar();
 
   useEffect(() => {
     loadPlayerInfo();
@@ -70,10 +67,6 @@ export default function Account() {
     } catch (error) {
       showSnackbar(t('account.messages.genderError'), 'error');
     }
-  };
-
-  const showSnackbar = (message: string, severity: 'success' | 'error') => {
-    setSnackbar({ open: true, message, severity });
   };
 
   const handleUnlockAction = async (action: () => Promise<void>, successKey: string) => {
@@ -181,16 +174,6 @@ export default function Account() {
           </Stack>
         </CardContent>
       </Card>
-
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={3000}
-        onClose={() => setSnackbar(prev => ({ ...prev, open: false }))}
-      >
-        <Alert severity={snackbar.severity} sx={{ width: '100%' }}>
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 }
