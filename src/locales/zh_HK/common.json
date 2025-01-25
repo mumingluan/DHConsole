@@ -189,6 +189,29 @@
         "docs": {
             "text": "有關詳細的設置說明，請訪問",
             "link": "文檔"
+        },
+        "gettingStarted": {
+            "title": "如果您是第一次使用",
+            "step0": {
+                "title": "步驟 0：設置 DanhengServer",
+                "description": "如果您不確定如何設置 DanhengServer，請參考"
+            },
+            "step1": {
+                "title": "步驟 1：啟動所需程序",
+                "description": "運行 `DanhengServer.exe` 和 `Fiddler Classic`"
+            },
+            "step2": {
+                "title": "步驟 2：創建帳戶",
+                "description": "在終端中使用以下命令創建您的帳戶："
+            },
+            "step3": {
+                "title": "步驟 3：遊戲登錄",
+                "description": "啟動遊戲並使用您創建的帳戶登錄"
+            },
+            "step4": {
+                "title": "步驟 4：將 DHConsole 連接到 DanhengServer",
+                "description": "點擊 DHConsole 右上角的“連接”按鈕"
+            }
         }
     }
 }

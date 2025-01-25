@@ -189,6 +189,29 @@
         "docs": {
             "text": "Untuk instruksi pengaturan terperinci, silakan kunjungi",
             "link": "dokumentasi"
+        },
+        "gettingStarted": {
+            "title": "Jika Anda pengguna baru",
+            "step0": {
+                "title": "Langkah 0: Siapkan DanhengServer",
+                "description": "Jika Anda tidak yakin cara menyiapkan DanhengServer, lihat"
+            },
+            "step1": {
+                "title": "Langkah 1: Luncurkan Program yang Diperlukan",
+                "description": "Jalankan `DanhengServer.exe` dan `Fiddler Classic`"
+            },
+            "step2": {
+                "title": "Langkah 2: Buat Akun",
+                "description": "Buat akun Anda di terminal menggunakan:"
+            },
+            "step3": {
+                "title": "Langkah 3: Masuk ke Game",
+                "description": "Luncurkan game dan masuk dengan akun yang Anda buat"
+            },
+            "step4": {
+                "title": "Langkah 4: Hubungkan DHConsole ke DanhengServer",
+                "description": "Klik tombol \"Connect\" di sudut kanan atas DHConsole"
+            }
         }
     }
 }

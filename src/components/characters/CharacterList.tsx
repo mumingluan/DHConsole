@@ -29,6 +29,10 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
     const { playerUid, isConnected } = usePlayerContext();
 
     useEffect(() => {
+        GameData.loadRelicTypes();
+    }, []);
+
+    useEffect(() => {
         const fetchCharacters = async () => {
             setLoading(true);
             await Promise.all([GameData.loadCharacter(language), GameData.loadItem(language)]);

@@ -8,10 +8,10 @@ import {
     Stack,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { Character } from '../../../api/CharacterInfo';
-import CommandService from '../../../api/CommandService';
-import GameData from '../../../store/gameData';
-import { useLanguageContext } from '../../../store/languageContext';
+import { Character } from '../../api/CharacterInfo';
+import CommandService from '../../api/CommandService';
+import GameData from '../../store/gameData';
+import { useLanguageContext } from '../../store/languageContext';
 import { useTranslation } from 'react-i18next';
 
 interface BasicInfoSectionProps {
@@ -96,20 +96,20 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
                     <Typography>
-                            {t('character.basicInfo.level')}: {characterInfo.level}
-                        </Typography>
-                        <Typography>
-                            {t('character.basicInfo.eidolon')}: {characterInfo.rank}
-                        </Typography>
-                        <Typography>
-                            {t('character.basicInfo.talentLevel')}: {Object.entries(characterInfo.talent || {})
-                                .slice(0, 4)
+                        {t('character.basicInfo.level')}: {characterInfo.level}
+                    </Typography>
+                    <Typography>
+                        {t('character.basicInfo.eidolon')}: {characterInfo.rank}
+                    </Typography>
+                    <Typography>
+                        {t('character.basicInfo.talentLevel')}: {Object.entries(characterInfo.talent || {})
+                            .slice(0, 4)
                             .map(([key, value]) => `${value}`)
                             .join(', ')}
                     </Typography>
-                    </Box>
+                </Box>
             )}
         </Box>
     );

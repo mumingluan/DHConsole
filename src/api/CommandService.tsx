@@ -1,5 +1,5 @@
 import MuipService from './MuipService';
-import { Character, Relic } from './CharacterInfo';
+import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES } from './CharacterInfo';
 
 class CommandService {
   static readonly languageMap: Record<string, string> = {
@@ -72,13 +72,10 @@ class CommandService {
     return this.parseGameText(result);
   }
 
-  static async loadAffixGameText(lang: string): Promise<Record<number, string>> {
-    if (!this.languageMap[lang]) {
-      throw new Error(`Invalid language code: ${lang}`);
-    }
-    const command = `gametext affix #${this.languageMap[lang]}`;
+  static async loadRelicTypes(): Promise<Record<number, number>> {
+    const command = `gametext relic`;
     const result = await this.executeCommand(command);
-    return this.parseGameText(result);
+    return this.parseItemList(result);
   }
 
   static async getInventory(): Promise<Record<number, number>> {
@@ -111,13 +108,29 @@ class CommandService {
   }
 
   static async setCharacterEquip(characterId: number, equipId: number, equipLevel: number, equipRank: number): Promise<void> {
-    const command = `avatar ${characterId} e${equipId} l${equipLevel} r${equipRank}`;
+    const command = `eqiup item ${characterId} e${equipId} l${equipLevel} r${equipRank}`;
     await this.executeCommand(command);
   }
 
-  static async setCharacterRelic(characterId: number, relics: Record<number, Relic>): Promise<void> {
-    const command = `avatar ${characterId} relics ${JSON.stringify(relics)}`;
+  static async setCharacterRelic(characterId: number, slotId: number, relic: Relic): Promise<void> {
+    var mainAffixId = MAIN_AFFIXES[slotId].findIndex(affixes => affixes.includes(relic.mainAffix!));
+    var subAffixIds = relic.subAffixes?.map(subAffix => SUB_AFFIXES.findIndex(affixes => affixes.includes(subAffix)));
+    var subAffixStr = subAffixIds?.map((id, index) => `${id}:${relic.subAffixLevels![index]}`).join(' ');
+    var relicStr = `${relic.relicId} l${relic.level} ${mainAffixId} ${subAffixStr}`;
+    const command = `eqiup relic ${characterId} ${relicStr}`;
     await this.executeCommand(command);
+  }
+
+  static async getCharacterRelicRecommend(characterId: number): Promise<Record<number, Relic>> {
+    const command = `build recommend ${characterId}`;
+    const result = await this.executeCommand(command);
+    return this.parseRelicRecommend(result);
+  }
+
+  static async setCharacterRelics(characterId: number, relics: Record<number, Relic>): Promise<void> {
+    for (const [slotId, relic] of Object.entries(relics)) {
+      await this.setCharacterRelic(characterId, parseInt(slotId, 10), relic);
+    }
   }
 
   static async getPlayerInfo(): Promise<{ level: number, gender: number }> {
@@ -185,7 +198,7 @@ class CommandService {
   static async getCurrentMissions(): Promise<Record<number, number[]>> {
     const command = `mission running`;
     const result = await this.executeCommand(command);
-    return this.parseLists(result);
+    return this.parseMissionLists(result);
   }
 
   static async finishMainMission(mainMissionId: number): Promise<string> {
@@ -316,8 +329,35 @@ class CommandService {
     return result;
   }
 
+  private static parseRelicRecommend(response: string): Record<number, Relic> {
+    const lines = response.split('\n');
+    const data: Record<number, Relic> = {};
+    for (const line of lines) {
+      const match = line.match(/\[(.*)\] (.*)/);
+      if (match && match[1] && match[2]) {
+        var slot = parseInt(match[1], 10);
+        var parts = match[2].split(' ');
+        var relicId = parseInt(parts[0], 10);
+        var mainAffix = MAIN_AFFIXES[slot][parseInt(parts[1], 10) - 1];
+        var subAffixes: Record<string, number> = parts.slice(2).map(sub => {
+          var subAffixAndLevel = sub.split(':');
+          var subAffix = SUB_AFFIXES[parseInt(subAffixAndLevel[0], 10) - 1];
+          return { key: subAffix, value: parseInt(subAffixAndLevel[1], 10) };
+        }).reduce((acc, curr) => ({ ...acc, ...curr }), {});
+        data[relicId] = {
+          relicId: relicId,
+          level: 15,
+          mainAffix: mainAffix,
+          subAffixes: Object.keys(subAffixes),
+          subAffixLevels: Object.values(subAffixes),
+          subAffixSteps: Object.values(subAffixes),
+        };
+      }
+    }
+    return data;
+  }
 
-  private static parseLists(response: string): Record<number, number[]> {
+  private static parseMissionLists(response: string): Record<number, number[]> {
     const lines = response.split('\n');
     const data: Record<number, number[]> = {};
     let currentMainId = null;

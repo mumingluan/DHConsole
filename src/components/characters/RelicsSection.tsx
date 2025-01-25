@@ -14,10 +14,10 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import EditIcon from '@mui/icons-material/Edit';
-import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES, RELIC_NAMES } from '../../../api/CharacterInfo';
-import CommandService from '../../../api/CommandService';
-import GameData from '../../../store/gameData';
-import { useLanguageContext } from '../../../store/languageContext';
+import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES, RELIC_NAMES } from '../../api/CharacterInfo';
+import CommandService from '../../api/CommandService';
+import GameData from '../../store/gameData';
+import { useLanguageContext } from '../../store/languageContext';
 import { useTranslation } from 'react-i18next';
 
 interface RelicSectionProps {
@@ -31,6 +31,8 @@ interface RelicCardProps {
     relic: Relic;
     isEditing: boolean;
     onRelicChange: (pos: number, relic: Relic) => void;
+    characterId: number;
+    onUpdate: () => void;
 }
 
 interface AffixRowProps {
@@ -42,7 +44,6 @@ interface AffixRowProps {
     isMain?: boolean;
     onAffixChange?: (affix: string) => void;
     onLevelChange?: (level: number) => void;
-    maxLevel?: number;
     availableLevels?: number;
 }
 
@@ -79,7 +80,7 @@ function AffixRow({
                 </TextField>
             ) : (
                 <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                        [{label}] {t('affix.' + affix) || t('character.relic.labels.empty')}
+                    [{label}] {t('affix.' + affix) || t('character.relic.labels.empty')}
                 </Typography>
             )}
             {isEditable && !isMain ? (
@@ -98,14 +99,14 @@ function AffixRow({
                 </Box>
             ) : (
                 <Typography variant="body2" sx={{ width: 80, textAlign: 'right' }}>
-                        {isMain ? `${t('character.relic.labels.level')} ` : `${t('character.relic.labels.plus')} `}{level}
+                    {isMain ? `${t('character.relic.labels.level')} ` : `${t('character.relic.labels.plus')} `}{level}
                 </Typography>
             )}
         </Box>
     );
 }
 
-function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardProps) {
+function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, onUpdate }: RelicCardProps) {
     const { language } = useLanguageContext();
     const { t } = useTranslation();
     const [mainAffix, setMainAffix] = React.useState<string>(relic.mainAffix || '');
@@ -137,6 +138,20 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
             ...relic,
             mainAffix: value,
         });
+    };
+
+    const handleSaveRelic = async () => {
+        try {
+            await CommandService.setCharacterRelic(characterId, index, {
+                ...relic,
+                mainAffix,
+                subAffixes: subAffixes.map(a => a.name),
+                subAffixLevels: subAffixes.map(a => a.level),
+            });
+            onUpdate();
+        } catch (error) {
+            console.error(t('character.relic.errors.saveFailed'), error);
+        }
     };
 
     return (
@@ -199,6 +214,19 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange }: RelicCardPro
                         </Typography>
                     )}
                 </Stack>
+
+                {isEditing && (
+                    <Box sx={{ mt: 2 }}>
+                        <Button
+                            variant="contained"
+                            onClick={handleSaveRelic}
+                            fullWidth
+                            disabled={totalSubAffixLevels > 5}
+                        >
+                            {t('character.relic.actions.save')}
+                        </Button>
+                    </Box>
+                )}
             </CardContent>
         </Card>
     );
@@ -219,7 +247,7 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
 
     const handleSave = async () => {
         try {
-            await CommandService.setCharacterRelic(characterId, relics);
+            await CommandService.setCharacterRelics(characterId, relics);
             onUpdate();
             setIsEditing(false);
         } catch (error) {
@@ -244,6 +272,8 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
                             relic={relics[i] || {}}
                             isEditing={isEditing}
                             onRelicChange={handleRelicChange}
+                            characterId={characterId}
+                            onUpdate={onUpdate}
                         />
                     </Grid>
                 ))}

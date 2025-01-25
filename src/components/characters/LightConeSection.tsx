@@ -8,10 +8,10 @@ import {
     MenuItem,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { Character } from '../../../api/CharacterInfo';
-import CommandService from '../../../api/CommandService';
-import GameData from '../../../store/gameData';
-import { useLanguageContext } from '../../../store/languageContext';
+import { Character } from '../../api/CharacterInfo';
+import CommandService from '../../api/CommandService';
+import GameData from '../../store/gameData';
+import { useLanguageContext } from '../../store/languageContext';
 import { useTranslation } from 'react-i18next';
 
 interface LightConeSectionProps {
@@ -94,13 +94,13 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                     </Button>
                 </Box>
             ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
-                        <Typography>
-                            Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
-                        </Typography>
-                        <Typography>Level: {characterInfo.equipLevel || '--'}</Typography>
-                        <Typography>Superimposition: {characterInfo.equipRank || '--'}</Typography>
-                    </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
+                    <Typography>
+                        Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
+                    </Typography>
+                    <Typography>Level: {characterInfo.equipLevel || '--'}</Typography>
+                    <Typography>Superimposition: {characterInfo.equipRank || '--'}</Typography>
+                </Box>
             )}
         </Box>
     );

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import BasicInfoSection from './sections/BasicInfoSection';
-import LightConeSection from './sections/LightConeSection';
-import RelicsSection from './sections/RelicsSection';
+import BasicInfoSection from './BasicInfoSection';
+import LightConeSection from './LightConeSection';
+import RelicsSection from './RelicsSection';
 import CommandService from '../../api/CommandService';
 import { Character } from '../../api/CharacterInfo';
 

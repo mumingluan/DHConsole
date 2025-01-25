@@ -11,6 +11,7 @@ class GameData {
   static entities: Record<string, Record<GameEntity, Record<number, string>>> = {}; // Map of Language to EntityType to ID to name
   static entityTypes: Record<number, GameEntity> = {}; // Map of ID to entity type
   static loadedEntities: Set<[GameEntity, string]> = new Set();
+  static relicTypes: Record<number, number[]> = {};
 
   public static async loadCharacter(language: string): Promise<void> {
     if (this.loadedEntities.has([GameEntity.Avatar, language])) {
@@ -42,6 +43,16 @@ class GameData {
     }
     const parsed = await CommandService.loadSubMissionGameText(language);
     this.storeData(parsed, GameEntity.SubMission, language);
+  }
+
+  public static async loadRelicTypes(): Promise<void> {
+    const parsed = await CommandService.loadRelicTypes();
+    for (const [key, value] of Object.entries(parsed)) {
+      if (!this.relicTypes[value]) {
+        this.relicTypes[value] = [];
+      }
+      this.relicTypes[value].push(parseInt(key, 10));
+    }
   }
 
   private static storeData(data: Record<number, string>, entity: GameEntity, language: string): void {

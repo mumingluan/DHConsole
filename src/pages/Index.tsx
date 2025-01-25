@@ -103,6 +103,77 @@ export default function Index() {
             </Typography>
           </Stack>
         </Paper>
+
+        <Paper
+          elevation={3}
+          sx={{
+            p: 4,
+            mt: 4,
+            width: '100%',
+            backgroundColor: 'background.paper',
+          }}
+        >
+          <Typography variant="h6" gutterBottom color="primary">
+            {t('welcome.gettingStarted.title')}
+          </Typography>
+
+          <Stack spacing={3}>
+            <Box>
+              <Typography variant="subtitle1" gutterBottom>
+                {t('welcome.gettingStarted.step0.title')}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {t('welcome.gettingStarted.step0.description')}{' '}
+                <Link
+                  href="https://github.com/samdivaio/DS_PS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  samdivaio/DS_PS
+                </Link>
+              </Typography>
+            </Box>
+
+            <Box>
+              <Typography variant="subtitle1" gutterBottom>
+                {t('welcome.gettingStarted.step1.title')}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {t('welcome.gettingStarted.step1.description')}
+              </Typography>
+            </Box>
+
+            <Box>
+              <Typography variant="subtitle1" gutterBottom>
+                {t('welcome.gettingStarted.step2.title')}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {t('welcome.gettingStarted.step2.description')}
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ fontFamily: 'monospace', bgcolor: 'action.hover', px: 1, py: 0.5, borderRadius: 1, display: 'inline-block' }}>
+                account create &lt;your_account_name&gt;
+              </Typography>
+            </Box>
+
+            <Box>
+              <Typography variant="subtitle1" gutterBottom>
+                {t('welcome.gettingStarted.step3.title')}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {t('welcome.gettingStarted.step3.description')}
+              </Typography>
+            </Box>
+
+            <Box>
+              <Typography variant="subtitle1" gutterBottom>
+                {t('welcome.gettingStarted.step4.title')}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {t('welcome.gettingStarted.step4.description')}
+              </Typography>
+            </Box>
+          </Stack>
+        </Paper>
       </Box>
     </Container>
   );

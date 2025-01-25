@@ -189,6 +189,29 @@
         "docs": {
             "text": "詳細なセットアップ手順については、以下を参照してください",
             "link": "ドキュメント"
+        },
+        "gettingStarted": {
+            "title": "初めてのユーザーの場合",
+            "step0": {
+                "title": "ステップ 0: DanhengServer のセットアップ",
+                "description": "DanhengServer のセットアップ方法がわからない場合は、参照してください"
+            },
+            "step1": {
+                "title": "ステップ 1: 必要なプログラムを起動",
+                "description": "`DanhengServer.exe` と `Fiddler Classic` を実行"
+            },
+            "step2": {
+                "title": "ステップ 2: アカウントの作成",
+                "description": "ターミナルで次を使用してアカウントを作成:"
+            },
+            "step3": {
+                "title": "ステップ 3: ゲームログイン",
+                "description": "ゲームを起動し、作成したアカウントでログイン"
+            },
+            "step4": {
+                "title": "ステップ 4: DHConsole を DanhengServer に接続",
+                "description": "DHConsole の右上隅にある「接続」ボタンをクリック"
+            }
         }
     }
 }

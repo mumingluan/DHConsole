@@ -189,6 +189,29 @@
         "docs": {
             "text": "Để biết hướng dẫn cài đặt chi tiết, vui lòng truy cập",
             "link": "tài liệu"
+        },
+        "gettingStarted": {
+            "title": "Nếu bạn là người dùng lần đầu",
+            "step0": {
+                "title": "Bước 0: Thiết lập DanhengServer",
+                "description": "Nếu bạn không chắc chắn cách thiết lập DanhengServer, hãy tham khảo"
+            },
+            "step1": {
+                "title": "Bước 1: Khởi chạy các chương trình cần thiết",
+                "description": "Chạy `DanhengServer.exe` và `Fiddler Classic`"
+            },
+            "step2": {
+                "title": "Bước 2: Tạo tài khoản",
+                "description": "Tạo tài khoản của bạn trong terminal bằng cách sử dụng:"
+            },
+            "step3": {
+                "title": "Bước 3: Đăng nhập vào trò chơi",
+                "description": "Khởi động trò chơi và đăng nhập với tài khoản bạn đã tạo"
+            },
+            "step4": {
+                "title": "Bước 4: Kết nối DHConsole với DanhengServer",
+                "description": "Nhấn nút \"Kết nối\" ở góc trên bên phải của DHConsole"
+            }
         }
     }
 }

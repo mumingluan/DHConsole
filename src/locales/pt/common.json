@@ -189,6 +189,29 @@
         "docs": {
             "text": "Para instruções detalhadas de configuração, por favor visite a",
             "link": "documentação"
+        },
+        "gettingStarted": {
+            "title": "Se você é um usuário de primeira viagem",
+            "step0": {
+                "title": "Passo 0: Configurar DanhengServer",
+                "description": "Se você não tem certeza de como configurar o DanhengServer, consulte"
+            },
+            "step1": {
+                "title": "Passo 1: Iniciar Programas Necessários",
+                "description": "Execute `DanhengServer.exe` e `Fiddler Classic`"
+            },
+            "step2": {
+                "title": "Passo 2: Criar Conta",
+                "description": "Crie sua conta no terminal usando:"
+            },
+            "step3": {
+                "title": "Passo 3: Login no Jogo",
+                "description": "Inicie o jogo e faça login com sua conta criada"
+            },
+            "step4": {
+                "title": "Passo 4: Conectar DHConsole ao DanhengServer",
+                "description": "Clique no botão \"Conectar\" no canto superior direito do DHConsole"
+            }
         }
     }
 }
