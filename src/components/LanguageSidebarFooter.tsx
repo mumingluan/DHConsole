@@ -34,8 +34,8 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
     };
 
     const handleMenuItemClick = (langCode: string) => {
-        setLanguage(langCode);
         i18n.changeLanguage(langCode);
+        setLanguage(langCode);
         console.log('Setting language to', langCode);
         handleClose();
     };
