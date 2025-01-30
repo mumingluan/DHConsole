@@ -90,7 +90,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         sx={{ width: '60px' }}
                     />
                     <Button variant="contained" onClick={handleSave} size="small">
-                        Save
+                        {t('save')}
                     </Button>
                 </Box>
             ) : (

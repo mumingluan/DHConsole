@@ -22,7 +22,6 @@ const languages = [
 
 const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFooterProps) => {
     const { language, setLanguage } = useLanguageContext();
-    const [currentLanguage, setCurrentLanguage] = useState<{ code: string; name: string; flag: string }>(languages[0]);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const { i18n } = useTranslation();
 
@@ -36,13 +35,13 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
 
     const handleMenuItemClick = (langCode: string) => {
         setLanguage(langCode);
-        setCurrentLanguage(languages.find(lang => lang.code === langCode) || languages[0]);
         i18n.changeLanguage(langCode);
-        console.log('Setting language to', currentLanguage, language);
+        console.log('Setting language to', langCode);
         handleClose();
     };
 
     const flagUrl = (countryCode: string) => `https://flagcdn.com/24x18/${countryCode}.png`;
+    const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

@@ -72,7 +72,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
         .filter(([id]) => !ownedCharacters.includes(Number(id)));
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
                 <TextField
                     select
@@ -99,7 +99,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
                     {t('character.list.addCharacter')}
                 </Button>
             </Box>
-            <List sx={{ flexGrow: 1, overflow: 'auto' }}>
+            <List>
                 {ownedCharacters.map((characterId) => (
                     <ListItem key={characterId} disablePadding>
                         <ListItemButton

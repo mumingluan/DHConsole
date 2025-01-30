@@ -84,7 +84,7 @@ function AffixRow({
                 </Typography>
             )}
             {isEditable && !isMain ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: 120 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <TextField
                         type="number"
                         size="small"
@@ -94,7 +94,7 @@ function AffixRow({
                             onLevelChange?.(newLevel);
                         }}
                         inputProps={{ min: 0, max: availableLevels }}
-                        sx={{ width: 40 }}
+                        sx={{ width: 60 }}
                     />
                 </Box>
             ) : (
@@ -223,7 +223,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                             fullWidth
                             disabled={totalSubAffixLevels > 5}
                         >
-                            {t('character.relic.actions.save')}
+                            {t('save')}
                         </Button>
                     </Box>
                 )}
