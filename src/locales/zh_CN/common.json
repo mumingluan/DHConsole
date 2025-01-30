@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "保存所有遗器"
+                "saveAll": "保存所有遗器",
+                "recommend": "获取推荐遗器"
+            },
+            "hints": {
+                "recommendEdit": "进入编辑模式以获取推荐遗器"
             },
             "errors": {
                 "saveFailed": "保存遗器失败",

@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "すべての遺物を保存"
+                "saveAll": "すべての遺物を保存",
+                "recommend": "推奨遺物を取得"
+            },
+            "hints": {
+                "recommendEdit": "編集モードに入って推奨遺物を取得"
             },
             "errors": {
                 "saveFailed": "遺物の保存に失敗しました",

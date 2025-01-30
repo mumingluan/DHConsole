@@ -179,7 +179,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
 
     return (
         <Card variant="outlined">
-            <CardContent sx={{ padding: 2 }}>
+            <CardContent sx={{ px: 2 }}>
                 <Typography variant="subtitle2" sx={{ mb: 1 }}>
                     {RELIC_NAMES[index]}
                 </Typography>
@@ -242,10 +242,11 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                 </Stack>
 
                 {isEditing && (
-                    <Box sx={{ mt: 2 }}>
+                    <Box sx={{ mt: 1 }}>
                         <Button
                             variant="contained"
                             onClick={handleSaveRelic}
+                            size="small"
                             fullWidth
                             disabled={totalSubAffixLevels > 5}
                         >
@@ -262,6 +263,10 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
     const { t } = useTranslation();
     const [isEditing, setIsEditing] = React.useState(false);
     const [relics, setRelics] = React.useState<Record<number, Relic>>(characterInfo.relics || {});
+
+    React.useEffect(() => {
+        setIsEditing(false);
+    }, [characterId]);
 
     React.useEffect(() => {
         if (!isEditing) {
@@ -300,17 +305,22 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
                     <EditIcon />
                 </IconButton>
                 {isEditing ? (
-                    <Tooltip title={t('character.relic.actions.recommend')}>
-                        <IconButton size="small" onClick={handleRecommend} sx={{ ml: 1 }}>
-                            <RecommendIcon />
-                        </IconButton>
-                    </Tooltip>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        startIcon={<RecommendIcon />}
+                        onClick={handleRecommend}
+                        sx={{ ml: 1 }}
+                    >
+                        {t('character.relic.actions.recommend')}
+                    </Button>
                 ) : (
-                    <Tooltip title={t('character.relic.hints.recommendEdit')}>
                         <Box sx={{ ml: 1, display: 'flex', alignItems: 'center' }}>
                             <RecommendIcon color="disabled" fontSize="small" />
+                            <Typography variant="body2" sx={{ ml: 0.5 }}>
+                                {t('character.relic.hints.recommendEdit')}
+                            </Typography>
                         </Box>
-                    </Tooltip>
                 )}
             </Box>
 

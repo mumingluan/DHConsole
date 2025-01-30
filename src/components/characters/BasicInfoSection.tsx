@@ -32,6 +32,7 @@ export default function BasicInfoSection({ characterId, characterInfo, onUpdate 
         setLevel(characterInfo.level || 1);
         setRank(characterInfo.rank || 0);
         setTalent(Math.max(...Object.values(characterInfo.talent || { 1: 10 })));
+        setIsEditing(false);
     }, [characterInfo]);
 
     const handleSave = async () => {

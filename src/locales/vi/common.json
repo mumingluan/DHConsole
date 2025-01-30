@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "Lưu tất cả di vật"
+                "saveAll": "Lưu tất cả di vật",
+                "recommend": "Nhận di vật được đề xuất"
+            },
+            "hints": {
+                "recommendEdit": "Vào chế độ chỉnh sửa để nhận di vật được đề xuất"
             },
             "errors": {
                 "saveFailed": "Lưu di vật thất bại",

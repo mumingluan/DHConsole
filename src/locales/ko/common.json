@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "모든 유물 저장"
+                "saveAll": "모든 유물 저장",
+                "recommend": "추천 유물 얻기"
+            },
+            "hints": {
+                "recommendEdit": "편집 모드로 추천 유물 얻기"
             },
             "errors": {
                 "saveFailed": "유물 저장 실패",

@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "Simpan Semua Relik"
+                "saveAll": "Simpan Semua Relik",
+                "recommend": "Dapatkan Relik yang Direkomendasikan"
+            },
+            "hints": {
+                "recommendEdit": "Masuk ke mode edit untuk mendapatkan relik yang direkomendasikan"
             },
             "errors": {
                 "saveFailed": "Gagal menyimpan relik",

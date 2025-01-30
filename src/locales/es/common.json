@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "Guardar Todas las Reliquias"
+                "saveAll": "Guardar Todas las Reliquias",
+                "recommend": "Obtener Reliquias Recomendadas"
+            },
+            "hints": {
+                "recommendEdit": "Entra en modo de edición para obtener reliquias recomendadas"
             },
             "errors": {
                 "saveFailed": "Error al guardar las reliquias",

@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "Enregistrer Toutes les Reliques"
+                "saveAll": "Enregistrer Toutes les Reliques",
+                "recommend": "Obtenir des Reliques Recommandées"
+            },
+            "hints": {
+                "recommendEdit": "Entrez en mode d'édition pour obtenir des reliques recommandées"
             },
             "errors": {
                 "saveFailed": "Échec de l'enregistrement des reliques",

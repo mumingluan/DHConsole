@@ -32,6 +32,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
         setEquipId(characterInfo.equipId || 0);
         setEquipLevel(characterInfo.equipLevel || 1);
         setEquipRank(characterInfo.equipRank || 1);
+        setIsEditing(false);
     }, [characterInfo]);
 
     const handleSave = async () => {

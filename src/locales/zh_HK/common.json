@@ -40,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "保存所有遺器"
+                "saveAll": "保存所有遺器",
+                "recommend": "獲取推薦遺器"
+            },
+            "hints": {
+                "recommendEdit": "進入編輯模式以獲取推薦遺器"
             },
             "errors": {
                 "saveFailed": "保存遺器失敗",
