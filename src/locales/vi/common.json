@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "Nón Ánh Sáng"
+            "title": "Nón Ánh Sáng",
+            "name": "Tên",
+            "level": "Cấp độ",
+            "superimposition": "Chồng chất"
         },
         "relic": {
             "title": "Di vật",

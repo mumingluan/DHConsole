@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "Kerucut Cahaya"
+            "title": "Kerucut Cahaya",
+            "name": "Nama",
+            "level": "Level",
+            "superimposition": "Superimposisi"
         },
         "relic": {
             "title": "Relik",

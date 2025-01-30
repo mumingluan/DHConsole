@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "Light Cone"
+            "title": "Light Cone",
+            "name": "Name",
+            "level": "Level",
+            "superimposition": "Superimposition"
         },
         "relic": {
             "title": "Relics",
@@ -37,7 +40,11 @@
                 "plus": "+"
             },
             "actions": {
-                "saveAll": "Save All Relics"
+                "saveAll": "Save All Relics",
+                "recommend": "Get Recommended Relics"
+            },
+            "hints": {
+                "recommendEdit": "Enter edit mode to get recommended relics"
             },
             "errors": {
                 "saveFailed": "Failed to save relics",

@@ -14,11 +14,13 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import EditIcon from '@mui/icons-material/Edit';
+import RecommendIcon from '@mui/icons-material/Recommend';
 import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES, RELIC_NAMES } from '../../api/CharacterInfo';
 import CommandService from '../../api/CommandService';
 import GameData from '../../store/gameData';
 import { useLanguageContext } from '../../store/languageContext';
 import { useTranslation } from 'react-i18next';
+import Tooltip from '@mui/material/Tooltip';
 
 interface RelicSectionProps {
     characterId: number;
@@ -58,23 +60,30 @@ function AffixRow({
     onLevelChange,
     availableLevels = 5
 }: AffixRowProps) {
-    const { language } = useLanguageContext();
     const { t } = useTranslation();
     const possibleAffixes = isMain ? MAIN_AFFIXES[pos] : SUB_AFFIXES;
 
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minHeight: 32 }}>
             {isEditable ? (
                 <TextField
                     select
                     size="small"
                     value={affix || ''}
                     onChange={(e) => onAffixChange?.(e.target.value)}
-                    sx={{ flexGrow: 1 }}
+                    sx={{
+                        flexGrow: 1,
+                        '& .MuiInputBase-root': {
+                            height: 32,
+                        },
+                        '& .MuiOutlinedInput-input': {
+                            py: 0.5,
+                        }
+                    }}
                 >
                     {possibleAffixes.map((name) => (
-                        <MenuItem key={name} value={name}>
-                            {name}
+                        <MenuItem key={name} value={name} dense>
+                            {t('affix.' + name) || name}
                         </MenuItem>
                     ))}
                 </TextField>
@@ -84,19 +93,25 @@ function AffixRow({
                 </Typography>
             )}
             {isEditable && !isMain ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <TextField
-                        type="number"
-                        size="small"
-                        value={level}
-                        onChange={(e) => {
-                            const newLevel = Math.max(0, Math.min(Number(e.target.value), availableLevels));
-                            onLevelChange?.(newLevel);
-                        }}
-                        inputProps={{ min: 0, max: availableLevels }}
-                        sx={{ width: 60 }}
-                    />
-                </Box>
+                <TextField
+                    type="number"
+                    size="small"
+                    value={level}
+                    onChange={(e) => {
+                        const newLevel = Math.max(0, Math.min(Number(e.target.value), availableLevels));
+                        onLevelChange?.(newLevel);
+                    }}
+                    inputProps={{ min: 0, max: availableLevels }}
+                    sx={{
+                        width: 60,
+                        '& .MuiInputBase-root': {
+                            height: 32,
+                        },
+                        '& .MuiOutlinedInput-input': {
+                            py: 0.5,
+                        }
+                    }}
+                />
             ) : (
                 <Typography variant="body2" sx={{ width: 80, textAlign: 'right' }}>
                     {isMain ? `${t('character.relic.labels.level')} ` : `${t('character.relic.labels.plus')} `}{level}
@@ -154,13 +169,21 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
         }
     };
 
+    const allItemsForIndex = React.useMemo(() => {
+        return Object.entries(GameData.getAllItems(language)).filter(([id]) => {
+            const numId = Number(id);
+            // Assumes all gold relic starts with 6. If game data changes, this will need to be updated.
+            return numId > 60000 && numId < 70000 && numId % 10 === index;
+        });
+    }, [language, index]);
+
     return (
         <Card variant="outlined">
-            <CardContent sx={{ padding: 3 }}>
-                <Typography variant="subtitle2" gutterBottom>
+            <CardContent sx={{ padding: 2 }}>
+                <Typography variant="subtitle2" sx={{ mb: 1 }}>
                     {RELIC_NAMES[index]}
                 </Typography>
-                <Stack spacing={2}>
+                <Stack spacing={1}>
                     <TextField
                         select
                         size="small"
@@ -169,17 +192,20 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                         onChange={(e) => onRelicChange(index, { ...relic, relicId: Number(e.target.value) })}
                         disabled={!isEditing}
                         fullWidth
+                        sx={{
+                            '& .MuiInputBase-root': {
+                                height: 40,
+                            }
+                        }}
                     >
-                        {Object.entries(GameData.getAllItems(language))
-                            .filter(([id]) => { return Number(id) > 60000 && Number(id) < 70000 }) // Filter for relic items
-                            .map(([id, name]) => (
-                                <MenuItem key={id} value={id}>
+                        {allItemsForIndex.map(([id, name]) => (
+                            <MenuItem key={id} value={id}>
                                     {name}
                                 </MenuItem>
                             ))}
                     </TextField>
 
-                    <Divider />
+                    <Divider sx={{ my: 0.5 }} />
 
                     <AffixRow
                         pos={index}
@@ -192,7 +218,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                         onAffixChange={(name) => handleMainAffixChange(name)}
                     />
 
-                    <Divider />
+                    <Divider sx={{ my: 0.5 }} />
 
                     {subAffixes.map((subAffix, subIndex) => (
                         <AffixRow
@@ -238,8 +264,10 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
     const [relics, setRelics] = React.useState<Record<number, Relic>>(characterInfo.relics || {});
 
     React.useEffect(() => {
-        setRelics(characterInfo.relics || {});
-    }, [characterInfo]);
+        if (!isEditing) {
+            setRelics(characterInfo.relics || {});
+        }
+    }, [characterInfo, isEditing]);
 
     const handleRelicChange = (index: number, relic: Relic) => {
         setRelics(prev => ({ ...prev, [index]: relic }));
@@ -255,6 +283,15 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
         }
     };
 
+    const handleRecommend = async () => {
+        try {
+            const recommendedRelics = await CommandService.getCharacterRelicRecommend(characterId);
+            setRelics(recommendedRelics);
+        } catch (error) {
+            console.error('Failed to get relic recommendations:', error);
+        }
+    };
+
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -262,6 +299,19 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
                 <IconButton size="small" onClick={() => setIsEditing(!isEditing)} sx={{ ml: 1 }}>
                     <EditIcon />
                 </IconButton>
+                {isEditing ? (
+                    <Tooltip title={t('character.relic.actions.recommend')}>
+                        <IconButton size="small" onClick={handleRecommend} sx={{ ml: 1 }}>
+                            <RecommendIcon />
+                        </IconButton>
+                    </Tooltip>
+                ) : (
+                    <Tooltip title={t('character.relic.hints.recommendEdit')}>
+                        <Box sx={{ ml: 1, display: 'flex', alignItems: 'center' }}>
+                            <RecommendIcon color="disabled" fontSize="small" />
+                        </Box>
+                    </Tooltip>
+                )}
             </Box>
 
             <Grid container spacing={2}>

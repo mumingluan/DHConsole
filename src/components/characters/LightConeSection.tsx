@@ -59,7 +59,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                         select
-                        label="Light Cone"
+                        label={t('character.lightCone.name')}
                         value={equipId}
                         onChange={(e) => setEquipId(Number(e.target.value))}
                         size="small"
@@ -72,7 +72,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         ))}
                     </TextField>
                     <TextField
-                        label="Level"
+                        label={t('character.lightCone.level')}
                         type="number"
                         value={equipLevel}
                         onChange={(e) => setEquipLevel(Number(e.target.value))}
@@ -81,7 +81,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         sx={{ width: '60px' }}
                     />
                     <TextField
-                        label="Superimposition"
+                        label={t('character.lightCone.superimposition')}
                         type="number"
                         value={equipRank}
                         onChange={(e) => setEquipRank(Number(e.target.value))}

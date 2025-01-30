@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "光锥"
+            "title": "光锥",
+            "name": "名称",
+            "level": "等级",
+            "superimposition": "叠影"
         },
         "relic": {
             "title": "遗器",

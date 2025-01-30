@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "Световой конус"
+            "title": "Световой конус",
+            "name": "Имя",
+            "level": "Уровень",
+            "superimposition": "Наложение"
         },
         "relic": {
             "title": "Реликвии",

@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "光円錐"
+            "title": "光円錐",
+            "name": "名前",
+            "level": "レベル",
+            "superimposition": "重ね合わせ"
         },
         "relic": {
             "title": "遺物",

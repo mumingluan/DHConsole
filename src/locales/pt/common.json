@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "Cone de Luz"
+            "title": "Cone de Luz",
+            "name": "Nome",
+            "level": "Nível",
+            "superimposition": "Superimposição"
         },
         "relic": {
             "title": "Relíquias",

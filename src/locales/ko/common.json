@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "빛의 원뿔"
+            "title": "빛의 원뿔",
+            "name": "이름",
+            "level": "레벨",
+            "superimposition": "중첩"
         },
         "relic": {
             "title": "유물",

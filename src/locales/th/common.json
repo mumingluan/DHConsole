@@ -25,7 +25,10 @@
     },
     "character": {
         "lightCone": {
-            "title": "โคนแสง"
+            "title": "โคนแสง",
+            "name": "ชื่อ",
+            "level": "ระดับ",
+            "superimposition": "การซ้อนทับ"
         },
         "relic": {
             "title": "วัตถุโบราณ",

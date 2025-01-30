@@ -300,7 +300,7 @@ class CommandService {
             equipRank: equipFields.find(field => field.key === 'rank')?.value,
           }
         } else if (match[1].trim().startsWith('Relic')) {
-          var relicIndex = parseInt(match[1].trim().split(' ')[1], 10);
+          var slot = parseInt(match[1].trim().split(' ')[1], 10);
           var fields: { key: string, value: string }[] =
             match[2].split(',').map(field => {
               var splitted = field.trim().split(':');
@@ -315,7 +315,7 @@ class CommandService {
           if (!result.relics) {
             result.relics = {};
           }
-          result.relics[relicIndex] = {
+          result.relics[slot] = {
             relicId: parseInt(fields.find(field => field.key === 'id')?.value!, 10),
             level: parseInt(fields.find(field => field.key === 'level')?.value!, 10),
             mainAffix: fields.find(field => field.key === 'mainAffix')?.value!,
@@ -344,7 +344,7 @@ class CommandService {
           var subAffix = SUB_AFFIXES[parseInt(subAffixAndLevel[0], 10) - 1];
           return { key: subAffix, value: parseInt(subAffixAndLevel[1], 10) };
         }).reduce((acc, curr) => ({ ...acc, ...curr }), {});
-        data[relicId] = {
+        data[slot] = {
           relicId: relicId,
           level: 15,
           mainAffix: mainAffix,

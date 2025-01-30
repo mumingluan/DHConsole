@@ -37,7 +37,7 @@ const CommandPage: React.FC = () => {
                     variant="contained"
                     color="primary"
                     startIcon={<PlayArrowIcon />}
-                    sx={{ padding: '8px 16px', fontSize: '1rem' }}
+                    sx={{ padding: '8px 16px', fontSize: '1rem', whiteSpace: 'nowrap' }}
                     onClick={handleRunCommand}
                 >
                     {t('command.run')}
