@@ -48,10 +48,10 @@ const ServerToolbarActions = () => {
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: number;
 
     if (isConnected) {
-      interval = setInterval(fetchServerInfo, 5000);
+      interval = window.setInterval(fetchServerInfo, 5000);
     }
 
     return () => {
