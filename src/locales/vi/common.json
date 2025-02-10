@@ -70,7 +70,22 @@
         "connect": "Kết nối",
         "connected": "Đã kết nối",
         "serverTime": "Thời gian máy chủ",
-        "memoryUsed": "Bộ nhớ đã sử dụng"
+        "memoryUsed": "Bộ nhớ đã sử dụng",
+        "configDialog": {
+            "title": "Khóa Quản Trị",
+            "description": "Vui lòng chọn tệp config.json từ thư mục máy chủ riêng của bạn, hoặc nhập khóa quản trị thủ công. Điều này sẽ lưu khóa quản trị vào bộ nhớ cache của trình duyệt của bạn, để bạn có thể sử dụng lại sau. Nó sẽ không được lưu trữ ở bất kỳ nơi nào khác.",
+            "selectFile": "Chọn Tệp Cấu Hình (từ máy tính)",
+            "selectFileDesc": "Chọn tệp config.json từ thư mục máy chủ riêng của bạn",
+            "enterKey": "Nhập Khóa Quản Trị Thủ Công",
+            "enterKeyDesc": "Nhập trực tiếp giá trị khóa quản trị. Tìm 'MuipServer' sau đó 'AdminKey' trong tệp config.json.",
+            "adminKeyInput": "Khóa Quản Trị",
+            "useRecent": "Sử Dụng Khóa Gần Đây (bộ nhớ cache của trình duyệt)",
+            "useRecentDesc": "Kết nối bằng khóa quản trị được sử dụng gần đây nhất"
+        },
+        "messages": {
+            "configError": "Lỗi tải tệp cấu hình. Vui lòng đảm bảo đó là tệp config.json hợp lệ với AdminKey",
+            "fetchError": "Không thể lấy thông tin máy chủ"
+        }
     },
     "account": {
         "playerInfo": {

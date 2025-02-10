@@ -70,7 +70,22 @@
         "connect": "Hubungkan",
         "connected": "Terhubung",
         "serverTime": "Waktu Server",
-        "memoryUsed": "Memori Digunakan"
+        "memoryUsed": "Memori Digunakan",
+        "configDialog": {
+            "title": "Kunci Admin",
+            "description": "Silakan pilih file config.json dari direktori server pribadi Anda, atau masukkan kunci admin secara manual. Ini akan menyimpan kunci admin ke cache browser Anda, sehingga Anda dapat menggunakannya kembali nanti. Itu tidak akan disimpan di tempat lain.",
+            "selectFile": "Pilih File Konfigurasi (dari komputer)",
+            "selectFileDesc": "Pilih file config.json dari direktori server pribadi Anda",
+            "enterKey": "Masukkan Kunci Admin Secara Manual",
+            "enterKeyDesc": "Masukkan nilai kunci admin secara langsung. Cari 'MuipServer' lalu 'AdminKey' di file config.json.",
+            "adminKeyInput": "Kunci Admin",
+            "useRecent": "Gunakan Kunci Terbaru (cache browser)",
+            "useRecentDesc": "Hubungkan menggunakan kunci admin yang paling baru digunakan"
+        },
+        "messages": {
+            "configError": "Kesalahan memuat file konfigurasi. Pastikan itu adalah config.json yang valid dengan AdminKey",
+            "fetchError": "Gagal mengambil informasi server"
+        }
     },
     "account": {
         "playerInfo": {

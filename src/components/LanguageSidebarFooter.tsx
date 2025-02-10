@@ -49,7 +49,7 @@ const LanguageSidebarFooter: React.FC<SidebarFooterProps> = ({ mini }: SidebarFo
                 <img src={flagUrl(currentLanguage.flag || 'us')} alt={currentLanguage.name} width="24" height="18" />
                 {mini ? null : (
                     <Typography variant="body2" sx={{ marginLeft: 1, fontFamily: 'Noto Sans, sans-serif', color: "text.primary" }}>
-                        {currentLanguage.name} {language}
+                        {currentLanguage.name}
                     </Typography>
                 )}
             </Button>

@@ -70,7 +70,22 @@
         "connect": "连接",
         "connected": "已连接",
         "serverTime": "服务器时间",
-        "memoryUsed": "内存使用"
+        "memoryUsed": "内存使用",
+        "configDialog": {
+            "title": "管理员密钥",
+            "description": "请选择来自您私人服务器目录的config.json文件，或手动输入管理员密钥。这将把管理员密钥保存到您的浏览器缓存中，以便您以后可以重用。它不会存储在其他地方。",
+            "selectFile": "选择配置文件（从计算机）",
+            "selectFileDesc": "选择您私人服务器目录中的config.json文件",
+            "enterKey": "手动输入管理员密钥",
+            "enterKeyDesc": "直接输入管理员密钥值。您可以在config.json文件中查找'MuipServer'下的'AdminKey'字符串。",
+            "adminKeyInput": "管理员密钥",
+            "useRecent": "使用最近的密钥（浏览器缓存）",
+            "useRecentDesc": "使用最近使用的管理员密钥进行连接"
+        },
+        "messages": {
+            "configError": "加载配置文件出错。请确保它是一个有效的包含AdminKey的config.json文件",
+            "fetchError": "获取服务器信息失败"
+        }
     },
     "account": {
         "playerInfo": {

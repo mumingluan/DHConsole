@@ -70,7 +70,22 @@
         "connect": "Connecter",
         "connected": "Connecté",
         "serverTime": "Heure du Serveur",
-        "memoryUsed": "Mémoire Utilisée"
+        "memoryUsed": "Mémoire Utilisée",
+        "configDialog": {
+            "title": "Clé Admin",
+            "description": "Veuillez sélectionner un fichier config.json depuis votre répertoire de serveur privé, ou entrer la clé admin manuellement. Cela enregistrera la clé admin dans le cache de votre navigateur, afin que vous puissiez la réutiliser plus tard. Elle ne sera stockée nulle part ailleurs.",
+            "selectFile": "Sélectionner le fichier de configuration (depuis l'ordinateur)",
+            "selectFileDesc": "Choisissez le fichier config.json depuis votre répertoire de serveur privé",
+            "enterKey": "Entrer la clé admin manuellement",
+            "enterKeyDesc": "Entrez directement la valeur de la clé admin. Recherchez 'MuipServer' puis 'AdminKey' dans le fichier config.json.",
+            "adminKeyInput": "Clé Admin",
+            "useRecent": "Utiliser la clé récente (cache du navigateur)",
+            "useRecentDesc": "Connectez-vous en utilisant la clé admin la plus récemment utilisée"
+        },
+        "messages": {
+            "configError": "Erreur lors du chargement du fichier de configuration. Veuillez vous assurer qu'il s'agit d'un config.json valide avec AdminKey",
+            "fetchError": "Échec de la récupération des informations du serveur"
+        }
     },
     "account": {
         "playerInfo": {

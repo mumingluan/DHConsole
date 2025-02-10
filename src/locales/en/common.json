@@ -1,5 +1,6 @@
 {
     "save": "Save",
+    "cancel": "Cancel",
     "affix": {
         "HPDelta": "HP",
         "AttackDelta": "ATK",
@@ -70,7 +71,22 @@
         "connect": "Connect",
         "connected": "Connected",
         "serverTime": "Server Time",
-        "memoryUsed": "Memory Used"
+        "memoryUsed": "Memory Used",
+        "configDialog": {
+            "title": "Admin Key",
+            "description": "Please select a config.json file from your private server directory, or enter admin key manually. This will save the admin key to your browser cache, so you can reuse it later. It will not be stored anywhere else.",
+            "selectFile": "Select Config File (from computer)",
+            "selectFileDesc": "Choose the config.json file from your private server directory",
+            "enterKey": "Enter Admin Key Manually",
+            "enterKeyDesc": "Directly input the admin key value. Look for 'MuipServer' then 'AdminKey' in the config.json file.",
+            "adminKeyInput": "Admin Key",
+            "useRecent": "Use Recent Key (browser cache)",
+            "useRecentDesc": "Connect using the most recently used admin key"
+        },
+        "messages": {
+            "configError": "Error loading config file. Please make sure it's a valid config.json with AdminKey",
+            "fetchError": "Failed to fetch server information"
+        }
     },
     "account": {
         "playerInfo": {

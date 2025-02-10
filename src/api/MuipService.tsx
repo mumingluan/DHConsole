@@ -5,19 +5,23 @@ const API_BASE_URL = 'http://127.0.0.1:443/muip';
 
 class MuipService {
   private static readonly MIN_CALL_INTERVAL: number = 100;
-  // TODO: change to accept user input
-  private static readonly ADMIN_KEY: string = '5f6e8ba5-5663-44ad-a15c-4add78ddd983';
+  private static adminKey: string | null = null;
   private static lastCallTimestamp: number = 0;
   private static callQueue: Promise<void> = Promise.resolve();
   private static rsaPublicKey: string = '';
   private static sessionId: string | null = null;
   private static sessionExpireTime: number = 0;
 
+  static setAdminKey(key: string) {
+    this.adminKey = key;
+  }
+
   /**
    * Execute a command on the server.
    * @param {string} command - The unencrypted command to be executed.
    * @param {number} targetUid - The UID of the target player.
    */
+
   static async executeCommand(command: string, targetUid: number) {
     await this.ensureValidSession();
     const encryptedCommand = this.encryptMessage(command);
@@ -119,7 +123,7 @@ class MuipService {
     try {
       const response = await axios.post(`${API_BASE_URL}/auth_admin`, {
         session_id: this.sessionId,
-        admin_key: this.encryptMessage(this.ADMIN_KEY),
+        admin_key: this.encryptMessage(this.adminKey as string),
       });
       if (response.data.code !== 0) {
         throw new Error(response.data.message);
