@@ -28,7 +28,7 @@
             "title": "Cono de Luz",
             "name": "Nombre",
             "level": "Nivel",
-            "superimposition": "Superimposición"
+            "superimposition": "Superposición"
         },
         "relic": {
             "title": "Reliquias",
@@ -73,7 +73,7 @@
         "memoryUsed": "Memoria Usada",
         "configDialog": {
             "title": "Clave de Administrador",
-            "description": "Por favor, selecciona un archivo config.json de tu directorio de servidor privado, o ingresa la clave de administrador manualmente. Esto guardará la clave de administrador en la caché de tu navegador, para que puedas reutilizarla más tarde. No se almacenará en ningún otro lugar.",
+            "description": "Por favor, selecciona un archivo config.json de tu servidor privado, o ingresa la clave de administrador manualmente. Esta clave se guardará en la caché de tu navegador para uso posterior. No se almacenará en ningún otro lugar.",
             "selectFile": "Seleccionar Archivo de Configuración (desde la computadora)",
             "selectFileDesc": "Elige el archivo config.json de tu directorio de servidor privado",
             "enterKey": "Ingresar Clave de Administrador Manualmente",
@@ -84,7 +84,7 @@
         },
         "messages": {
             "configError": "Error al cargar el archivo de configuración. Por favor, asegúrate de que es un config.json válido con AdminKey",
-            "fetchError": "Error al obtener la información del servidor"
+            "fetchError": "Error al obtener la información del servidor."
         }
     },
     "account": {
@@ -130,11 +130,11 @@
         }
     },
     "command": {
-        "tip": "Consejo: no incluyas el prefijo \"/\".",
-        "input": "Entrada de Comando",
-        "placeholder": "Introduce un comando",
+        "tip": "Consejo: no incluyas el prefijo \"/\"",
+        "input": "Comando",
+        "placeholder": "Ingresa un comando",
         "run": "Ejecutar",
-        "output": "[Salida de Comando]"
+        "output": "[Resultado del Comando]"
     },
     "inventory": {
         "actions": {
@@ -201,12 +201,13 @@
         "subtitle": "Tu herramienta poderosa para la gestión del servidor Danheng",
         "important": "Importante: Antes de Comenzar",
         "plugin": {
-            "title": "1. Instala el Plugin Requerido en YourPSPath/Plugins",
+            "title": "1. Instalar el Plugin Requerido en Plugins/",
             "button": "Obtener el Plugin de Comandos de DHConsole"
         },
         "updates": {
-            "title": "2. Obtén las Últimas Actualizaciones",
-            "button": "Visitar el Repositorio de DHConsole"
+            "title": "2. Usar DHConsole desde Github Pages (o ejecutar localmente)",
+            "hosted": "Usar Versión Alojada",
+            "local": "Ejecutar Localmente (repositorio DHConsole)"
         },
         "docs": {
             "text": "Para instrucciones detalladas de configuración, por favor visita la",

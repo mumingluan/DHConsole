@@ -7,8 +7,8 @@
         "HPAddedRatio": "HP %",
         "AttackAddedRatio": "ATQ %",
         "DefenceAddedRatio": "DEF %",
-        "CriticalChanceBase": "Taxa CRIT",
-        "CriticalDamageBase": "Dano CRIT",
+        "CriticalChanceBase": "Taxa de Crítico",
+        "CriticalDamageBase": "Dano Crítico",
         "HealRatioBase": "Aumento de Cura",
         "StatusProbabilityBase": "Taxa de Acerto de Efeito",
         "StatusResistanceBase": "RES de Efeito",
@@ -28,7 +28,7 @@
             "title": "Cone de Luz",
             "name": "Nome",
             "level": "Nível",
-            "superimposition": "Superimposição"
+            "superimposition": "Sobreposição"
         },
         "relic": {
             "title": "Relíquias",
@@ -36,7 +36,7 @@
                 "main": "Principal",
                 "sub": "Sub",
                 "empty": "<Vazio>",
-                "level": "Nv.",
+                "level": "Nível",
                 "plus": "+"
             },
             "actions": {
@@ -72,13 +72,13 @@
         "serverTime": "Hora do Servidor",
         "memoryUsed": "Memória Usada",
         "configDialog": {
-            "title": "Chave de Admin",
+            "title": "Chave de Administrador",
             "description": "Por favor, selecione um arquivo config.json do seu diretório de servidor privado ou insira a chave de admin manualmente. Isso salvará a chave de admin no cache do seu navegador, para que você possa reutilizá-la mais tarde. Ela não será armazenada em nenhum outro lugar.",
             "selectFile": "Selecionar Arquivo de Configuração (do computador)",
             "selectFileDesc": "Escolha o arquivo config.json do seu diretório de servidor privado",
-            "enterKey": "Inserir Chave de Admin Manualmente",
-            "enterKeyDesc": "Insira diretamente o valor da chave de admin. Procure por 'MuipServer' e depois 'AdminKey' no arquivo config.json.",
-            "adminKeyInput": "Chave de Admin",
+            "enterKey": "Inserir Chave de Administrador Manualmente",
+            "enterKeyDesc": "Insira diretamente o valor da chave de administrador. Procure por 'MuipServer' e depois 'AdminKey' no arquivo config.json.",
+            "adminKeyInput": "Chave de Administrador",
             "useRecent": "Usar Chave Recente (cache do navegador)",
             "useRecentDesc": "Conectar usando a chave de admin mais recentemente utilizada"
         },
@@ -152,7 +152,7 @@
         },
         "dialog": {
             "removeConfirm": {
-                "title": "Tem certeza de que deseja remover todos os {{type}} não usados?",
+                "title": "Tem certeza que deseja remover todos os {{type}} não usados?",
                 "content": "Isso removerá todos os {{type}} que nenhum personagem está atualmente equipado.",
                 "cancel": "Cancelar",
                 "confirm": "Confirmar"
@@ -167,7 +167,7 @@
         },
         "categories": {
             "mainStory": "História Principal",
-            "sideStory": "História Secundária",
+            "sideStory": "História Paralela",
             "world": "Mundo",
             "daily": "Diária",
             "event": "Evento"
@@ -201,12 +201,13 @@
         "subtitle": "Sua ferramenta poderosa para gerenciamento do servidor Danheng",
         "important": "Importante: Antes de Começar",
         "plugin": {
-            "title": "1. Instale o Plugin Necessário em YourPSPath/Plugins",
+            "title": "1. Instale o Plugin Necessário em Plugins/",
             "button": "Obter Plugin de Comandos DHConsole"
         },
         "updates": {
-            "title": "2. Obtenha as Últimas Atualizações",
-            "button": "Visitar Repositório DHConsole"
+            "title": "2. Use o DHConsole a partir do Github Pages (ou execute localmente)",
+            "hosted": "Usar Versão Hospedada",
+            "local": "Executar Localmente (repositório DHConsole)"
         },
         "docs": {
             "text": "Para instruções detalhadas de configuração, por favor visite a",

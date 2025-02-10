@@ -70,7 +70,7 @@
         "connect": "連接",
         "connected": "已連接",
         "serverTime": "伺服器時間",
-        "memoryUsed": "記憶體使用",
+        "memoryUsed": "內存使用",
         "configDialog": {
             "title": "管理員密鑰",
             "description": "請從您的私人伺服器目錄中選擇config.json文件，或手動輸入管理員密鑰。這將把管理員密鑰保存到您的瀏覽器緩存中，以便您以後可以重用。它不會存儲在其他地方。",
@@ -139,7 +139,7 @@
     "inventory": {
         "actions": {
             "removeUnusedRelics": "移除未使用的遺器",
-            "removeUnusedEquipment": "移除未使用的裝備",
+            "removeUnusedEquipment": "移除未使用的光錐",
             "send": "發送"
         },
         "sections": {
@@ -201,12 +201,13 @@
         "subtitle": "您管理 Danheng 伺服器的強大工具",
         "important": "重要提示：開始之前",
         "plugin": {
-            "title": "1. 安裝所需插件到 YourPSPath/Plugins",
+            "title": "1. 安裝所需插件到 Plugins/ 目錄",
             "button": "獲取 DHConsole 命令插件"
         },
         "updates": {
-            "title": "2. 獲取最新更新",
-            "button": "訪問 DHConsole 儲存庫"
+            "title": "2. 從 Github Pages 使用 DHConsole（或本地運行）",
+            "hosted": "使用線上版本",
+            "local": "本地運行（DHConsole 倉庫）"
         },
         "docs": {
             "text": "有關詳細的設置說明，請訪問",

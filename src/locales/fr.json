@@ -58,7 +58,7 @@
             "talentLevel": "Niveau de Talent",
             "path": "Voie"
         },
-        "pickPrompt": "Choisissez un personnage pour voir les détails",
+        "pickPrompt": "Sélectionnez un personnage pour voir les détails",
         "list": {
             "addCharacter": "Ajouter un Personnage"
         },
@@ -75,9 +75,9 @@
             "title": "Clé Admin",
             "description": "Veuillez sélectionner un fichier config.json depuis votre répertoire de serveur privé, ou entrer la clé admin manuellement. Cela enregistrera la clé admin dans le cache de votre navigateur, afin que vous puissiez la réutiliser plus tard. Elle ne sera stockée nulle part ailleurs.",
             "selectFile": "Sélectionner le fichier de configuration (depuis l'ordinateur)",
-            "selectFileDesc": "Choisissez le fichier config.json depuis votre répertoire de serveur privé",
+            "selectFileDesc": "Sélectionnez le fichier config.json depuis votre répertoire de serveur privé",
             "enterKey": "Entrer la clé admin manuellement",
-            "enterKeyDesc": "Entrez directement la valeur de la clé admin. Recherchez 'MuipServer' puis 'AdminKey' dans le fichier config.json.",
+            "enterKeyDesc": "Entrez directement la valeur de la clé admin. Recherchez 'MuipServer' puis 'AdminKey' dans le fichier config.json",
             "adminKeyInput": "Clé Admin",
             "useRecent": "Utiliser la clé récente (cache du navigateur)",
             "useRecentDesc": "Connectez-vous en utilisant la clé admin la plus récemment utilisée"
@@ -201,12 +201,13 @@
         "subtitle": "Votre outil puissant pour la gestion du serveur Danheng",
         "important": "Important : Avant de Commencer",
         "plugin": {
-            "title": "1. Installez le Plugin Requis dans YourPSPath/Plugins",
-            "button": "Obtenir le Plugin de Commandes DHConsole"
+            "title": "1. Installer le plugin requis dans Plugins/",
+            "button": "Obtenir le plugin de commandes DHConsole"
         },
         "updates": {
-            "title": "2. Obtenez les Dernières Mises à Jour",
-            "button": "Visitez le Répertoire DHConsole"
+            "title": "2. Utiliser DHConsole depuis Github Pages (ou exécuter localement)",
+            "hosted": "Utiliser la version hébergée",
+            "local": "Exécuter localement (répertoire DHConsole)"
         },
         "docs": {
             "text": "Pour des instructions détaillées de configuration, veuillez visiter la",

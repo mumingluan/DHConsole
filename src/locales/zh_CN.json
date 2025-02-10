@@ -55,7 +55,7 @@
             "title": "基本信息",
             "level": "等级",
             "eidolon": "星魂",
-            "talentLevel": "技能等级",
+            "talentLevel": "行迹等级",
             "path": "命途"
         },
         "pickPrompt": "选择角色查看详情",
@@ -72,13 +72,13 @@
         "serverTime": "服务器时间",
         "memoryUsed": "内存使用",
         "configDialog": {
-            "title": "管理员密钥",
-            "description": "请选择来自您私人服务器目录的config.json文件，或手动输入管理员密钥。这将把管理员密钥保存到您的浏览器缓存中，以便您以后可以重用。它不会存储在其他地方。",
+            "title": "管理密钥",
+            "description": "请选择来自您私人服务器目录的config.json文件，或手动输入管理密钥。这将把管理密钥保存到您的浏览器缓存中，以便您以后可以重用。它不会存储在其他地方。",
             "selectFile": "选择配置文件（从计算机）",
             "selectFileDesc": "选择您私人服务器目录中的config.json文件",
-            "enterKey": "手动输入管理员密钥",
-            "enterKeyDesc": "直接输入管理员密钥值。您可以在config.json文件中查找'MuipServer'下的'AdminKey'字符串。",
-            "adminKeyInput": "管理员密钥",
+            "enterKey": "手动输入管理密钥",
+            "enterKeyDesc": "直接输入管理密钥值。您可以在config.json文件中查找'MuipServer'下的'AdminKey'字符串。",
+            "adminKeyInput": "管理密钥",
             "useRecent": "使用最近的密钥（浏览器缓存）",
             "useRecentDesc": "使用最近使用的管理员密钥进行连接"
         },
@@ -106,8 +106,8 @@
                 "furniture": "家具",
                 "pets": "宠物",
                 "characterLevel": "角色等级",
-                "characterRank": "角色命座",
-                "characterTalent": "角色天赋"
+                "characterRank": "命座",
+                "characterTalent": "行迹"
             }
         },
         "messages": {
@@ -125,7 +125,7 @@
                 "pets": "已解锁所有宠物",
                 "characterLevel": "所有角色已设置为最高等级",
                 "characterRank": "所有角色已设置为最高命座",
-                "characterTalent": "所有角色已设置为最高天赋"
+                "characterTalent": "所有角色已设置为最高行迹"
             }
         }
     },
@@ -138,8 +138,8 @@
     },
     "inventory": {
         "actions": {
-            "removeUnusedRelics": "移除未使用的遗器",
-            "removeUnusedEquipment": "移除未使用的装备",
+            "removeUnusedRelics": "清理未使用遗器",
+            "removeUnusedEquipment": "清理未使用装备",
             "send": "发送"
         },
         "sections": {
@@ -201,12 +201,13 @@
         "subtitle": "您管理 Danheng 服务器的强大工具",
         "important": "重要提示：开始之前",
         "plugin": {
-            "title": "1. 安装所需插件到 YourPSPath/Plugins",
+            "title": "1. 安装所需插件到 Plugins/",
             "button": "获取 DHConsole 命令插件"
         },
         "updates": {
-            "title": "2. 获取最新更新",
-            "button": "访问 DHConsole 仓库"
+            "title": "2. 从 Github Pages 使用 DHConsole（或本地运行）",
+            "hosted": "使用托管版本",
+            "local": "本地运行（DHConsole 仓库）"
         },
         "docs": {
             "text": "有关详细的设置说明，请访问",

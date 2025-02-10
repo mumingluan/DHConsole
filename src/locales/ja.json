@@ -67,7 +67,7 @@
     "server": {
         "selectPlayer": "プレイヤーを選択",
         "disconnected": "(未接続)",
-        "connect": "接続",
+        "connect": "接続する",
         "connected": "接続済み",
         "serverTime": "サーバー時間",
         "memoryUsed": "メモリ使用量",
@@ -138,9 +138,9 @@
     },
     "inventory": {
         "actions": {
-            "removeUnusedRelics": "未使用の遺物を削除",
-            "removeUnusedEquipment": "未使用の装備を削除",
-            "send": "送信"
+            "removeUnusedRelics": "未使用の遺物を削除する",
+            "removeUnusedEquipment": "未使用の装備を削除する",
+            "send": "送信する"
         },
         "sections": {
             "sendItems": "アイテムを送信",
@@ -173,10 +173,10 @@
             "event": "イベント"
         },
         "actions": {
-            "skipAll": "すべてスキップ",
-            "skip": "スキップ",
-            "reaccept": "再受諾",
-            "accept": "受諾"
+            "skipAll": "すべてスキップする",
+            "skip": "スキップする",
+            "reaccept": "再度受諾する",
+            "accept": "受諾する"
         },
         "labels": {
             "showUnnamedMissions": "名前のない任務を表示",
@@ -201,12 +201,13 @@
         "subtitle": "あなたの強力なツール、Danheng サーバー管理",
         "important": "重要: 始める前に",
         "plugin": {
-            "title": "1. 必要なプラグインを YourPSPath/Plugins にインストール",
+            "title": "1. 必要なプラグインを Plugins/ にインストール",
             "button": "DHConsole コマンドプラグインを取得"
         },
         "updates": {
-            "title": "2. 最新の更新を取得",
-            "button": "DHConsole リポジトリを訪問"
+            "title": "2. Github Pages から DHConsole を使用 (またはローカルで実行)",
+            "hosted": "ホストバージョンを使用",
+            "local": "ローカルで実行 (DHConsole リポジトリ)"
         },
         "docs": {
             "text": "詳細なセットアップ手順については、以下を参照してください",

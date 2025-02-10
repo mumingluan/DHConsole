@@ -7,7 +7,7 @@
         "HPAddedRatio": "HP %",
         "AttackAddedRatio": "Tấn công %",
         "DefenceAddedRatio": "Phòng thủ %",
-        "CriticalChanceBase": "Tỉ lệ bạo kích",
+        "CriticalChanceBase": "Tỷ lệ bạo kích",
         "CriticalDamageBase": "Sát thương bạo kích",
         "HealRatioBase": "Tăng hồi phục",
         "StatusProbabilityBase": "Tỉ lệ hiệu ứng",
@@ -21,22 +21,22 @@
         "QuantumAddedRatio": "Tăng sát thương lượng tử",
         "ImaginaryAddedRatio": "Tăng sát thương ảo",
         "BreakDamageAddedRatioBase": "Hiệu quả phá giáp",
-        "SPRatioBase": "Tỉ lệ hồi năng lượng"
+        "SPRatioBase": "Tỷ lệ hồi năng lượng"
     },
     "character": {
         "lightCone": {
-            "title": "Nón Ánh Sáng",
+            "title": "Nón ánh sáng",
             "name": "Tên",
             "level": "Cấp độ",
             "superimposition": "Chồng chất"
         },
         "relic": {
-            "title": "Di vật",
+            "title": "Di Vật",
             "labels": {
                 "main": "Chính",
                 "sub": "Phụ",
                 "empty": "<Trống>",
-                "level": "Cấp",
+                "level": "Cấp độ",
                 "plus": "+"
             },
             "actions": {
@@ -52,7 +52,7 @@
             }
         },
         "basicInfo": {
-            "title": "Thông tin cơ bản",
+            "title": "Thông Tin Cơ Bản",
             "level": "Cấp độ",
             "eidolon": "Tinh linh",
             "talentLevel": "Cấp độ kỹ năng",
@@ -201,12 +201,13 @@
         "subtitle": "Công cụ mạnh mẽ của bạn để quản lý máy chủ Danheng",
         "important": "Quan trọng: Trước khi bạn bắt đầu",
         "plugin": {
-            "title": "1. Cài đặt Plugin cần thiết vào YourPSPath/Plugins",
+            "title": "1. Cài đặt Plugin cần thiết vào Plugins/",
             "button": "Nhận Plugin Lệnh DHConsole"
         },
         "updates": {
-            "title": "2. Nhận các bản cập nhật mới nhất",
-            "button": "Truy cập Kho lưu trữ DHConsole"
+            "title": "2. Sử dụng DHConsole từ Github Pages (hoặc chạy cục bộ)",
+            "hosted": "Sử dụng Phiên bản Được Lưu Trữ",
+            "local": "Chạy Cục bộ (kho lưu trữ DHConsole)"
         },
         "docs": {
             "text": "Để biết hướng dẫn cài đặt chi tiết, vui lòng truy cập",

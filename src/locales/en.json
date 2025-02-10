@@ -202,12 +202,13 @@
         "subtitle": "Your powerful tool for Danheng Server management",
         "important": "Important: Before You Begin",
         "plugin": {
-            "title": "1. Install Required Plugin to YourPSPath/Plugins",
+            "title": "1. Install Required Plugin to Plugins/",
             "button": "Get DHConsole Commands Plugin"
         },
         "updates": {
-            "title": "2. Get the Latest Updates",
-            "button": "Visit DHConsole Repository"
+            "title": "2. Use DHConsole from Github Pages (or run locally)",
+            "hosted": "Use Hosted Version",
+            "local": "Run Locally (DHConsole repository)"
         },
         "docs": {
             "text": "For detailed setup instructions, please visit the",

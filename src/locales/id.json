@@ -7,10 +7,10 @@
         "HPAddedRatio": "HP %",
         "AttackAddedRatio": "ATK %",
         "DefenceAddedRatio": "DEF %",
-        "CriticalChanceBase": "Peluang Crit",
-        "CriticalDamageBase": "Kerusakan Crit",
+        "CriticalChanceBase": "CRIT Rate",
+        "CriticalDamageBase": "CRIT DMG",
         "HealRatioBase": "Peningkatan Penyembuhan",
-        "StatusProbabilityBase": "Tingkat Hit Efek",
+        "StatusProbabilityBase": "Efektivitas Efek",
         "StatusResistanceBase": "Resistensi Efek",
         "SpeedDelta": "SPD",
         "PhysicalAddedRatio": "Peningkatan Kerusakan Fisik",
@@ -21,7 +21,7 @@
         "QuantumAddedRatio": "Peningkatan Kerusakan Kuantum",
         "ImaginaryAddedRatio": "Peningkatan Kerusakan Imajiner",
         "BreakDamageAddedRatioBase": "Efek Break",
-        "SPRatioBase": "Tingkat Regenerasi Energi"
+        "SPRatioBase": "Regenerasi Energi"
     },
     "character": {
         "lightCone": {
@@ -131,15 +131,15 @@
     },
     "command": {
         "tip": "Tip: jangan sertakan awalan \"/\".",
-        "input": "Input Perintah",
+        "input": "Masukan Perintah",
         "placeholder": "Masukkan perintah",
         "run": "Jalankan",
-        "output": "[Output Perintah]"
+        "output": "Hasil Perintah"
     },
     "inventory": {
         "actions": {
-            "removeUnusedRelics": "Hapus Relik yang Tidak Digunakan",
-            "removeUnusedEquipment": "Hapus Peralatan yang Tidak Digunakan",
+            "removeUnusedRelics": "Buang Relik yang Tidak Digunakan",
+            "removeUnusedEquipment": "Buang Peralatan yang Tidak Digunakan",
             "send": "Kirim"
         },
         "sections": {
@@ -201,12 +201,13 @@
         "subtitle": "Alat kuat Anda untuk manajemen Server Danheng",
         "important": "Penting: Sebelum Anda Mulai",
         "plugin": {
-            "title": "1. Instal Plugin yang Diperlukan ke YourPSPath/Plugins",
+            "title": "1. Instal Plugin yang Diperlukan ke Plugins/",
             "button": "Dapatkan Plugin Perintah DHConsole"
         },
         "updates": {
-            "title": "2. Dapatkan Pembaruan Terbaru",
-            "button": "Kunjungi Repositori DHConsole"
+            "title": "2. Gunakan DHConsole dari Github Pages (atau jalankan secara lokal)",
+            "hosted": "Gunakan Versi Hosted",
+            "local": "Jalankan Secara Lokal (repositori DHConsole)"
         },
         "docs": {
             "text": "Untuk instruksi pengaturan terperinci, silakan kunjungi",

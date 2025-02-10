@@ -59,10 +59,10 @@
             "path": "운명"
         },
         "pickPrompt": "상세 정보를 보려면 캐릭터를 선택하세요",
+        "selectPrompt": "상세 정보를 보려면 캐릭터를 선택하세요",
         "list": {
             "addCharacter": "캐릭터 추가"
-        },
-        "selectPrompt": "상세 정보를 보려면 캐릭터를 선택하세요"
+        }
     },
     "server": {
         "selectPlayer": "플레이어 선택",
@@ -197,16 +197,17 @@
         }
     },
     "welcome": {
-        "title": "DH 콘솔에 오신 것을 환영합니다!",
+        "title": "DH 콘솔에 오신 걸 환영합니다!",
         "subtitle": "당신의 강력한 도구, 단헝 서버 관리",
         "important": "중요: 시작하기 전에",
         "plugin": {
-            "title": "1. 필요한 플러그인을 YourPSPath/Plugins에 설치",
+            "title": "1. 필요한 플러그인을 Plugins/에 설치",
             "button": "DHConsole 명령어 플러그인 받기"
         },
         "updates": {
-            "title": "2. 최신 업데이트 받기",
-            "button": "DHConsole 리포지토리 방문"
+            "title": "2. Github Pages에서 DHConsole 사용 (또는 로컬에서 실행)",
+            "hosted": "호스팅된 버전 사용",
+            "local": "로컬에서 실행 (DHConsole 저장소)"
         },
         "docs": {
             "text": "자세한 설정 지침은 다음을 방문하십시오",
