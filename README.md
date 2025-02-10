@@ -1,10 +1,8 @@
 # DHConsole
 
-A local web app to control Danheng Server via commands. All through UI and full i18n support for all in-game languages.
+A local web app to control Danheng Server via UI with full i18n support.
 
-## Demo
-
-![demo](./demo.gif)
+Visit https://anyrainel.github.io/DHConsole/ to use the latest version.
 
 ## Features
 
@@ -15,6 +13,8 @@ A local web app to control Danheng Server via commands. All through UI and full 
 - [x] Inventory Management
 - [x] Account level, gender and other controls
 - [x] Custom Commands
+
+Some features still have bugs, and I'm working on fixing them.
 
 ## Usage
 

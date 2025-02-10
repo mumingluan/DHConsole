@@ -9,10 +9,11 @@ import {
   Button,
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import PublicIcon from '@mui/icons-material/Public';
 import { useTranslation } from 'react-i18next';
 
 export default function Index() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation();
 
   return (
     <Container maxWidth="md">
@@ -65,7 +66,7 @@ export default function Index() {
               <Button
                 variant="contained"
                 startIcon={<GitHubIcon />}
-                href="https://github.com/Anyrainel/DanhengPlugin-DHConsoleCommands"
+                href="https://github.com/Anyrainel/DanhengPlugin-DHConsoleCommands/releases/latest"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{ mt: 1, textTransform: 'none' }}
@@ -78,16 +79,28 @@ export default function Index() {
               <Typography variant="subtitle1" gutterBottom>
                 {t('welcome.updates.title')}
               </Typography>
-              <Button
-                variant="contained"
-                startIcon={<GitHubIcon />}
-                href="https://github.com/Anyrainel/DHConsole"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ mt: 1, textTransform: 'none' }}
-              >
-                {t('welcome.updates.button')}
-              </Button>
+              <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
+                <Button
+                  variant="contained"
+                  startIcon={<PublicIcon />}
+                  href="https://anyrainel.github.io/DHConsole/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ textTransform: 'none' }}
+                >
+                  {t('welcome.updates.hosted')}
+                </Button>
+                <Button
+                  variant="outlined"
+                  startIcon={<GitHubIcon />}
+                  href="https://github.com/Anyrainel/DHConsole"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ textTransform: 'none' }}
+                >
+                  {t('welcome.updates.local')}
+                </Button>
+              </Stack>
             </Box>
 
             <Typography variant="body1" color="text.secondary">

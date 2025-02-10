@@ -1,34 +1,34 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import enCommon from './locales/en/common.json';
-import zhCNCommon from './locales/zh_CN/common.json';
-import zhHKCommon from './locales/zh_HK/common.json';
-import jaCommon from './locales/ja/common.json';
-import koCommon from './locales/ko/common.json';
-import frCommon from './locales/fr/common.json';
-import esCommon from './locales/es/common.json';
-import idCommon from './locales/id/common.json';
-import ptCommon from './locales/pt/common.json';
-import ruCommon from './locales/ru/common.json';
-import thCommon from './locales/th/common.json';
-import viCommon from './locales/vi/common.json';
+import enTranslation from './locales/en.json';
+import zhCNTranslation from './locales/zh_CN.json';
+import zhHKTranslation from './locales/zh_HK.json';
+import jaTranslation from './locales/ja.json';
+import koTranslation from './locales/ko.json';
+import frTranslation from './locales/fr.json';
+import esTranslation from './locales/es.json';
+import idTranslation from './locales/id.json';
+import ptTranslation from './locales/pt.json';
+import ruTranslation from './locales/ru.json';
+import thTranslation from './locales/th.json';
+import viTranslation from './locales/vi.json';
 
 i18n
     .use(initReactI18next)
     .init({
         resources: {
-            en: { common: enCommon },
-            zh_CN: { common: zhCNCommon },
-            zh_HK: { common: zhHKCommon },
-            ja: { common: jaCommon },
-            ko: { common: koCommon },
-            fr: { common: frCommon },
-            es: { common: esCommon },
-            id: { common: idCommon },
-            pt: { common: ptCommon },
-            ru: { common: ruCommon },
-            th: { common: thCommon },
-            vi: { common: viCommon },
+            en: { translation: enTranslation },
+            zh_CN: { translation: zhCNTranslation },
+            zh_HK: { translation: zhHKTranslation },
+            ja: { translation: jaTranslation },
+            ko: { translation: koTranslation },
+            fr: { translation: frTranslation },
+            es: { translation: esTranslation },
+            id: { translation: idTranslation },
+            pt: { translation: ptTranslation },
+            ru: { translation: ruTranslation },
+            th: { translation: thTranslation },
+            vi: { translation: viTranslation },
         },
         lng: 'en',
         fallbackLng: 'en',
@@ -36,7 +36,7 @@ i18n
         interpolation: {
             escapeValue: false,
         },
-        defaultNS: 'common',
+        defaultNS: 'translation',
     });
 
 export default i18n; 

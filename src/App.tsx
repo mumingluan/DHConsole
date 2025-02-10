@@ -49,6 +49,7 @@ function App() {
   ];
 
   const BRANDING = {
+    logo: <img src="/DHConsole/logo.svg" alt="DHConsole" width="48" height="48" />,
     title: t('navigation.title'),
   };
 
