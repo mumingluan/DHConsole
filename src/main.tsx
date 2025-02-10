@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], { basename: '/DHConsole/' });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
