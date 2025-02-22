@@ -331,7 +331,7 @@ class CommandService {
           var subAffixes = fields.filter(field => field.key === 'subAffixes').map(field => {
             return field.value.trim().split('|').map(sub => {
               var subMatch = sub.match(/(\w+)\-(\d+)\+(\d+)/);
-              return { name: subMatch![1], level: parseInt(subMatch![2], 10), step: parseInt(subMatch![3], 10) };
+              return { name: subMatch![1], level: parseInt(subMatch![2], 10) + 1, step: parseInt(subMatch![3], 10) };
             });
           })[0];
           if (!result.relics) {
