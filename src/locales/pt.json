@@ -48,7 +48,14 @@
             },
             "errors": {
                 "saveFailed": "Falha ao salvar relíquias",
-                "maxLevels": "Os níveis totais de aprimoramento de sub-afixos não podem exceder 5 (atual: {{total}})"
+                "maxLevels": "Os níveis totais de aprimoramento de sub-afixos não podem exceder 5 (atual: {{total}})",
+                "invalidRelics": "Algumas relíquias têm configurações inválidas. Cada sub-afixo deve estar entre o nível 1-5 e o total de níveis deve ser 8 ou 9.",
+                "recommendFailed": "Falha ao obter relíquias recomendadas"
+            },
+            "messages": {
+                "saveSuccess": "Relíquias salvas com sucesso",
+                "saveAllSuccess": "Todas as relíquias salvas com sucesso",
+                "recommendSuccess": "Relíquias recomendadas carregadas com sucesso"
             }
         },
         "basicInfo": {

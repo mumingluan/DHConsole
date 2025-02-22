@@ -48,7 +48,14 @@
             },
             "errors": {
                 "saveFailed": "遺物の保存に失敗しました",
-                "maxLevels": "サブアフィックスの合計レベルは5を超えることはできません（現在: {{total}}）"
+                "maxLevels": "サブアフィックスの合計レベルは5を超えることはできません（現在: {{total}}）",
+                "invalidRelics": "いくつかの遺物の設定が無効です。各サブアフィックスは1から5のレベルでなければならず、合計レベルは8または9でなければなりません。",
+                "recommendFailed": "推奨遺物の取得に失敗しました"
+            },
+            "messages": {
+                "saveSuccess": "遺物が正常に保存されました",
+                "saveAllSuccess": "すべての遺物が正常に保存されました",
+                "recommendSuccess": "推奨遺物が正常に読み込まれました"
             }
         },
         "basicInfo": {

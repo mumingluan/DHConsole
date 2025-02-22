@@ -48,7 +48,14 @@
             },
             "errors": {
                 "saveFailed": "Échec de l'enregistrement des reliques",
-                "maxLevels": "Le total des niveaux d'amélioration des affixes secondaires ne peut pas dépasser 5 (actuel : {{total}})"
+                "maxLevels": "Le total des niveaux d'amélioration des affixes secondaires ne peut pas dépasser 5 (actuel : {{total}})",
+                "invalidRelics": "Certaines reliques ont des configurations invalides. Chaque affixe secondaire doit être entre niveau 1-5 et le total des niveaux doit être 8 ou 9.",
+                "recommendFailed": "Échec de la récupération des reliques recommandées"
+            },
+            "messages": {
+                "saveSuccess": "Relique enregistrée avec succès",
+                "saveAllSuccess": "Toutes les reliques enregistrées avec succès",
+                "recommendSuccess": "Reliques recommandées chargées"
             }
         },
         "basicInfo": {

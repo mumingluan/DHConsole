@@ -48,7 +48,14 @@
             },
             "errors": {
                 "saveFailed": "Error al guardar las reliquias",
-                "maxLevels": "El total de niveles de mejora de afijos secundarios no puede exceder 5 (actual: {{total}})"
+                "maxLevels": "El total de niveles de mejora de afijos secundarios no puede exceder 5 (actual: {{total}})",
+                "invalidRelics": "Algunas reliquias tienen configuraciones inválidas. Cada afijo secundario debe estar entre nivel 1-5 y el total de niveles debe ser 8 o 9.",
+                "recommendFailed": "Error al obtener las reliquias recomendadas"
+            },
+            "messages": {
+                "saveSuccess": "Reliquias guardadas correctamente",
+                "saveAllSuccess": "Todas las reliquias guardadas correctamente",
+                "recommendSuccess": "Reliquias recomendadas cargadas"
             }
         },
         "basicInfo": {

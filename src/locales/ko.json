@@ -48,7 +48,14 @@
             },
             "errors": {
                 "saveFailed": "유물 저장 실패",
-                "maxLevels": "부 옵션 업그레이드 레벨의 총합은 5를 초과할 수 없습니다 (현재: {{total}})"
+                "maxLevels": "부 옵션 업그레이드 레벨의 총합은 5를 초과할 수 없습니다 (현재: {{total}})",
+                "invalidRelics": "유물 설정이 유효하지 않습니다. 각 부 옵션은 1-5 레벨이어야 하며, 총 레벨은 8 또는 9여야 합니다.",
+                "recommendFailed": "추천 유물 얻기 실패"
+            },
+            "messages": {
+                "saveSuccess": "유물이 성공적으로 저장되었습니다",
+                "saveAllSuccess": "모든 유물이 성공적으로 저장되었습니다",
+                "recommendSuccess": "추천 유물이 성공적으로 로드되었습니다"
             }
         },
         "basicInfo": {

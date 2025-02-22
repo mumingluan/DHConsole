@@ -19,6 +19,7 @@ import CommandService from '../../api/CommandService';
 import GameData from '../../store/gameData';
 import { useLanguageContext } from '../../store/languageContext';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from '../../store/SnackbarContext';
 
 interface RelicSectionProps {
     characterId: number;
@@ -119,9 +120,29 @@ function AffixRow({
     );
 }
 
+function isValidRelic(relic: Relic): boolean {
+    if (!relic.subAffixes || !relic.subAffixLevels) return false;
+
+    // Check if we have valid sub affixes (non-empty)
+    const validSubAffixes = relic.subAffixes.filter(affix => affix !== '');
+    const correspondingLevels = relic.subAffixLevels.slice(0, validSubAffixes.length);
+
+    // If we have valid affixes, we need proper levels
+    if (validSubAffixes.length === 0) return false;
+
+    // Check each level is between 1 and 5
+    const hasValidLevels = correspondingLevels.every(level => level >= 1 && level <= 5);
+    if (!hasValidLevels) return false;
+
+    // Check total is either 8 or 9
+    const totalLevels = correspondingLevels.reduce((sum, level) => sum + level, 0);
+    return totalLevels === 8 || totalLevels === 9;
+}
+
 function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, onUpdate }: RelicCardProps) {
     const { language } = useLanguageContext();
     const { t } = useTranslation();
+    const { showSnackbar } = useSnackbar();
     const [mainAffix, setMainAffix] = React.useState<string>(relic.mainAffix || '');
     const [subAffixes, setSubAffixes] = React.useState<Array<{ name: string; level: number }>>([
         { name: relic.subAffixes?.[0] || '', level: relic.subAffixLevels?.[0] || 0 },
@@ -141,11 +162,18 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
     }, [relic]);
 
     const totalSubAffixLevels = subAffixes.reduce((sum, affix) => sum + affix.level, 0);
-    const availableLevels = 5 - totalSubAffixLevels;
+    const isValidTotal = totalSubAffixLevels === 8 || totalSubAffixLevels === 9;
 
     const handleSubAffixChange = (index: number, field: 'name' | 'level', value: string | number) => {
         const newSubAffixes = [...subAffixes];
-        newSubAffixes[index] = { ...newSubAffixes[index], [field]: value };
+
+        if (field === 'level') {
+            const numValue = Math.max(1, Math.min(Number(value), 5));
+            newSubAffixes[index] = { ...newSubAffixes[index], level: numValue };
+        } else {
+            newSubAffixes[index] = { ...newSubAffixes[index], name: value as string };
+        }
+
         setSubAffixes(newSubAffixes);
 
         onRelicChange(index, {
@@ -172,7 +200,6 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
     }, [language, index]);
 
     const handleSaveRelic = async () => {
-        console.log(allItemsForIndex);
         try {
             await CommandService.setCharacterRelic(characterId, index, {
                 ...relic,
@@ -181,8 +208,9 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                 subAffixLevels: subAffixes.map(a => a.level),
             });
             onUpdate();
+            showSnackbar(t('character.relic.messages.saveSuccess'), 'success');
         } catch (error) {
-            console.error(t('character.relic.errors.saveFailed'), error);
+            showSnackbar(t('character.relic.errors.saveFailed'), 'error');
         }
     };
 
@@ -240,13 +268,13 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                             isEditable={isEditing}
                             onAffixChange={(name) => handleSubAffixChange(subIndex, 'name', name)}
                             onLevelChange={(level) => handleSubAffixChange(subIndex, 'level', level)}
-                            availableLevels={availableLevels + subAffix.level}
+                            availableLevels={totalSubAffixLevels + subAffix.level}
                         />
                     ))}
 
-                    {isEditing && totalSubAffixLevels > 5 && (
+                    {isEditing && !isValidTotal && (
                         <Typography color="error" variant="caption">
-                            {t('character.relic.errors.maxLevels', { total: totalSubAffixLevels })}
+                            {t('character.relic.errors.invalidLevels', { total: totalSubAffixLevels })}
                         </Typography>
                     )}
                 </Stack>
@@ -258,7 +286,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                             onClick={handleSaveRelic}
                             size="small"
                             fullWidth
-                            disabled={totalSubAffixLevels > 5}
+                            disabled={!isValidTotal}
                         >
                             {t('save')}
                         </Button>
@@ -271,6 +299,7 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
 
 export default function RelicsSection({ characterId, characterInfo, onUpdate }: RelicSectionProps) {
     const { t } = useTranslation();
+    const { showSnackbar } = useSnackbar();
     const [isEditing, setIsEditing] = React.useState(false);
     const [relics, setRelics] = React.useState<Record<number, Relic>>(characterInfo.relics || {});
 
@@ -289,12 +318,22 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
     };
 
     const handleSave = async () => {
+        // Validate all relics before saving
+        const invalidRelics = Object.values(relics).filter(relic => !isValidRelic(relic));
+
+        if (invalidRelics.length > 0) {
+            showSnackbar(t('character.relic.errors.invalidRelics'), 'error');
+            return;
+        }
+
         try {
             await CommandService.setCharacterRelics(characterId, relics);
             onUpdate();
             setIsEditing(false);
+            showSnackbar(t('character.relic.messages.saveAllSuccess'), 'success');
         } catch (error) {
             console.error(t('character.relic.errors.saveFailed'), error);
+            showSnackbar(t('character.relic.errors.saveFailed'), 'error');
         }
     };
 
@@ -302,8 +341,10 @@ export default function RelicsSection({ characterId, characterInfo, onUpdate }: 
         try {
             const recommendedRelics = await CommandService.getCharacterRelicRecommend(characterId);
             setRelics(recommendedRelics);
+            showSnackbar(t('character.relic.messages.recommendSuccess'), 'success');
         } catch (error) {
             console.error('Failed to get relic recommendations:', error);
+            showSnackbar(t('character.relic.errors.recommendFailed'), 'error');
         }
     };
 
