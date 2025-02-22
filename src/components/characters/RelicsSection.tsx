@@ -57,7 +57,7 @@ function AffixRow({
     isMain,
     onAffixChange,
     onLevelChange,
-    availableLevels = 5
+    availableLevels = 6
 }: AffixRowProps) {
     const { t } = useTranslation();
     const possibleAffixes = isMain ? MAIN_AFFIXES[pos] : SUB_AFFIXES;
@@ -131,7 +131,7 @@ function isValidRelic(relic: Relic): boolean {
     if (validSubAffixes.length === 0) return false;
 
     // Check each level is between 1 and 5
-    const hasValidLevels = correspondingLevels.every(level => level >= 1 && level <= 5);
+    const hasValidLevels = correspondingLevels.every(level => level >= 1 && level <= 6);
     if (!hasValidLevels) return false;
 
     // Check total is either 8 or 9
