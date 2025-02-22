@@ -195,8 +195,8 @@
         "labels": {
             "showUnnamedMissions": "显示未命名任务",
             "searchPlaceholder": "搜索任务...",
-            "main": "主线",
-            "sub": "支线"
+            "main": "主任务",
+            "sub": "子任务"
         }
     },
     "navigation": {

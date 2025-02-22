@@ -6,15 +6,22 @@ Visit https://anyrainel.github.io/DHConsole/ to use the latest version.
 
 ## Features
 
-- [x] Character Management
-- [x] Light Cone Management
-- [x] Relic Management (pick your affixes and upgrades)
-- [x] Mission Management
-- [x] Inventory Management
+- [x] Character Management: Stats, Light Cone, Relics, etc.
+- [x] Relic Management (pick your affixes and upgrades, or let DHConsole recommend for you)
+- [x] Mission Management (pick missions to skip)
+- [x] Inventory Management (send more items to inventory)
 - [x] Account level, gender and other controls
 - [x] Custom Commands
 
-Some features still have bugs, and I'm working on fixing them.
+![features](./docs/features.gif)
+
+Some features still have bugs (e.g. remove unused equipment), and I'm working on fixing them.
+
+### Full i18n support
+![intro](./docs/intro.gif)
+
+### Dark / Light Color Theme
+![lightcolor](./docs/lightcolor.gif)
 
 ## Usage
 
@@ -37,6 +44,12 @@ npm run dev
 ```
 
 Then open the url from the terminal output.
+
+### Tips
+
+Remember to click the `Connect` button after opening the page. You will need to find the `config.json` file from your private server to initiate the connection.
+
+The connection with Danheng Server can sometimes be unstable, you might need to connect again if the connection is lost.
 
 ## Questions
 Open new issues in this repo.
