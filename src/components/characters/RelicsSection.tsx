@@ -45,7 +45,6 @@ interface AffixRowProps {
     isMain?: boolean;
     onAffixChange?: (affix: string) => void;
     onLevelChange?: (level: number) => void;
-    availableLevels?: number;
 }
 
 function AffixRow({
@@ -56,8 +55,7 @@ function AffixRow({
     isEditable,
     isMain,
     onAffixChange,
-    onLevelChange,
-    availableLevels = 6
+    onLevelChange
 }: AffixRowProps) {
     const { t } = useTranslation();
     const possibleAffixes = isMain ? MAIN_AFFIXES[pos] : SUB_AFFIXES;
@@ -97,10 +95,10 @@ function AffixRow({
                     size="small"
                     value={level}
                     onChange={(e) => {
-                        const newLevel = Math.max(0, Math.min(Number(e.target.value), availableLevels));
+                        const newLevel = Math.max(1, Math.min(Number(e.target.value), 6));
                         onLevelChange?.(newLevel);
                     }}
-                    inputProps={{ min: 0, max: availableLevels }}
+                    inputProps={{ min: 0, max: 6 }}
                     sx={{
                         width: 60,
                         '& .MuiInputBase-root': {
@@ -268,13 +266,12 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
                             isEditable={isEditing}
                             onAffixChange={(name) => handleSubAffixChange(subIndex, 'name', name)}
                             onLevelChange={(level) => handleSubAffixChange(subIndex, 'level', level)}
-                            availableLevels={totalSubAffixLevels + subAffix.level}
                         />
                     ))}
 
                     {isEditing && !isValidTotal && (
                         <Typography color="error" variant="caption">
-                            {t('character.relic.errors.invalidLevels', { total: totalSubAffixLevels })}
+                            {t('character.relic.errors.invalidLevels', { level: totalSubAffixLevels })}
                         </Typography>
                     )}
                 </Stack>

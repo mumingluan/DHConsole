@@ -48,9 +48,9 @@
             },
             "errors": {
                 "saveFailed": "Lưu di vật thất bại",
-                "maxLevels": "Tổng cấp độ nâng cấp phụ không thể vượt quá 5 (hiện tại: {{total}})",
-                "invalidRelics": "Một số di vật có cấu hình không hợp lệ. Mỗi phụ thêm phải nằm giữa cấp 1-5 và tổng cấp phải là 8 hoặc 9.",
-                "recommendFailed": "Không thể nhận di vật được đề xuất"
+                "invalidRelics": "Một số di vật có cấu hình không hợp lệ. Mỗi phụ thêm phải nằm giữa cấp 1-6 và tổng cấp phải là 8 hoặc 9.",
+                "recommendFailed": "Không thể nhận di vật được đề xuất",
+                "invalidLevels": "Tổng cấp phụ thêm phải là 8 hoặc 9 (cấp hiện tại: {{level}})"
             },
             "messages": {
                 "saveSuccess": "Di vật đã được lưu thành công",

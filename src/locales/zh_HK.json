@@ -48,9 +48,9 @@
             },
             "errors": {
                 "saveFailed": "保存遺器失敗",
-                "maxLevels": "副詞條升級總等級不能超過5（當前：{{total}}）",
-                "invalidRelics": "某些遺器配置無效。每個副詞條必須介於1-5級之間，且總等級必須為8或9。",
-                "recommendFailed": "獲取推薦遺器失敗"
+                "invalidRelics": "某些遺器配置無效。每個副詞條必須介於1-6級之間，且總等級必須為8或9。",
+                "recommendFailed": "獲取推薦遺器失敗",
+                "invalidLevels": "副詞條總等級必須為8或9（當前：{{level}}）"
             },
             "messages": {
                 "saveSuccess": "遺器保存成功",

@@ -48,9 +48,9 @@
             },
             "errors": {
                 "saveFailed": "保存遗器失败",
-                "maxLevels": "副词条升级总等级不能超过5（当前：{{total}}）",
-                "invalidRelics": "某些遗器配置无效。每个副词条必须介于1-5级之间，且总等级必须为8或9。",
-                "recommendFailed": "获取推荐遗器失败"
+                "invalidRelics": "某些遗器配置无效。每个副词条必须介于1-6级之间，且总等级必须为8或9。",
+                "recommendFailed": "获取推荐遗器失败",
+                "invalidLevels": "副词条总等级必须为8或9（当前：{{level}}）"
             },
             "messages": {
                 "saveSuccess": "遗器保存成功",

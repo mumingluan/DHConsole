@@ -49,8 +49,8 @@
             },
             "errors": {
                 "saveFailed": "Failed to save relics",
-                "maxLevels": "Total sub affix upgrade levels cannot exceed 5 (current: {{total}})",
-                "invalidRelics": "Some relics have invalid configurations. Each sub affix must be between level 1-5 and total levels must be 8 or 9.",
+                "invalidLevels": "Total sub affix level must be 8 or 9 (current: {{level}})",
+                "invalidRelics": "Some relics have invalid configurations. Each sub affix must be between level 1-6 and total levels must be 8 or 9.",
                 "recommendFailed": "Failed to get relic recommendations"
             },
             "messages": {

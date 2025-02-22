@@ -48,9 +48,9 @@
             },
             "errors": {
                 "saveFailed": "Gagal menyimpan relik",
-                "maxLevels": "Total level peningkatan afiks tambahan tidak boleh melebihi 5 (saat ini: {{total}})",
-                "invalidRelics": "Beberapa relik memiliki konfigurasi yang tidak valid. Setiap afiks tambahan harus berada antara level 1-5 dan total level harus 8 atau 9.",
-                "recommendFailed": "Gagal mendapatkan relik yang direkomendasikan"
+                "invalidRelics": "Beberapa relik memiliki konfigurasi yang tidak valid. Setiap afiks tambahan harus berada antara level 1-6 dan total level harus 8 atau 9.",
+                "recommendFailed": "Gagal mendapatkan relik yang direkomendasikan",
+                "invalidLevels": "Total level afiks tambahan harus 8 atau 9 (saat ini: {{level}})"
             },
             "messages": {
                 "saveSuccess": "Relik berhasil disimpan",
