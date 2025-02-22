@@ -122,7 +122,7 @@ export default function Inventory() {
           <SearchIcon />
         </IconButton>
       </Box>
-      <List dense={true} sx={{ minHeight: '100px', maxWidth: '500px' }}>
+      <List dense={true} sx={{ minHeight: '100px', maxWidth: '700px' }}>
         {Object.entries(searchResults).map(([id, name]) => (
           <ListItem key={id} secondaryAction={
             <Box sx={{ display: 'flex', alignItems: 'center', maxHeight: '80%' }}>
