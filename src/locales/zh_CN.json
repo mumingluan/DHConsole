@@ -153,7 +153,7 @@
     "inventory": {
         "actions": {
             "removeUnusedRelics": "清理未使用遗器",
-            "removeUnusedEquipment": "清理未使用装备",
+            "removeUnusedEquipment": "清理未使用光锥",
             "send": "发送"
         },
         "sections": {

@@ -156,7 +156,7 @@ class CommandService {
     if (gender !== 1 && gender !== 2) {
       throw new Error('Invalid gender');
     }
-    const command = `hero ${gender}`;
+    const command = `hero gender ${gender}`;
     await this.executeCommand(command);
   }
 

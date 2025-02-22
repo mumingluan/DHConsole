@@ -106,10 +106,14 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
             ) : (
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', paddingRight: 6 }}>
                     <Typography>
-                        Name: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
+                            {t('character.lightCone.name')}: {characterInfo.equipId ? GameData.get(characterInfo.equipId, language) : '--'}
                     </Typography>
-                    <Typography>Level: {characterInfo.equipLevel || '--'}</Typography>
-                    <Typography>Superimposition: {characterInfo.equipRank || '--'}</Typography>
+                        <Typography>
+                            {t('character.lightCone.level')}: {characterInfo.equipLevel || '--'}
+                        </Typography>
+                        <Typography>
+                            {t('character.lightCone.superimposition')}: {characterInfo.equipRank || '--'}
+                        </Typography>
                 </Box>
             )}
         </Box>

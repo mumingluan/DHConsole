@@ -78,7 +78,7 @@ const ConfigSelectionDialog = ({
                                 }}
                             >
                                 <ListItemIcon>
-                                    <History color="primary" />
+                                    <History />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={t('server.configDialog.useRecent')}

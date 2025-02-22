@@ -147,10 +147,10 @@ const ServerToolbarActions = () => {
 
         <Box display="flex" flexDirection="column">
           <Typography variant="body2">
-            {t('server.serverTime')}: {state.serverTime || '--'}
+            {t('server.serverTime')}: {isConnected && state.serverTime ? state.serverTime : '--'}
           </Typography>
           <Typography variant="body2">
-            {t('server.memoryUsed')}: {state.serverMemory || '--'}
+            {t('server.memoryUsed')}: {isConnected && state.serverMemory ? state.serverMemory : '--'}
           </Typography>
         </Box>
 
