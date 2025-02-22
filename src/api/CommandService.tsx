@@ -119,8 +119,8 @@ class CommandService {
   static async setCharacterRelic(characterId: number, slotId: number, relic: Relic): Promise<void> {
     var mainAffixId = MAIN_AFFIXES[slotId].findIndex(affixes => affixes.includes(relic.mainAffix!));
     var subAffixIds = relic.subAffixes?.map(subAffix => SUB_AFFIXES.findIndex(affixes => affixes.includes(subAffix)));
-    var subAffixStr = subAffixIds?.map((id, index) => `${id}:${relic.subAffixLevels![index]}`).join(' ');
-    var relicStr = `${relic.relicId} l${relic.level} ${mainAffixId} ${subAffixStr}`;
+    var subAffixStr = subAffixIds?.map((id, index) => `${id + 1}:${relic.subAffixLevels![index]}`).join(' ');
+    var relicStr = `${relic.relicId} l${relic.level} ${mainAffixId + 1} ${subAffixStr}`;
     const command = `equip relic ${characterId} ${relicStr}`;
     await this.executeCommand(command);
   }
