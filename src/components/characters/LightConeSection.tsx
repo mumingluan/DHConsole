@@ -45,6 +45,15 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
         }
     };
 
+    const allItemsForEquip = React.useMemo(() => {
+        return Object.entries(GameData.getAllItems(language)).filter(([id]) => {
+            const numId = Number(id);
+            // Currently all equip are between 21000 and 25000. No items are between 25000 and 30000.
+            // If game data changes, this will need to be updated.
+            return numId >= 21000 && numId < 30000;
+        });
+    }, [language]);
+
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -66,7 +75,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         size="small"
                         sx={{ width: '300px' }}
                     >
-                        {Object.entries(GameData.getAllItems(language)).map(([id, name]) => (
+                        {allItemsForEquip.map(([id, name]) => (
                             <MenuItem key={id} value={id}>
                                 {name}
                             </MenuItem>

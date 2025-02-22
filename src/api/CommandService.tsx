@@ -103,7 +103,11 @@ class CommandService {
   }
 
   static async setCharacterBasicInfo(characterId: number, level: number, rank: number, talent: number): Promise<void> {
-    const command = `avatar ${characterId} l${level} r${rank} t${talent}`;
+    var command = `avatar level ${characterId} ${level}`;
+    await this.executeCommand(command);
+    command = `avatar rank ${characterId} ${rank}`;
+    await this.executeCommand(command);
+    command = `avatar talent ${characterId} ${talent}`;
     await this.executeCommand(command);
   }
 
@@ -181,13 +185,13 @@ class CommandService {
     var command: string;
     switch (itemType) {
       case 'characterLevel':
-        command = `avatar -1 level 80`;
+        command = `avatar level -1 80`;
         break;
       case 'characterRank':
-        command = `avatar -1 rank 6`;
+        command = `avatar rank -1 6`;
         break;
       case 'characterTalent':
-        command = `avatar -1 talent 10`;
+        command = `avatar talent -1 10`;
         break;
       default:
         throw new Error(`Invalid item type: ${itemType}`);

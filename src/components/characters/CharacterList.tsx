@@ -69,7 +69,7 @@ export default function CharacterList({ selectedCharacterId, onCharacterSelect }
     };
 
     const availableCharacters = Object.entries(GameData.getAllAvatars(language))
-        .filter(([id]) => !ownedCharacters.includes(Number(id)));
+        .filter(([id]) => !ownedCharacters.includes(Number(id)) && Number(id) < 3000);
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>

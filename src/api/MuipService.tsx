@@ -4,7 +4,7 @@ import JSEncrypt from 'jsencrypt';
 const API_BASE_URL = 'http://127.0.0.1:443/muip';
 
 class MuipService {
-  private static readonly MIN_CALL_INTERVAL: number = 100;
+  private static readonly MIN_CALL_INTERVAL: number = 50;
   private static adminKey: string | null = null;
   private static lastCallTimestamp: number = 0;
   private static callQueue: Promise<void> = Promise.resolve();
