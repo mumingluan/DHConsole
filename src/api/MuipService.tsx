@@ -2,15 +2,21 @@ import axios from 'axios';
 import JSEncrypt from 'jsencrypt';
 
 const API_BASE_URL = 'http://127.0.0.1:443/muip';
+const API_BASE_URL_SSL = 'https://127.0.0.1:443/muip';
 
 class MuipService {
   private static readonly MIN_CALL_INTERVAL: number = 50;
   private static adminKey: string | null = null;
+  private static useSSL: boolean = true;
   private static lastCallTimestamp: number = 0;
   private static callQueue: Promise<void> = Promise.resolve();
   private static rsaPublicKey: string = '';
   private static sessionId: string | null = null;
   private static sessionExpireTime: number = 0;
+
+  static setUseSSL(useSSL: boolean) {
+    this.useSSL = useSSL;
+  }
 
   static setAdminKey(key: string) {
     this.adminKey = key;
@@ -27,7 +33,7 @@ class MuipService {
     const encryptedCommand = this.encryptMessage(command);
     await this.enforceCallInterval();
     try {
-      const response = await axios.post(`${API_BASE_URL}/exec_cmd`, {
+      const response = await axios.post(`${this.getBaseUrl()}/exec_cmd`, {
         SessionId: this.sessionId,
         Command: encryptedCommand,
         TargetUid: targetUid,
@@ -58,7 +64,7 @@ class MuipService {
     await this.ensureValidSession();
     await this.enforceCallInterval();
     try {
-      const response = await axios.get(`${API_BASE_URL}/server_information`, {
+      const response = await axios.get(`${this.getBaseUrl()}/server_information`, {
         params: { SessionId: this.sessionId },
       });
       if (response.data.code !== 0) {
@@ -79,7 +85,7 @@ class MuipService {
     await this.ensureValidSession();
     await this.enforceCallInterval();
     try {
-      const response = await axios.get(`${API_BASE_URL}/player_information`, {
+      const response = await axios.get(`${this.getBaseUrl()}/player_information`, {
         params: { SessionId: this.sessionId, Uid: uid },
       });
       if (response.data.code !== 0) {
@@ -90,6 +96,10 @@ class MuipService {
       console.error('Error fetching player information:', error);
       throw error;
     }
+  }
+
+  private static getBaseUrl(): string {
+    return this.useSSL ? API_BASE_URL_SSL : API_BASE_URL;
   }
 
   private static async ensureValidSession(): Promise<void> {
@@ -105,15 +115,27 @@ class MuipService {
 
   private static async createSession(): Promise<{ sessionId: string; expireTimeStamp: number; rsaPublicKey: string }> {
     await this.enforceCallInterval();
-    try {
-      const response = await axios.post(`${API_BASE_URL}/create_session`, { key_type: 'PEM' });
+
+    const tryCreateSession = async (useSSL: boolean) => {
+      this.useSSL = useSSL;
+      const response = await axios.post(`${this.getBaseUrl()}/create_session`, { key_type: 'PEM' });
       if (response.data.code !== 0) {
         throw new Error(response.data.message);
       }
       return response.data.data;
+    };
+
+    try {
+      // First attempt with current SSL setting
+      return await tryCreateSession(this.useSSL);
     } catch (error) {
-      console.error('Error creating session:', error);
-      throw error;
+      try {
+        // If first attempt fails, try with opposite SSL setting
+        return await tryCreateSession(!this.useSSL);
+      } catch (retryError) {
+        console.error('Error creating session after retry:', retryError);
+        throw retryError;
+      }
     }
   }
 
@@ -121,7 +143,7 @@ class MuipService {
     if (!this.sessionId) throw new Error('No session ID available');
     await this.enforceCallInterval();
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth_admin`, {
+      const response = await axios.post(`${this.getBaseUrl()}/auth_admin`, {
         session_id: this.sessionId,
         admin_key: this.encryptMessage(this.adminKey as string),
       });

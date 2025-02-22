@@ -79,6 +79,13 @@ const ServerToolbarActions = () => {
 
       localStorage.setItem(ADMIN_KEY_STORAGE_KEY, adminKey);
       MuipService.setAdminKey(adminKey);
+
+      // Set SSL to true if the config file is from a private server
+      const useSSL = config?.HttpServer?.UseSSL;
+      if (useSSL != null) {
+        MuipService.setUseSSL(useSSL);
+      }
+
       setConfigDialogOpen(false);
       fetchServerInfo();
     } catch (error) {
