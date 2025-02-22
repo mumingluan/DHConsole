@@ -100,6 +100,7 @@
             "title": "アカウントコントロール",
             "unlockAll": "すべてアンロック",
             "maxAll": "すべて最大化",
+            "getAll": "すべて取得",
             "buttons": {
                 "characters": "キャラクター",
                 "collectibles": "コレクション",
@@ -107,7 +108,10 @@
                 "pets": "ペット",
                 "characterLevel": "キャラクターレベル",
                 "characterRank": "キャラクターランク",
-                "characterTalent": "キャラクタースキル"
+                "characterTalent": "キャラクタースキル",
+                "mission": "ミッション",
+                "tutorial": "チュートリアル",
+                "rogue": "シミュレーションユニバース"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "すべてのペットがアンロックされました",
                 "characterLevel": "すべてのキャラクターが最大レベルに設定されました",
                 "characterRank": "すべてのキャラクターが最大ランクに設定されました",
-                "characterTalent": "すべてのキャラクターが最大スキルに設定されました"
+                "characterTalent": "すべてのキャラクターが最大スキルに設定されました",
+                "mission": "すべてのミッションがアンロックされました",
+                "tutorial": "すべてのチュートリアルがアンロックされました",
+                "rogue": "すべてのシミュレーションユニバースミッションがアンロックされました"
             }
         }
     },

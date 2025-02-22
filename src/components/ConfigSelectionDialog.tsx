@@ -84,8 +84,7 @@ const ConfigSelectionDialog = ({
                                     primary={t('server.configDialog.useRecent')}
                                     secondary={t('server.configDialog.useRecentDesc')}
                                     primaryTypographyProps={{
-                                        color: 'primary',
-                                        fontWeight: 'medium'
+                                        fontWeight: 'bold'
                                     }}
                                 />
                             </ListItemButton>

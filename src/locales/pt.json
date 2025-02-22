@@ -100,6 +100,7 @@
             "title": "Controles da Conta",
             "unlockAll": "Desbloquear Tudo",
             "maxAll": "Maximizar Tudo",
+            "getAll": "Obter Tudo",
             "buttons": {
                 "characters": "Personagens",
                 "collectibles": "Colecionáveis",
@@ -107,7 +108,10 @@
                 "pets": "Animais de Estimação",
                 "characterLevel": "Nível do Personagem",
                 "characterRank": "Rank do Personagem",
-                "characterTalent": "Talento do Personagem"
+                "characterTalent": "Talento do Personagem",
+                "mission": "Missão",
+                "tutorial": "Tutorial",
+                "rogue": "Missão Simulação"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "Todos os animais de estimação desbloqueados",
                 "characterLevel": "Todos os personagens definidos para o nível máximo",
                 "characterRank": "Todos os personagens definidos para o rank máximo",
-                "characterTalent": "Todos os personagens definidos para o talento máximo"
+                "characterTalent": "Todos os personagens definidos para o talento máximo",
+                "mission": "Todas as missões desbloqueadas",
+                "tutorial": "Todos os tutoriais desbloqueados",
+                "rogue": "Todas as missões de Simulação desbloqueadas"
             }
         }
     },

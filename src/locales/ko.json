@@ -100,6 +100,7 @@
             "title": "계정 제어",
             "unlockAll": "모두 잠금 해제",
             "maxAll": "모두 최대화",
+            "getAll": "모두 가져오기",
             "buttons": {
                 "characters": "캐릭터",
                 "collectibles": "수집품",
@@ -107,7 +108,10 @@
                 "pets": "펫",
                 "characterLevel": "캐릭터 레벨",
                 "characterRank": "캐릭터 등급",
-                "characterTalent": "캐릭터 특성"
+                "characterTalent": "캐릭터 특성",
+                "mission": "임무",
+                "tutorial": "튜토리얼",
+                "rogue": "시뮬레이션 유니버스"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "모든 펫이 잠금 해제되었습니다",
                 "characterLevel": "모든 캐릭터가 최대 레벨로 설정되었습니다",
                 "characterRank": "모든 캐릭터가 최대 등급으로 설정되었습니다",
-                "characterTalent": "모든 캐릭터가 최대 특성으로 설정되었습니다"
+                "characterTalent": "모든 캐릭터가 최대 특성으로 설정되었습니다",
+                "mission": "모든 임무가 잠금 해제되었습니다",
+                "tutorial": "모든 튜토리얼이 잠금 해제되었습니다",
+                "rogue": "모든 시뮬레이션 유니버스 임무가 잠금 해제되었습니다"
             }
         }
     },

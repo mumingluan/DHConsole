@@ -163,7 +163,16 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
         });
     };
 
+    const allItemsForIndex = React.useMemo(() => {
+        return Object.entries(GameData.getAllItems(language)).filter(([id]) => {
+            const numId = Number(id);
+            // Assumes all gold relic starts with 6. If game data changes, this will need to be updated.
+            return numId > 60000 && numId < 70000 && numId % 10 === index;
+        });
+    }, [language, index]);
+
     const handleSaveRelic = async () => {
+        console.log(allItemsForIndex);
         try {
             await CommandService.setCharacterRelic(characterId, index, {
                 ...relic,
@@ -177,13 +186,6 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
         }
     };
 
-    const allItemsForIndex = React.useMemo(() => {
-        return Object.entries(GameData.getAllItems(language)).filter(([id]) => {
-            const numId = Number(id);
-            // Assumes all gold relic starts with 6. If game data changes, this will need to be updated.
-            return numId > 60000 && numId < 70000 && numId % 10 === index;
-        });
-    }, [language, index]);
 
     return (
         <Card variant="outlined">

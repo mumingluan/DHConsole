@@ -100,6 +100,7 @@
             "title": "Kontrol Akun",
             "unlockAll": "Buka Semua",
             "maxAll": "Maksimalkan Semua",
+            "getAll": "Dapatkan Semua",
             "buttons": {
                 "characters": "Karakter",
                 "collectibles": "Koleksi",
@@ -107,7 +108,10 @@
                 "pets": "Hewan Peliharaan",
                 "characterLevel": "Level Karakter",
                 "characterRank": "Peringkat Karakter",
-                "characterTalent": "Bakat Karakter"
+                "characterTalent": "Bakat Karakter",
+                "mission": "Misi",
+                "tutorial": "Tutorial",
+                "rogue": "Misi Simulasi"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "Semua hewan peliharaan dibuka",
                 "characterLevel": "Semua karakter diatur ke level maksimum",
                 "characterRank": "Semua karakter diatur ke peringkat maksimum",
-                "characterTalent": "Semua karakter diatur ke bakat maksimum"
+                "characterTalent": "Semua karakter diatur ke bakat maksimum",
+                "mission": "Semua misi dibuka",
+                "tutorial": "Semua tutorial dibuka",
+                "rogue": "Semua misi Simulasi dibuka"
             }
         }
     },

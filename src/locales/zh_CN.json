@@ -100,6 +100,7 @@
             "title": "账号控制",
             "unlockAll": "全部解锁",
             "maxAll": "全部最大化",
+            "getAll": "全部获取",
             "buttons": {
                 "characters": "角色",
                 "collectibles": "收藏品",
@@ -107,7 +108,10 @@
                 "pets": "宠物",
                 "characterLevel": "角色等级",
                 "characterRank": "命座",
-                "characterTalent": "行迹"
+                "characterTalent": "行迹",
+                "mission": "任务",
+                "tutorial": "教程",
+                "rogue": "模拟宇宙"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "已解锁所有宠物",
                 "characterLevel": "所有角色已设置为最高等级",
                 "characterRank": "所有角色已设置为最高命座",
-                "characterTalent": "所有角色已设置为最高行迹"
+                "characterTalent": "所有角色已设置为最高行迹",
+                "mission": "所有任务已解锁",
+                "tutorial": "所有教程已解锁",
+                "rogue": "所有模拟宇宙已解锁"
             }
         }
     },

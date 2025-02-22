@@ -101,6 +101,7 @@
             "title": "Account Controls",
             "unlockAll": "Unlock All",
             "maxAll": "Max All",
+            "getAll": "Get All",
             "buttons": {
                 "characters": "Characters",
                 "collectibles": "Collectibles",
@@ -108,7 +109,10 @@
                 "pets": "Pets",
                 "characterLevel": "Character Level",
                 "characterRank": "Character Rank",
-                "characterTalent": "Character Talent"
+                "characterTalent": "Character Talent",
+                "mission": "Mission",
+                "tutorial": "Tutorial",
+                "rogue": "Simulated Universe"
             }
         },
         "messages": {
@@ -126,7 +130,10 @@
                 "pets": "All pets unlocked",
                 "characterLevel": "All characters set to max level",
                 "characterRank": "All characters set to max rank",
-                "characterTalent": "All characters set to max talent"
+                "characterTalent": "All characters set to max talent",
+                "mission": "All missions unlocked",
+                "tutorial": "All tutorials unlocked",
+                "rogue": "All simulated universe missions unlocked"
             }
         }
     },

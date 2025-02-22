@@ -100,6 +100,7 @@
             "title": "帳號控制",
             "unlockAll": "全部解鎖",
             "maxAll": "全部最大化",
+            "getAll": "全部獲取",
             "buttons": {
                 "characters": "角色",
                 "collectibles": "收藏品",
@@ -107,7 +108,10 @@
                 "pets": "寵物",
                 "characterLevel": "角色等級",
                 "characterRank": "角色命座",
-                "characterTalent": "角色天賦"
+                "characterTalent": "角色天賦",
+                "mission": "任務",
+                "tutorial": "教程",
+                "rogue": "模擬宇宙"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "已解鎖所有寵物",
                 "characterLevel": "所有角色已設置為最高等級",
                 "characterRank": "所有角色已設置為最高命座",
-                "characterTalent": "所有角色已設置為最高天賦"
+                "characterTalent": "所有角色已設置為最高天賦",
+                "mission": "所有任務已解鎖",
+                "tutorial": "所有教程已解鎖",
+                "rogue": "所有模擬宇宙已解鎖"
             }
         }
     },

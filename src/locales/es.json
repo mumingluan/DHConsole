@@ -100,6 +100,7 @@
             "title": "Controles de Cuenta",
             "unlockAll": "Desbloquear Todo",
             "maxAll": "Maximizar Todo",
+            "getAll": "Obtener Todo",
             "buttons": {
                 "characters": "Personajes",
                 "collectibles": "Coleccionables",
@@ -107,7 +108,10 @@
                 "pets": "Mascotas",
                 "characterLevel": "Nivel de Personaje",
                 "characterRank": "Rango de Personaje",
-                "characterTalent": "Talento de Personaje"
+                "characterTalent": "Talento de Personaje",
+                "mission": "Misión",
+                "tutorial": "Tutorial",
+                "rogue": "Simulacro"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "Todas las mascotas desbloqueadas",
                 "characterLevel": "Todos los personajes establecidos al nivel máximo",
                 "characterRank": "Todos los personajes establecidos al rango máximo",
-                "characterTalent": "Todos los personajes establecidos al talento máximo"
+                "characterTalent": "Todos los personajes establecidos al talento máximo",
+                "mission": "Todas las misiones desbloqueadas",
+                "tutorial": "Todos los tutoriales desbloqueados",
+                "rogue": "Todas las misiones de Simulacro desbloqueadas"
             }
         }
     },

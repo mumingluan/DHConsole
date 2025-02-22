@@ -100,6 +100,7 @@
             "title": "Điều khiển tài khoản",
             "unlockAll": "Mở khóa tất cả",
             "maxAll": "Tối đa hóa tất cả",
+            "getAll": "Lấy tất cả",
             "buttons": {
                 "characters": "Nhân vật",
                 "collectibles": "Bộ sưu tập",
@@ -107,7 +108,10 @@
                 "pets": "Thú cưng",
                 "characterLevel": "Cấp độ nhân vật",
                 "characterRank": "Hạng nhân vật",
-                "characterTalent": "Kỹ năng nhân vật"
+                "characterTalent": "Kỹ năng nhân vật",
+                "mission": "Nhiệm vụ",
+                "tutorial": "Hướng dẫn",
+                "rogue": "Nhiệm vụ Mô phỏng"
             }
         },
         "messages": {
@@ -125,7 +129,10 @@
                 "pets": "Tất cả thú cưng đã được mở khóa",
                 "characterLevel": "Tất cả nhân vật đã được đặt ở cấp độ tối đa",
                 "characterRank": "Tất cả nhân vật đã được đặt ở hạng tối đa",
-                "characterTalent": "Tất cả nhân vật đã được đặt ở kỹ năng tối đa"
+                "characterTalent": "Tất cả nhân vật đã được đặt ở kỹ năng tối đa",
+                "mission": "Tất cả nhiệm vụ đã được mở khóa",
+                "tutorial": "Tất cả hướng dẫn đã được mở khóa",
+                "rogue": "Tất cả nhiệm vụ Mô phỏng đã được mở khóa"
             }
         }
     },

@@ -147,7 +147,7 @@ export default function Account() {
                   <Button
                     fullWidth
                     variant="outlined"
-                    onClick={() => handleUnlockAction(() => CommandService.unlockAll(item), item)}
+                    onClick={() => handleUnlockAction(() => CommandService.giveAll(item), item)}
                     sx={{ textTransform: 'none' }}
                   >
                     {t(`account.controls.buttons.${item}`)}
@@ -164,6 +164,22 @@ export default function Account() {
                     fullWidth
                     variant="outlined"
                     onClick={() => handleUnlockAction(() => CommandService.maxAll(item), item)}
+                    sx={{ textTransform: 'none' }}
+                  >
+                    {t(`account.controls.buttons.${item}`)}
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
+
+            <Typography variant="h6" sx={{ mt: 3, mb: 2 }}>{t('account.controls.getAll')}</Typography>
+            <Grid container spacing={2}>
+              {['mission', 'tutorial', 'rogue'].map((item) => (
+                <Grid key={item} size={{ xs: 12, sm: 4 }}>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={() => handleUnlockAction(() => CommandService.unlockAll(item), item)}
                     sx={{ textTransform: 'none' }}
                   >
                     {t(`account.controls.buttons.${item}`)}

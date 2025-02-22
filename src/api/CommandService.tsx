@@ -112,7 +112,7 @@ class CommandService {
   }
 
   static async setCharacterEquip(characterId: number, equipId: number, equipLevel: number, equipRank: number): Promise<void> {
-    const command = `eqiup item ${characterId} e${equipId} l${equipLevel} r${equipRank}`;
+    const command = `equip item ${characterId} ${equipId} l${equipLevel} r${equipRank}`;
     await this.executeCommand(command);
   }
 
@@ -121,7 +121,7 @@ class CommandService {
     var subAffixIds = relic.subAffixes?.map(subAffix => SUB_AFFIXES.findIndex(affixes => affixes.includes(subAffix)));
     var subAffixStr = subAffixIds?.map((id, index) => `${id}:${relic.subAffixLevels![index]}`).join(' ');
     var relicStr = `${relic.relicId} l${relic.level} ${mainAffixId} ${subAffixStr}`;
-    const command = `eqiup relic ${characterId} ${relicStr}`;
+    const command = `equip relic ${characterId} ${relicStr}`;
     await this.executeCommand(command);
   }
 
@@ -160,7 +160,7 @@ class CommandService {
     await this.executeCommand(command);
   }
 
-  static async unlockAll(itemType: string): Promise<void> {
+  static async giveAll(itemType: string): Promise<void> {
     var command: string;
     switch (itemType) {
       case 'characters':
@@ -195,6 +195,24 @@ class CommandService {
         break;
       default:
         throw new Error(`Invalid item type: ${itemType}`);
+    }
+    await this.executeCommand(command);
+  }
+
+  static async unlockAll(type: string): Promise<void> {
+    var command: string;
+    switch (type) {
+      case 'mission':
+        command = `unlockall mission`;
+        break;
+      case 'tutorial':
+        command = `unlockall tutorial`;
+        break;
+      case 'rogue':
+        command = `unlockall rogue`;
+        break;
+      default:
+        throw new Error(`Invalid item type: ${type}`);
     }
     await this.executeCommand(command);
   }
@@ -333,28 +351,37 @@ class CommandService {
     return result;
   }
 
-  private static parseRelicRecommend(response: string): Record<number, Relic> {
+  public static parseRelicRecommend(response: string): Record<number, Relic> {
     const lines = response.split('\n');
     const data: Record<number, Relic> = {};
     for (const line of lines) {
-      const match = line.match(/\[(.*)\] (.*)/);
+      const match = line.match(/\[(\d+)\] (.*)/);
       if (match && match[1] && match[2]) {
-        var slot = parseInt(match[1], 10);
-        var parts = match[2].split(' ');
-        var relicId = parseInt(parts[0], 10);
-        var mainAffix = MAIN_AFFIXES[slot][parseInt(parts[1], 10) - 1];
-        var subAffixes: Record<string, number> = parts.slice(2).map(sub => {
-          var subAffixAndLevel = sub.split(':');
-          var subAffix = SUB_AFFIXES[parseInt(subAffixAndLevel[0], 10) - 1];
-          return { key: subAffix, value: parseInt(subAffixAndLevel[1], 10) };
-        }).reduce((acc, curr) => ({ ...acc, ...curr }), {});
+        const slot = parseInt(match[1], 10);
+        const parts = match[2].trim().split(' ');
+        const relicId = parseInt(parts[0], 10);
+        const mainAffixIndex = parseInt(parts[1], 10);
+        const mainAffix = MAIN_AFFIXES[slot][mainAffixIndex - 1];
+
+        // Parse sub affixes and their levels
+        const subAffixParts = parts.slice(2);
+        const subAffixes: string[] = [];
+        const subAffixLevels: number[] = [];
+
+        subAffixParts.forEach(part => {
+          const [index, level] = part.split(':').map(num => parseInt(num, 10));
+          // The index in the input is 0-based, so we need to subtract 1
+          subAffixes.push(SUB_AFFIXES[index - 1]);
+          subAffixLevels.push(level);
+        });
+
         data[slot] = {
-          relicId: relicId,
+          relicId,
           level: 15,
-          mainAffix: mainAffix,
-          subAffixes: Object.keys(subAffixes),
-          subAffixLevels: Object.values(subAffixes),
-          subAffixSteps: Object.values(subAffixes),
+          mainAffix,
+          subAffixes,
+          subAffixLevels,
+          subAffixSteps: [...subAffixLevels],
         };
       }
     }
