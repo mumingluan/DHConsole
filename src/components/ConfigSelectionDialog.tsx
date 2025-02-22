@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { UploadFile, History, Key } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { alpha } from '@mui/material/styles';
 
 interface ConfigSelectionDialogProps {
     open: boolean;
@@ -58,6 +59,38 @@ const ConfigSelectionDialog = ({
                     {t('server.configDialog.description')}
                 </Typography>
                 <List>
+                    {hasRecentConfig && (
+                        <ListItem
+                            disablePadding
+                            sx={{
+                                mb: 2,
+                                backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.08),
+                                borderRadius: 1,
+                                border: (theme) => `1px solid ${alpha(theme.palette.primary.main, 0.2)}`
+                            }}
+                        >
+                            <ListItemButton
+                                onClick={onUseRecent}
+                                sx={{
+                                    '&:hover': {
+                                        backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.12),
+                                    }
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <History color="primary" />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={t('server.configDialog.useRecent')}
+                                    secondary={t('server.configDialog.useRecentDesc')}
+                                    primaryTypographyProps={{
+                                        color: 'primary',
+                                        fontWeight: 'medium'
+                                    }}
+                                />
+                            </ListItemButton>
+                        </ListItem>
+                    )}
                     <ListItem disablePadding>
                         <ListItemButton onClick={onSelectFile}>
                             <ListItemIcon>
@@ -80,19 +113,6 @@ const ConfigSelectionDialog = ({
                             />
                         </ListItemButton>
                     </ListItem>
-                    {hasRecentConfig && (
-                        <ListItem disablePadding>
-                            <ListItemButton onClick={onUseRecent}>
-                                <ListItemIcon>
-                                    <History />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={t('server.configDialog.useRecent')}
-                                    secondary={t('server.configDialog.useRecentDesc')}
-                                />
-                            </ListItemButton>
-                        </ListItem>
-                    )}
                 </List>
                 {showManualInput && (
                     <Box sx={{ mt: 2 }}>

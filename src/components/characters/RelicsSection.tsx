@@ -10,7 +10,6 @@ import {
     Stack,
     MenuItem,
     Divider,
-    ButtonGroup,
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,7 +19,6 @@ import CommandService from '../../api/CommandService';
 import GameData from '../../store/gameData';
 import { useLanguageContext } from '../../store/languageContext';
 import { useTranslation } from 'react-i18next';
-import Tooltip from '@mui/material/Tooltip';
 
 interface RelicSectionProps {
     characterId: number;
@@ -131,6 +129,16 @@ function RelicCard({ pos: index, relic, isEditing, onRelicChange, characterId, o
         { name: relic.subAffixes?.[2] || '', level: relic.subAffixLevels?.[2] || 0 },
         { name: relic.subAffixes?.[3] || '', level: relic.subAffixLevels?.[3] || 0 },
     ]);
+
+    React.useEffect(() => {
+        setMainAffix(relic.mainAffix || '');
+        setSubAffixes([
+            { name: relic.subAffixes?.[0] || '', level: relic.subAffixLevels?.[0] || 0 },
+            { name: relic.subAffixes?.[1] || '', level: relic.subAffixLevels?.[1] || 0 },
+            { name: relic.subAffixes?.[2] || '', level: relic.subAffixLevels?.[2] || 0 },
+            { name: relic.subAffixes?.[3] || '', level: relic.subAffixLevels?.[3] || 0 },
+        ]);
+    }, [relic]);
 
     const totalSubAffixLevels = subAffixes.reduce((sum, affix) => sum + affix.level, 0);
     const availableLevels = 5 - totalSubAffixLevels;
