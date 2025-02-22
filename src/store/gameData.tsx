@@ -56,9 +56,8 @@ class GameData {
   }
 
   private static storeData(data: Record<number, string>, entity: GameEntity, language: string): void {
-    language = language.replace(/<\/?unbreak>/g, '');
     for (const [key, value] of Object.entries(data)) {
-      GameData.set(parseInt(key, 10), value, entity, language);
+      GameData.set(parseInt(key, 10), value.replace(/<\/?unbreak>/g, ''), entity, language);
     }
     this.loadedEntities.add([entity, language]);
     console.log('Loaded', Object.keys(data).length, 'entities for', entity, 'in', language);
