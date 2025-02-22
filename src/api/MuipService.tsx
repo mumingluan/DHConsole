@@ -103,7 +103,7 @@ class MuipService {
   }
 
   private static async ensureValidSession(): Promise<void> {
-    const now = Date.now();
+    const now = Date.now() / 1000;
     if (!this.sessionId || now >= this.sessionExpireTime) {
       const response = await this.createSession();
       this.sessionId = response.sessionId;

@@ -88,7 +88,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         onChange={(e) => setEquipLevel(Number(e.target.value))}
                         inputProps={{ min: 1, max: 80 }}
                         size="small"
-                        sx={{ width: '60px' }}
+                        sx={{ width: '100px' }}
                     />
                     <TextField
                         label={t('character.lightCone.superimposition')}
@@ -97,7 +97,7 @@ export default function LightConeSection({ characterId, characterInfo, onUpdate 
                         onChange={(e) => setEquipRank(Number(e.target.value))}
                         inputProps={{ min: 1, max: 5 }}
                         size="small"
-                        sx={{ width: '60px' }}
+                        sx={{ width: '100px' }}
                     />
                     <Button variant="contained" onClick={handleSave} size="small">
                         {t('save')}
