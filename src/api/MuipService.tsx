@@ -1,8 +1,8 @@
 import axios from 'axios';
 import JSEncrypt from 'jsencrypt';
 
-const API_BASE_URL = 'http://127.0.0.1:443/muip';
-const API_BASE_URL_SSL = 'https://127.0.0.1:443/muip';
+const API_BASE_URL = 'https://sr.fatui.xyz/muip';
+const API_BASE_URL_SSL = 'https://sr.fatui.xyz/muip';
 
 class MuipService {
   private static readonly MIN_CALL_INTERVAL: number = 50;
