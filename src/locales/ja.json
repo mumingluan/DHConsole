@@ -204,10 +204,23 @@
         "title": "DH コンソール",
         "segments": {
             "characters": "キャラクター",
-            "missions": "任務",
-            "inventory": "インベントリ",
+            "missions": "ミッション",
+            "inventory": "アイテム",
+            "scene": "シーン",
             "account": "アカウント",
             "command": "コマンド"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "近くのオブジェクト",
+            "recentChanges": "最近の変更"
+        },
+        "messages": {
+            "saveSuccess": "オブジェクトの状態を保存しました",
+            "saveError": "オブジェクトの状態の保存に失敗しました",
+            "undoSuccess": "オブジェクトの状態を元に戻しました",
+            "undoError": "オブジェクトの状態の復元に失敗しました"
         }
     },
     "welcome": {

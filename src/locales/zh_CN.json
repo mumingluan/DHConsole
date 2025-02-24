@@ -200,14 +200,27 @@
         }
     },
     "navigation": {
-        "header": "游戏数据管理",
+        "header": "管理游戏数据",
         "title": "DH 控制台",
         "segments": {
             "characters": "角色",
             "missions": "任务",
             "inventory": "背包",
+            "scene": "场景",
             "account": "账号",
             "command": "命令"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "道具（附近）",
+            "recentChanges": "状态更改历史"
+        },
+        "messages": {
+            "saveSuccess": "道具状态保存成功",
+            "saveError": "保存道具状态失败",
+            "undoSuccess": "道具状态恢复成功",
+            "undoError": "恢复道具状态失败"
         }
     },
     "welcome": {

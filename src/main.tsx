@@ -6,6 +6,7 @@ import Account from './pages/Account';
 import Characters from './pages/Characters';
 import Inventory from './pages/Inventory';
 import Missions from './pages/Missions';
+import Scene from './pages/Scene';
 import Layout from './layouts/Console';
 import App from './App';
 import Command from './pages/Command';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: 'missions',
             Component: Missions,
+          },
+          {
+            path: 'scene',
+            Component: Scene,
           },
           {
             path: 'command',

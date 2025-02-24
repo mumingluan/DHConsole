@@ -206,8 +206,21 @@
             "characters": "Karakter",
             "missions": "Misi",
             "inventory": "Inventaris",
+            "scene": "Scene",
             "account": "Akun",
             "command": "Perintah"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Objek di Sekitar",
+            "recentChanges": "Perubahan Terbaru"
+        },
+        "messages": {
+            "saveSuccess": "Status objek berhasil disimpan",
+            "saveError": "Gagal menyimpan status objek",
+            "undoSuccess": "Status objek berhasil dikembalikan",
+            "undoError": "Gagal mengembalikan status objek"
         }
     },
     "welcome": {

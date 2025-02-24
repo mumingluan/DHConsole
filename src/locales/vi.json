@@ -206,6 +206,7 @@
             "characters": "Nhân vật",
             "missions": "Nhiệm vụ",
             "inventory": "Kho",
+            "scene": "Cảnh",
             "account": "Tài khoản",
             "command": "Lệnh"
         }
@@ -249,6 +250,18 @@
                 "title": "Bước 4: Kết nối DHConsole với DanhengServer",
                 "description": "Nhấn nút \"Kết nối\" ở góc trên bên phải của DHConsole"
             }
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Vật thể gần đây",
+            "recentChanges": "Thay đổi gần đây"
+        },
+        "messages": {
+            "saveSuccess": "Đã lưu trạng thái vật thể thành công",
+            "saveError": "Lưu trạng thái vật thể thất bại",
+            "undoSuccess": "Đã khôi phục trạng thái vật thể thành công",
+            "undoError": "Khôi phục trạng thái vật thể thất bại"
         }
     }
 }

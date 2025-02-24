@@ -207,8 +207,21 @@
             "characters": "Characters",
             "missions": "Missions",
             "inventory": "Inventory",
+            "scene": "Scene",
             "account": "Account",
             "command": "Command"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Props Near Me",
+            "recentChanges": "Recent Changes"
+        },
+        "messages": {
+            "saveSuccess": "Prop state saved successfully",
+            "saveError": "Failed to save prop state",
+            "undoSuccess": "Prop state reverted successfully",
+            "undoError": "Failed to revert prop state"
         }
     },
     "welcome": {

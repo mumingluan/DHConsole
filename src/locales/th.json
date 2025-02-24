@@ -205,7 +205,8 @@
         "segments": {
             "characters": "ตัวละคร",
             "missions": "ภารกิจ",
-            "inventory": "คลัง",
+            "inventory": "คลังเก็บของ",
+            "scene": "ฉาก",
             "account": "บัญชี",
             "command": "คำสั่ง"
         }
@@ -249,6 +250,18 @@
                 "title": "ขั้นตอนที่ 4: เชื่อมต่อ DHConsole กับ DanhengServer",
                 "description": "คลิกปุ่ม \"เชื่อมต่อ\" ที่มุมขวาบนของ DHConsole"
             }
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "วัตถุใกล้เคียง",
+            "recentChanges": "การเปลี่ยนแปลงล่าสุด"
+        },
+        "messages": {
+            "saveSuccess": "บันทึกสถานะวัตถุสำเร็จ",
+            "saveError": "ไม่สามารถบันทึกสถานะวัตถุ",
+            "undoSuccess": "คืนค่าสถานะวัตถุสำเร็จ",
+            "undoError": "ไม่สามารถคืนค่าสถานะวัตถุ"
         }
     }
 }

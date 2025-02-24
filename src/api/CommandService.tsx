@@ -1,5 +1,6 @@
 import MuipService from './MuipService';
 import { Character, Relic, MAIN_AFFIXES, SUB_AFFIXES } from './CharacterInfo';
+import { Prop } from './PropInfo';
 
 class CommandService {
   static readonly languageMap: Record<string, string> = {
@@ -241,6 +242,17 @@ class CommandService {
     return result;
   }
 
+  static async getPropsNearMe(): Promise<Prop[]> {
+    const command = `fetch scene`;
+    const result = await this.executeCommand(command);
+    return this.parsePropList(result);
+  }
+
+  static async changePropState(prop: Prop, stateId: number): Promise<void> {
+    const command = `scene prop ${prop.groupId} ${prop.entityId} ${stateId}`;
+    await this.executeCommand(command);
+  }
+
   static async removeUnusedRelics(): Promise<string> {
     const command = `remove relics`;
     const result = await this.executeCommand(command);
@@ -408,6 +420,34 @@ class CommandService {
     }
     return data;
   }
+
+  private static parsePropList(response: string): Prop[] {
+    // Example line format: "{GroupID}-{EntityID}[{distance}]: {category} {type} {propID} {currentState}:{currentStateId} ({states})"
+    // {states} is a comma separated list of valid states in the format of "{stateDesc}:{stateId}"
+    const lines = response.split('\n');
+    const data: Prop[] = [];
+    for (const line of lines) {
+      const match = line.match(/\{(\d+)\}-{(\d+)}\[(\d+)\]: (\w+) (\w+) (\d+) \w+:(\d+) \((.*)\)/);
+      if (match) {
+        const prop: Prop = {
+          groupId: parseInt(match[1], 10),
+          entityId: parseInt(match[2], 10),
+          propId: parseInt(match[3], 10),
+          distance: parseInt(match[4], 10),
+          type: match[5],
+          category: match[6],
+          state: match[7],
+          validStates: Object.fromEntries(match[8].split(',').map(state => {
+            const [desc, id] = state.split(':');
+            return [desc, parseInt(id, 10)];
+          })),
+        };
+        data.push(prop);
+      }
+    }
+    return data;
+  }
+
 }
 
 export default CommandService;

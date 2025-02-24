@@ -201,13 +201,26 @@
     },
     "navigation": {
         "header": "Gestionar Datos del Juego",
-        "title": "Consola DH",
+        "title": "DH Console",
         "segments": {
             "characters": "Personajes",
             "missions": "Misiones",
             "inventory": "Inventario",
+            "scene": "Escena",
             "account": "Cuenta",
             "command": "Comando"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Objetos Cercanos",
+            "recentChanges": "Cambios Recientes"
+        },
+        "messages": {
+            "saveSuccess": "Estado del objeto guardado con éxito",
+            "saveError": "Error al guardar el estado del objeto",
+            "undoSuccess": "Estado del objeto revertido con éxito",
+            "undoError": "Error al revertir el estado del objeto"
         }
     },
     "welcome": {

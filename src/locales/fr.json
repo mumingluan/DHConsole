@@ -201,11 +201,12 @@
     },
     "navigation": {
         "header": "Gérer les Données du Jeu",
-        "title": "Console DH",
+        "title": "DH Console",
         "segments": {
             "characters": "Personnages",
             "missions": "Missions",
             "inventory": "Inventaire",
+            "scene": "Scène",
             "account": "Compte",
             "command": "Commande"
         }
@@ -249,6 +250,18 @@
                 "title": "Étape 4 : Connecter DHConsole à DanhengServer",
                 "description": "Cliquez sur le bouton \"Connecter\" dans le coin supérieur droit de DHConsole"
             }
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Objets à Proximité",
+            "recentChanges": "Changements Récents"
+        },
+        "messages": {
+            "saveSuccess": "État de l'objet enregistré avec succès",
+            "saveError": "Échec de l'enregistrement de l'état de l'objet",
+            "undoSuccess": "État de l'objet restauré avec succès",
+            "undoError": "Échec de la restauration de l'état de l'objet"
         }
     }
 }

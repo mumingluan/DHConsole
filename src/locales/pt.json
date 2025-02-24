@@ -206,8 +206,21 @@
             "characters": "Personagens",
             "missions": "Missões",
             "inventory": "Inventário",
+            "scene": "Cena",
             "account": "Conta",
             "command": "Comando"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Objetos Próximos",
+            "recentChanges": "Alterações Recentes"
+        },
+        "messages": {
+            "saveSuccess": "Estado do objeto salvo com sucesso",
+            "saveError": "Falha ao salvar estado do objeto",
+            "undoSuccess": "Estado do objeto restaurado com sucesso",
+            "undoError": "Falha ao restaurar estado do objeto"
         }
     },
     "welcome": {

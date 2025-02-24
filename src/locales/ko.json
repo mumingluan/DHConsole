@@ -206,6 +206,7 @@
             "characters": "캐릭터",
             "missions": "임무",
             "inventory": "인벤토리",
+            "scene": "씬",
             "account": "계정",
             "command": "명령어"
         }
@@ -249,6 +250,18 @@
                 "title": "단계 4: DHConsole을 DanhengServer에 연결",
                 "description": "DHConsole의 오른쪽 상단 모서리에 있는 \"연결\" 버튼을 클릭하십시오"
             }
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "근처 오브젝트",
+            "recentChanges": "최근 변경사항"
+        },
+        "messages": {
+            "saveSuccess": "오브젝트 상태 저장 성공",
+            "saveError": "오브젝트 상태 저장 실패",
+            "undoSuccess": "오브젝트 상태 복원 성공",
+            "undoError": "오브젝트 상태 복원 실패"
         }
     }
 }
