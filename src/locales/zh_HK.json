@@ -248,7 +248,7 @@
             },
             "step1": {
                 "title": "步驟 1：啟動所需程序",
-                "description": "運行 `DanhengServer.exe` 和 `Fiddler Classic`"
+                "description": "運行 `DanhengServer.exe` 和 `Fiddler Classic` (或 cultivation)"
             },
             "step2": {
                 "title": "步驟 2：創建帳戶",

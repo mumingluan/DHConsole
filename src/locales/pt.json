@@ -248,7 +248,7 @@
             },
             "step1": {
                 "title": "Passo 1: Iniciar Programas Necessários",
-                "description": "Execute `DanhengServer.exe` e `Fiddler Classic`"
+                "description": "Execute `DanhengServer.exe` e `Fiddler Classic` (ou cultivation)"
             },
             "step2": {
                 "title": "Passo 2: Criar Conta",

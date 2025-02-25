@@ -363,7 +363,7 @@ class CommandService {
     return result;
   }
 
-  public static parseRelicRecommend(response: string): Record<number, Relic> {
+  static parseRelicRecommend(response: string): Record<number, Relic> {
     const lines = response.split('\n');
     const data: Record<number, Relic> = {};
     for (const line of lines) {
@@ -421,21 +421,21 @@ class CommandService {
     return data;
   }
 
-  private static parsePropList(response: string): Prop[] {
+  static parsePropList(response: string): Prop[] {
     // Example line format: "{GroupID}-{EntityID}[{distance}]: {category} {type} {propID} {currentState}:{currentStateId} ({states})"
     // {states} is a comma separated list of valid states in the format of "{stateDesc}:{stateId}"
     const lines = response.split('\n');
     const data: Prop[] = [];
     for (const line of lines) {
-      const match = line.match(/\{(\d+)\}-{(\d+)}\[(\d+)\]: (\w+) (\w+) (\d+) \w+:(\d+) \((.*)\)/);
+      const match = line.match(/(\d+)-(\d+)\[(\d+)\]: (\w+) (\w+) (\d+) (\w+):\d+ \((.*)\)/);
       if (match) {
         const prop: Prop = {
           groupId: parseInt(match[1], 10),
           entityId: parseInt(match[2], 10),
-          propId: parseInt(match[3], 10),
-          distance: parseInt(match[4], 10),
+          propId: parseInt(match[6], 10),
+          distance: parseInt(match[3], 10),
           type: match[5],
-          category: match[6],
+          category: match[4],
           state: match[7],
           validStates: Object.fromEntries(match[8].split(',').map(state => {
             const [desc, id] = state.split(':');

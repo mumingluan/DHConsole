@@ -236,7 +236,7 @@
             },
             "step1": {
                 "title": "Étape 1 : Lancer les programmes requis",
-                "description": "Exécutez `DanhengServer.exe` et `Fiddler Classic`"
+                "description": "Exécutez `DanhengServer.exe` et `Fiddler Classic` (ou cultivation)"
             },
             "step2": {
                 "title": "Étape 2 : Créer un compte",

@@ -248,7 +248,7 @@
             },
             "step1": {
                 "title": "Langkah 1: Luncurkan Program yang Diperlukan",
-                "description": "Jalankan `DanhengServer.exe` dan `Fiddler Classic`"
+                "description": "Jalankan `DanhengServer.exe` dan `Fiddler Classic` (atau cultivation)"
             },
             "step2": {
                 "title": "Langkah 2: Buat Akun",

@@ -248,7 +248,7 @@
             },
             "step1": {
                 "title": "Шаг 1: Запуск необходимых программ",
-                "description": "Запустите `DanhengServer.exe` и `Fiddler Classic`"
+                "description": "Запустите `DanhengServer.exe` и `Fiddler Classic` (или cultivation)"
             },
             "step2": {
                 "title": "Шаг 2: Создание аккаунта",

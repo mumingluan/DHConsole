@@ -236,7 +236,7 @@
             },
             "step1": {
                 "title": "단계 1: 필수 프로그램 실행",
-                "description": "`DanhengServer.exe`와 `Fiddler Classic`을 실행하십시오"
+                "description": "`DanhengServer.exe`와 `Fiddler Classic` (또는 cultivation)을 실행하십시오"
             },
             "step2": {
                 "title": "단계 2: 계정 생성",
