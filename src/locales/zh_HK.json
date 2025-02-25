@@ -220,7 +220,8 @@
             "saveSuccess": "道具狀態保存成功",
             "saveError": "保存道具狀態失敗",
             "undoSuccess": "道具狀態恢復成功",
-            "undoError": "恢復道具狀態失敗"
+            "undoError": "恢復道具狀態失敗",
+            "noStateSelected": "請選擇一個狀態來保存"
         }
     },
     "welcome": {

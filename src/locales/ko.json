@@ -211,6 +211,19 @@
             "command": "명령어"
         }
     },
+    "scene": {
+        "sections": {
+            "propsNearMe": "근처 오브젝트",
+            "recentChanges": "최근 변경사항"
+        },
+        "messages": {
+            "saveSuccess": "오브젝트 상태 저장 성공",
+            "saveError": "오브젝트 상태 저장 실패",
+            "undoSuccess": "오브젝트 상태 복원 성공",
+            "undoError": "오브젝트 상태 복원 실패",
+            "noStateSelected": "저장할 상태를 선택하십시오"
+        }
+    },
     "welcome": {
         "title": "DH 콘솔에 오신 걸 환영합니다!",
         "subtitle": "당신의 강력한 도구, 단헝 서버 관리",
@@ -250,18 +263,6 @@
                 "title": "단계 4: DHConsole을 DanhengServer에 연결",
                 "description": "DHConsole의 오른쪽 상단 모서리에 있는 \"연결\" 버튼을 클릭하십시오"
             }
-        }
-    },
-    "scene": {
-        "sections": {
-            "propsNearMe": "근처 오브젝트",
-            "recentChanges": "최근 변경사항"
-        },
-        "messages": {
-            "saveSuccess": "오브젝트 상태 저장 성공",
-            "saveError": "오브젝트 상태 저장 실패",
-            "undoSuccess": "오브젝트 상태 복원 성공",
-            "undoError": "오브젝트 상태 복원 실패"
         }
     }
 }

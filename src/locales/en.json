@@ -221,7 +221,8 @@
             "saveSuccess": "Prop state saved successfully",
             "saveError": "Failed to save prop state",
             "undoSuccess": "Prop state reverted successfully",
-            "undoError": "Failed to revert prop state"
+            "undoError": "Failed to revert prop state",
+            "noStateSelected": "Please select a state to save"
         }
     },
     "welcome": {

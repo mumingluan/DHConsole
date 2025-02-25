@@ -220,7 +220,8 @@
             "saveSuccess": "Status objek berhasil disimpan",
             "saveError": "Gagal menyimpan status objek",
             "undoSuccess": "Status objek berhasil dikembalikan",
-            "undoError": "Gagal mengembalikan status objek"
+            "undoError": "Gagal mengembalikan status objek",
+            "noStateSelected": "Silakan pilih status untuk menyimpan"
         }
     },
     "welcome": {

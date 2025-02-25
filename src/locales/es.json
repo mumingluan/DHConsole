@@ -220,7 +220,8 @@
             "saveSuccess": "Estado del objeto guardado con éxito",
             "saveError": "Error al guardar el estado del objeto",
             "undoSuccess": "Estado del objeto revertido con éxito",
-            "undoError": "Error al revertir el estado del objeto"
+            "undoError": "Error al revertir el estado del objeto",
+            "noStateSelected": "Por favor, selecciona un estado para guardar"
         }
     },
     "welcome": {

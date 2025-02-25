@@ -211,6 +211,19 @@
             "command": "Lệnh"
         }
     },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Vật thể gần đây",
+            "recentChanges": "Thay đổi gần đây"
+        },
+        "messages": {
+            "saveSuccess": "Đã lưu trạng thái vật thể thành công",
+            "saveError": "Lưu trạng thái vật thể thất bại",
+            "undoSuccess": "Đã khôi phục trạng thái vật thể thành công",
+            "undoError": "Khôi phục trạng thái vật thể thất bại",
+            "noStateSelected": "Vui lòng chọn một trạng thái để lưu"
+        }
+    },
     "welcome": {
         "title": "Chào mừng đến với Bảng điều khiển DH!",
         "subtitle": "Công cụ mạnh mẽ của bạn để quản lý máy chủ Danheng",
@@ -250,18 +263,6 @@
                 "title": "Bước 4: Kết nối DHConsole với DanhengServer",
                 "description": "Nhấn nút \"Kết nối\" ở góc trên bên phải của DHConsole"
             }
-        }
-    },
-    "scene": {
-        "sections": {
-            "propsNearMe": "Vật thể gần đây",
-            "recentChanges": "Thay đổi gần đây"
-        },
-        "messages": {
-            "saveSuccess": "Đã lưu trạng thái vật thể thành công",
-            "saveError": "Lưu trạng thái vật thể thất bại",
-            "undoSuccess": "Đã khôi phục trạng thái vật thể thành công",
-            "undoError": "Khôi phục trạng thái vật thể thất bại"
         }
     }
 }
