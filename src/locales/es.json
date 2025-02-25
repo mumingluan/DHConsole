@@ -216,6 +216,9 @@
             "propsNearMe": "Objetos Cercanos",
             "recentChanges": "Cambios Recientes"
         },
+        "labels": {
+            "showDistantProps": "Mostrar objetos > 100m"
+        },
         "messages": {
             "saveSuccess": "Estado del objeto guardado con éxito",
             "saveError": "Error al guardar el estado del objeto",

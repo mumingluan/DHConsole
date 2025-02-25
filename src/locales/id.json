@@ -216,6 +216,9 @@
             "propsNearMe": "Objek di Sekitar",
             "recentChanges": "Perubahan Terbaru"
         },
+        "labels": {
+            "showDistantProps": "Tampilkan objek > 100m"
+        },
         "messages": {
             "saveSuccess": "Status objek berhasil disimpan",
             "saveError": "Gagal menyimpan status objek",

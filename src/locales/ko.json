@@ -216,6 +216,9 @@
             "propsNearMe": "근처 오브젝트",
             "recentChanges": "최근 변경사항"
         },
+        "labels": {
+            "showDistantProps": "100m 이상의 오브젝트 표시"
+        },
         "messages": {
             "saveSuccess": "오브젝트 상태 저장 성공",
             "saveError": "오브젝트 상태 저장 실패",

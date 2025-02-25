@@ -33,14 +33,14 @@ function App() {
       icon: <AssignmentIcon />,
     },
     {
-      segment: 'inventory',
-      title: t('navigation.segments.inventory'),
-      icon: <InventoryIcon />,
-    },
-    {
       segment: 'scene',
       title: t('navigation.segments.scene'),
       icon: <MapIcon />,
+    },
+    {
+      segment: 'inventory',
+      title: t('navigation.segments.inventory'),
+      icon: <InventoryIcon />,
     },
     {
       segment: 'account',

@@ -216,6 +216,9 @@
             "propsNearMe": "Vật thể gần đây",
             "recentChanges": "Thay đổi gần đây"
         },
+        "labels": {
+            "showDistantProps": "Hiển thị vật thể > 100m"
+        },
         "messages": {
             "saveSuccess": "Đã lưu trạng thái vật thể thành công",
             "saveError": "Lưu trạng thái vật thể thất bại",

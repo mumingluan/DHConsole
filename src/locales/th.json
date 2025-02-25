@@ -216,6 +216,9 @@
             "propsNearMe": "วัตถุใกล้เคียง",
             "recentChanges": "การเปลี่ยนแปลงล่าสุด"
         },
+        "labels": {
+            "showDistantProps": "แสดงวัตถุ > 100m"
+        },
         "messages": {
             "saveSuccess": "บันทึกสถานะวัตถุสำเร็จ",
             "saveError": "ไม่สามารถบันทึกสถานะวัตถุ",

@@ -216,6 +216,9 @@
             "propsNearMe": "道具（附近）",
             "recentChanges": "状态更改历史"
         },
+        "labels": {
+            "showDistantProps": "显示 > 100m 的道具"
+        },
         "messages": {
             "saveSuccess": "道具状态保存成功",
             "saveError": "保存道具状态失败",

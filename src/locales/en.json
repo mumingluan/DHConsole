@@ -217,6 +217,9 @@
             "propsNearMe": "Props Near Me",
             "recentChanges": "Recent Changes"
         },
+        "labels": {
+            "showDistantProps": "Show props > 100m"
+        },
         "messages": {
             "saveSuccess": "Prop state saved successfully",
             "saveError": "Failed to save prop state",

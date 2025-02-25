@@ -216,6 +216,9 @@
             "propsNearMe": "近くのオブジェクト",
             "recentChanges": "最近の変更"
         },
+        "labels": {
+            "showDistantProps": "100m 以上のオブジェクトを表示"
+        },
         "messages": {
             "saveSuccess": "オブジェクトの状態を保存しました",
             "saveError": "オブジェクトの状態の保存に失敗しました",

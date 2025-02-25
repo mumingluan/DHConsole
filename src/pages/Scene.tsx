@@ -10,6 +10,7 @@ import {
     MenuItem,
     SelectChangeEvent,
     TextField,
+    Switch,
 } from '@mui/material';
 import {
     Refresh as RefreshIcon,
@@ -41,6 +42,7 @@ const Scene = () => {
     const [selectedState, setSelectedState] = useState<number | null>(null);
     const [recentChanges, setRecentChanges] = useState<PropStateChange[]>([]);
     const [waiting, setWaiting] = useState(false);
+    const [showDistantProps, setShowDistantProps] = useState(false);
 
     const fetchProps = async () => {
         if (!isConnected) return;
@@ -113,7 +115,8 @@ const Scene = () => {
     };
 
     const filteredProps = props.filter(prop =>
-        selectedTypes.length === 0 || selectedTypes.includes(prop.type)
+        (selectedTypes.length === 0 || selectedTypes.includes(prop.type)) &&
+        (showDistantProps || prop.distance < 100000)
     );
 
     return (
@@ -142,6 +145,17 @@ const Scene = () => {
                             style={{ margin: 4 }}
                         />
                     ))}
+                </Box>
+
+                <Box display="flex" alignItems="center" marginBottom={2}>
+                    <Typography variant="body2">
+                        {t('scene.labels.showDistantProps')}
+                    </Typography>
+                    <Switch
+                        checked={showDistantProps}
+                        onChange={(e) => setShowDistantProps(e.target.checked)}
+                        inputProps={{ 'aria-label': 'show distant props' }}
+                    />
                 </Box>
 
                 <List>
