@@ -217,6 +217,7 @@
             "recentChanges": "Недавние Изменения"
         },
         "labels": {
+            "state": "Состояние",
             "showDistantProps": "Показать объекты > 100м"
         },
         "messages": {

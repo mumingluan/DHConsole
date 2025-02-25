@@ -8,7 +8,6 @@ import {
     ListItemText,
     IconButton,
     MenuItem,
-    SelectChangeEvent,
     TextField,
     Switch,
 } from '@mui/material';
@@ -194,7 +193,7 @@ const Scene = () => {
                                     ) : (
                                             <Box display="flex" alignItems="center" justifyContent="end">
                                                 <Typography variant="body2" color="textSecondary">
-                                                    {`State: ${prop.state}`}
+                                                    {`${t('scene.labels.state')}: ${prop.state}`}
                                                 </Typography>
                                                 <IconButton
                                                     edge="end"
@@ -210,7 +209,7 @@ const Scene = () => {
                             >
                                 <ListItemText
                                     primary={`${prop.type} (${prop.distance / 1000}m)`}
-                                    secondary={`[Group ${prop.groupId}] ID:${prop.entityId}`}
+                                    secondary={`[${prop.groupId}] ID:${prop.entityId}`}
                                     slotProps={{ primary: { variant: 'body1' } }}
                                 />
                             </ListItem>
@@ -229,7 +228,7 @@ const Scene = () => {
                             secondaryAction={
                                 <Box display="flex" alignItems="center" justifyContent="end">
                                     <Typography variant="body2">
-                                        {`State: ${change.originalState} -> ${change.newState}`}
+                                        {`${t('scene.labels.state')}: ${change.originalState} -> ${change.newState}`}
                                     </Typography>
                                     <IconButton
                                         edge="end"
@@ -243,7 +242,7 @@ const Scene = () => {
                         >
                             <ListItemText
                                 primary={`${change.prop.type} (${change.prop.distance / 1000}m)`}
-                                secondary={`[Group ${change.prop.groupId}] ID:${change.prop.entityId}`}
+                                secondary={`[${change.prop.groupId}] ID:${change.prop.entityId}`}
                             />
                         </ListItem>
                     ))}

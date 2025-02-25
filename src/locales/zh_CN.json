@@ -217,6 +217,7 @@
             "recentChanges": "状态更改历史"
         },
         "labels": {
+            "state": "状态",
             "showDistantProps": "显示 > 100m 的道具"
         },
         "messages": {

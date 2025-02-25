@@ -217,6 +217,7 @@
             "recentChanges": "Perubahan Terbaru"
         },
         "labels": {
+            "state": "Status",
             "showDistantProps": "Tampilkan objek > 100m"
         },
         "messages": {

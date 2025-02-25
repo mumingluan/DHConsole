@@ -217,6 +217,7 @@
             "recentChanges": "Changements Récents"
         },
         "labels": {
+            "state": "État",
             "showDistantProps": "Afficher les objets > 100m"
         },
         "messages": {

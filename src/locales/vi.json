@@ -217,6 +217,7 @@
             "recentChanges": "Thay đổi gần đây"
         },
         "labels": {
+            "state": "Trạng thái",
             "showDistantProps": "Hiển thị vật thể > 100m"
         },
         "messages": {

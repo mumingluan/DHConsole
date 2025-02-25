@@ -218,6 +218,7 @@
             "recentChanges": "Recent Changes"
         },
         "labels": {
+            "state": "State",
             "showDistantProps": "Show props > 100m"
         },
         "messages": {
