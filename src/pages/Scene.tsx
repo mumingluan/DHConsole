@@ -37,8 +37,8 @@ const Scene = () => {
     const { showSnackbar } = useSnackbar();
     const [props, setProps] = useState<Prop[]>([]);
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-    const [editingPropId, setEditingPropId] = useState<string | null>(null);
-    const [selectedStates, setSelectedStates] = useState<Record<string, number>>({});
+    const [editingPropId, setEditingPropId] = useState<number | null>(null);
+    const [selectedState, setSelectedState] = useState<number | null>(null);
     const [recentChanges, setRecentChanges] = useState<PropStateChange[]>([]);
     const [waiting, setWaiting] = useState(false);
 
@@ -46,6 +46,8 @@ const Scene = () => {
         if (!isConnected) return;
         const nearbyProps = await CommandService.getPropsNearMe();
         setProps(nearbyProps.sort((a, b) => a.distance - b.distance));
+        setSelectedState(null);
+        setEditingPropId(null);
     };
 
     useEffect(() => {
@@ -62,34 +64,26 @@ const Scene = () => {
         );
     };
 
-    const getPropKey = (prop: Prop) => `${prop.groupId}-${prop.entityId}`;
-
     const handleEditClick = (prop: Prop) => {
-        const propKey = getPropKey(prop);
-        setEditingPropId(propKey);
-        setSelectedStates(prev => ({
-            ...prev,
-            [propKey]: parseInt(prop.state)
-        }));
+        setEditingPropId(prop.entityId);
+        setSelectedState(prop.stateId);
     };
 
-    const handleStateChange = (prop: Prop, event: SelectChangeEvent<number>) => {
-        const propKey = getPropKey(prop);
-        setSelectedStates(prev => ({
-            ...prev,
-            [propKey]: event.target.value as number
-        }));
+    const handleStateChange = (prop: Prop, event: SelectChangeEvent<number | null>) => {
+        setSelectedState(event.target.value as number | null);
     };
 
     const handleSaveClick = async (prop: Prop) => {
-        const propKey = getPropKey(prop);
         setWaiting(true);
         try {
-            const newState = selectedStates[propKey];
-            await CommandService.changePropState(prop, newState);
+            if (selectedState === null) {
+                showSnackbar(t('scene.messages.noStateSelected'), 'error');
+                return;
+            }
+            await CommandService.changePropState(prop, selectedState);
             setRecentChanges(prev => [{
                 prop,
-                originalState: parseInt(prop.state),
+                originalState: prop.stateId,
                 timestamp: Date.now()
             }, ...prev].slice(0, 10)); // Keep only last 10 changes
             await fetchProps();
@@ -150,64 +144,57 @@ const Scene = () => {
 
                 <List>
                     {filteredProps.map((prop) => {
-                        const propKey = getPropKey(prop);
-                        const isEditing = editingPropId === propKey;
+                        const isEditing = editingPropId === prop.entityId;
 
                         return (
                             <ListItem
-                                key={propKey}
+                                key={prop.entityId}
                                 secondaryAction={
                                     isEditing ? (
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={() => handleSaveClick(prop)}
-                                            disabled={waiting}
-                                            startIcon={<SaveIcon />}
-                                            sx={{ textTransform: 'none' }}
-                                        >
-                                            {t('save')}
-                                        </Button>
+                                        <Box display="flex" alignItems="end">
+                                            <FormControl size="small" sx={{ minWidth: 120 }}>
+                                                <Select
+                                                    value={selectedState}
+                                                    onChange={(e) => handleStateChange(prop, e)}
+                                                >
+                                                    {Object.entries(prop.validStates).map(([desc, id]) => (
+                                                        <MenuItem key={id} value={id}>
+                                                            {desc}
+                                                        </MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={() => handleSaveClick(prop)}
+                                                disabled={waiting || selectedState === null}
+                                                startIcon={<SaveIcon />}
+                                                sx={{ textTransform: 'none' }}
+                                            >
+                                                {t('save')}
+                                            </Button>
+                                        </Box>
                                     ) : (
-                                        <IconButton
-                                            edge="end"
-                                            onClick={() => handleEditClick(prop)}
-                                            disabled={waiting}
-                                        >
-                                            <EditIcon />
-                                        </IconButton>
+                                            <Box display="flex" alignItems="end">
+                                                <Typography variant="body2" color="textSecondary">
+                                                    {`State: ${prop.state}`}
+                                                </Typography>
+                                                <IconButton
+                                                    edge="end"
+                                                    onClick={() => handleEditClick(prop)}
+                                                    disabled={waiting}
+                                                >
+                                                    <EditIcon />
+                                                </IconButton>
+                                            </Box>
                                     )
                                 }
                             >
                                 <ListItemText
-                                    primary={`${prop.type} - ${prop.category} (${prop.distance}m)`}
-                                    secondary={
-                                        <Box>
-                                            <Typography variant="body2" component="span">
-                                                {`ID: ${prop.groupId}-${prop.entityId}-${prop.propId}`}
-                                            </Typography>
-                                            <Box display="flex" alignItems="center" marginTop={1}>
-                                                {isEditing ? (
-                                                    <FormControl size="small" sx={{ minWidth: 120 }}>
-                                                        <Select
-                                                            value={selectedStates[propKey]}
-                                                            onChange={(e) => handleStateChange(prop, e)}
-                                                        >
-                                                            {Object.entries(prop.validStates).map(([desc, id]) => (
-                                                                <MenuItem key={id} value={id}>
-                                                                    {desc}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </Select>
-                                                    </FormControl>
-                                                ) : (
-                                                    <Typography variant="body2" color="textSecondary">
-                                                        {`State: ${Object.entries(prop.validStates).find(([, id]) => id.toString() === prop.state)?.[0] || prop.state}`}
-                                                    </Typography>
-                                                )}
-                                            </Box>
-                                        </Box>
-                                    }
+                                    primary={`${prop.type} - ${prop.category} (${prop.distance / 1000}m)`}
+                                    secondary={`[Group ${prop.groupId}] ID:${prop.entityId} (${prop.propId})`}
+                                    slotProps={{ primary: { variant: 'body1' } }}
                                 />
                             </ListItem>
                         );
@@ -221,7 +208,7 @@ const Scene = () => {
                 <List>
                     {recentChanges.map((change, index) => (
                         <ListItem
-                            key={`${getPropKey(change.prop)}-${index}`}
+                            key={`${change.prop.entityId}-${index}`}
                             secondaryAction={
                                 <IconButton
                                     edge="end"

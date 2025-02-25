@@ -427,7 +427,7 @@ class CommandService {
     const lines = response.split('\n');
     const data: Prop[] = [];
     for (const line of lines) {
-      const match = line.match(/(\d+)-(\d+)\[(\d+)\]: (\w+) (\w+) (\d+) (\w+):\d+ \((.*)\)/);
+      const match = line.match(/(\d+)-(\d+)\[(\d+)\]: (\w+) (\w+) (\d+) (\w+):(\d+) \((.*)\)/);
       if (match) {
         const prop: Prop = {
           groupId: parseInt(match[1], 10),
@@ -437,7 +437,8 @@ class CommandService {
           type: match[5],
           category: match[4],
           state: match[7],
-          validStates: Object.fromEntries(match[8].split(',').map(state => {
+          stateId: parseInt(match[8], 10),
+          validStates: Object.fromEntries(match[9].split(',').map(state => {
             const [desc, id] = state.split(':');
             return [desc, parseInt(id, 10)];
           })),

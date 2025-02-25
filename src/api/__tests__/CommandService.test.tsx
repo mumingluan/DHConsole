@@ -130,6 +130,7 @@ describe('CommandService', () => {
                 type: 'MAZE_JIGSAW',
                 propId: 103012,
                 state: 'TriggerEnable',
+                stateId: 10,
                 validStates: {
                     'Closed': 0,
                     'Open': 1,
@@ -140,7 +141,23 @@ describe('CommandService', () => {
                 }
             });
 
-
+            expect(result[1]).toEqual({
+                groupId: 434,
+                entityId: 300002,
+                distance: 13672,
+                category: 'other',
+                type: 'ORDINARY',
+                propId: 103109,
+                state: 'Closed',
+                stateId: 0,
+                validStates: {
+                    'Closed': 0,
+                    'Open': 1,
+                    'Locked': 2,
+                    'TriggerDisable': 9,
+                    'TriggerEnable': 10,
+                }
+            });
 
             expect(result[2]).toEqual({
                 groupId: 479,
@@ -150,6 +167,7 @@ describe('CommandService', () => {
                 type: 'TREASURE_CHEST',
                 propId: 60301,
                 state: 'ChestClosed',
+                stateId: 12,
                 validStates: {
                     'ChestLocked': 11,
                     'ChestClosed': 12,
@@ -158,7 +176,22 @@ describe('CommandService', () => {
                 }
             });
 
-            // Check last prop (door)
+            expect(result[3]).toEqual({
+                groupId: 184,
+                entityId: 300002,
+                distance: 22475,
+                category: 'other',
+                type: 'ORDINARY',
+                propId: 211,
+                state: 'Open',
+                stateId: 1,
+                validStates: {
+                    'Closed': 0,
+                    'Open': 1,
+                    'Locked': 2
+                }
+            });
+
             expect(result[4]).toEqual({
                 groupId: 38,
                 entityId: 300002,
@@ -167,6 +200,7 @@ describe('CommandService', () => {
                 type: 'ORDINARY',
                 propId: 103011,
                 state: 'Closed',
+                stateId: 0,
                 validStates: {
                     'Closed': 0,
                     'Open': 1,

@@ -6,6 +6,7 @@ export interface Prop {
     type: string;
     category: string;
     state: string;
+    stateId: number;
     validStates: Record<string, number>;
 }
 
