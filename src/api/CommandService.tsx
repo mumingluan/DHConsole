@@ -422,12 +422,12 @@ class CommandService {
   }
 
   static parsePropList(response: string): Prop[] {
-    // Example line format: "{GroupID}-{EntityID}[{distance}]: {category} {type} {propID} {currentState}:{currentStateId} ({states})"
+    // Example line format: "{GroupID}-{EntityID}[{distance}]: {type} {propID} {currentState}:{currentStateId} ({states})"
     // {states} is a comma separated list of valid states in the format of "{stateDesc}:{stateId}"
     const lines = response.split('\n');
     const data: Prop[] = [];
     for (const line of lines) {
-      const match = line.match(/(\d+)-(\d+)\[(\d+)\]: (\w+) (\w+) (\d+) (\w+):(\d+) \((.*)\)/);
+      const match = line.match(/(\d+)-(\d+)\[(\d+)\]: (\w+) (\d+) (\w+):(\d+) \((.*)\)/);
       if (match) {
         const prop: Prop = {
           groupId: parseInt(match[1], 10),
@@ -435,7 +435,6 @@ class CommandService {
           propId: parseInt(match[6], 10),
           distance: parseInt(match[3], 10),
           type: match[5],
-          category: match[4],
           state: match[7],
           stateId: parseInt(match[8], 10),
           validStates: Object.fromEntries(match[9].split(',').map(state => {

@@ -110,11 +110,11 @@ describe('CommandService', () => {
         it('should correctly parse prop list response', () => {
             // Arrange
             const mockResponse =
-                `434-300001[13672]: other MAZE_JIGSAW 103012 TriggerEnable:10 (Closed:0,Open:1,Locked:2,TriggerDisable:9,TriggerEnable:10,Hidden:20)
-434-300002[13672]: other ORDINARY 103109 Closed:0 (Closed:0,Open:1,Locked:2,TriggerDisable:9,TriggerEnable:10)
-479-300001[20385]: chest TREASURE_CHEST 60301 ChestClosed:12 (ChestLocked:11,ChestClosed:12,ChestUsed:13,Hidden:20)
-184-300002[22475]: other ORDINARY 211 Open:1 (Closed:0,Open:1,Locked:2)
-38-300002[30864]: door ORDINARY 103011 Closed:0 (Closed:0,Open:1,Locked:2)`;
+                `434-300001[13672]: maze_jigsaw 103012 TriggerEnable:10 (Closed:0,Open:1,Locked:2,TriggerDisable:9,TriggerEnable:10,Hidden:20)
+434-300002[13672]: ordinary 103109 Closed:0 (Closed:0,Open:1,Locked:2,TriggerDisable:9,TriggerEnable:10)
+479-300001[20385]: treasure_chest 60301 ChestClosed:12 (ChestLocked:11,ChestClosed:12,ChestUsed:13,Hidden:20)
+184-300002[22475]: ordinary 211 Open:1 (Closed:0,Open:1,Locked:2)
+38-300002[30864]: door 103011 Closed:0 (Closed:0,Open:1,Locked:2)`;
 
             // Act
             const result = CommandService.parsePropList(mockResponse);
@@ -126,8 +126,7 @@ describe('CommandService', () => {
                 groupId: 434,
                 entityId: 300001,
                 distance: 13672,
-                category: 'other',
-                type: 'MAZE_JIGSAW',
+                type: 'maze_jigsaw',
                 propId: 103012,
                 state: 'TriggerEnable',
                 stateId: 10,
@@ -145,8 +144,7 @@ describe('CommandService', () => {
                 groupId: 434,
                 entityId: 300002,
                 distance: 13672,
-                category: 'other',
-                type: 'ORDINARY',
+                type: 'ordinary',
                 propId: 103109,
                 state: 'Closed',
                 stateId: 0,
@@ -163,8 +161,7 @@ describe('CommandService', () => {
                 groupId: 479,
                 entityId: 300001,
                 distance: 20385,
-                category: 'chest',
-                type: 'TREASURE_CHEST',
+                type: 'treasure_chest',
                 propId: 60301,
                 state: 'ChestClosed',
                 stateId: 12,
@@ -180,8 +177,7 @@ describe('CommandService', () => {
                 groupId: 184,
                 entityId: 300002,
                 distance: 22475,
-                category: 'other',
-                type: 'ORDINARY',
+                type: 'ordinary',
                 propId: 211,
                 state: 'Open',
                 stateId: 1,
@@ -196,8 +192,7 @@ describe('CommandService', () => {
                 groupId: 38,
                 entityId: 300002,
                 distance: 30864,
-                category: 'door',
-                type: 'ORDINARY',
+                type: 'door',
                 propId: 103011,
                 state: 'Closed',
                 stateId: 0,

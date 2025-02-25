@@ -4,7 +4,6 @@ export interface Prop {
     propId: number;
     distance: number;
     type: string;
-    category: string;
     state: string;
     stateId: number;
     validStates: Record<string, number>;
