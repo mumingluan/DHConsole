@@ -25,7 +25,9 @@ import { useSnackbar } from '../store/SnackbarContext';
 
 interface PropStateChange {
     prop: Prop;
-    originalState: number;
+    originalState: string;
+    originalStateId: number;
+    newState: string;
     timestamp: number;
 }
 
@@ -74,12 +76,18 @@ const Scene = () => {
                 showSnackbar(t('scene.messages.noStateSelected'), 'error');
                 return;
             }
-            await CommandService.changePropState(prop, selectedState);
-            setRecentChanges(prev => [{
+            if (selectedState === prop.stateId) {
+                return;
+            }
+            const propChange: PropStateChange = {
                 prop,
-                originalState: prop.stateId,
+                originalState: prop.state,
+                originalStateId: prop.stateId,
+                newState: Object.entries(prop.validStates).find(([_, id]) => id === selectedState)?.[0] || '',
                 timestamp: Date.now()
-            }, ...prev].slice(0, 10)); // Keep only last 10 changes
+            };
+            await CommandService.changePropState(prop, selectedState);
+            setRecentChanges(prev => [propChange, ...prev]);
             await fetchProps();
             showSnackbar(t('scene.messages.saveSuccess'), 'success');
         } catch (error) {
@@ -93,7 +101,7 @@ const Scene = () => {
     const handleUndoClick = async (change: PropStateChange) => {
         setWaiting(true);
         try {
-            await CommandService.changePropState(change.prop, change.originalState);
+            await CommandService.changePropState(change.prop, change.originalStateId);
             setRecentChanges(prev => prev.filter(c => c !== change));
             await fetchProps();
             showSnackbar(t('scene.messages.undoSuccess'), 'success');
@@ -187,8 +195,8 @@ const Scene = () => {
                                 }
                             >
                                 <ListItemText
-                                    primary={`${prop.type} - ${prop.category} (${prop.distance / 1000}m)`}
-                                    secondary={`[Group ${prop.groupId}] ID:${prop.entityId} (${prop.propId})`}
+                                    primary={`${prop.type} (${prop.distance / 1000}m)`}
+                                    secondary={`[Group ${prop.groupId}] ID:${prop.entityId}`}
                                     slotProps={{ primary: { variant: 'body1' } }}
                                 />
                             </ListItem>
@@ -201,31 +209,27 @@ const Scene = () => {
             <Box flex={1} paddingLeft={2}>
                 <Typography variant="h6">{t('scene.sections.recentChanges')}</Typography>
                 <List>
-                    {recentChanges.map((change, index) => (
+                    {recentChanges.slice(0, 10).map((change, index) => (
                         <ListItem
-                            key={`${change.prop.groupId}-${change.prop.entityId}-${index}`}
+                            key={index}
                             secondaryAction={
-                                <IconButton
-                                    edge="end"
-                                    onClick={() => handleUndoClick(change)}
-                                    disabled={waiting}
-                                >
-                                    <UndoIcon />
-                                </IconButton>
+                                <Box display="flex" alignItems="center" justifyContent="end">
+                                    <Typography variant="body2">
+                                        {`State: ${change.originalState} -> ${change.newState}`}
+                                    </Typography>
+                                    <IconButton
+                                        edge="end"
+                                        onClick={() => handleUndoClick(change)}
+                                        disabled={waiting}
+                                    >
+                                        <UndoIcon />
+                                    </IconButton>
+                                </Box>
                             }
                         >
                             <ListItemText
-                                primary={`${change.prop.type} - ${change.prop.category}`}
-                                secondary={
-                                    <Box>
-                                        <Typography variant="body2">
-                                            {`ID: ${change.prop.groupId}-${change.prop.entityId}-${change.prop.propId}`}
-                                        </Typography>
-                                        <Typography variant="body2">
-                                            {`Original State: ${Object.entries(change.prop.validStates).find(([, id]) => id === change.originalState)?.[0] || change.originalState}`}
-                                        </Typography>
-                                    </Box>
-                                }
+                                primary={`${change.prop.type} (${change.prop.distance / 1000}m)`}
+                                secondary={`[Group ${change.prop.groupId}] ID:${change.prop.entityId}`}
                             />
                         </ListItem>
                     ))}
