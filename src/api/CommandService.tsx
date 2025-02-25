@@ -432,12 +432,12 @@ class CommandService {
         const prop: Prop = {
           groupId: parseInt(match[1], 10),
           entityId: parseInt(match[2], 10),
-          propId: parseInt(match[6], 10),
+          propId: parseInt(match[5], 10),
           distance: parseInt(match[3], 10),
-          type: match[5],
-          state: match[7],
-          stateId: parseInt(match[8], 10),
-          validStates: Object.fromEntries(match[9].split(',').map(state => {
+          type: match[4],
+          state: match[6],
+          stateId: parseInt(match[7], 10),
+          validStates: Object.fromEntries(match[8].split(',').map(state => {
             const [desc, id] = state.split(':');
             return [desc, parseInt(id, 10)];
           })),
