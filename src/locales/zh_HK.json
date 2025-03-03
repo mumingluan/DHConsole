@@ -200,14 +200,32 @@
         }
     },
     "navigation": {
-        "header": "遊戲數據管理",
+        "header": "管理遊戲數據",
         "title": "DH 控制台",
         "segments": {
             "characters": "角色",
             "missions": "任務",
             "inventory": "背包",
+            "scene": "場景",
             "account": "帳號",
             "command": "命令"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "道具（附近）",
+            "recentChanges": "狀態更改歷史"
+        },
+        "labels": {
+            "state": "狀態",
+            "showDistantProps": "顯示 > 100m 的道具"
+        },
+        "messages": {
+            "saveSuccess": "道具狀態保存成功",
+            "saveError": "保存道具狀態失敗",
+            "undoSuccess": "道具狀態恢復成功",
+            "undoError": "恢復道具狀態失敗",
+            "noStateSelected": "請選擇一個狀態來保存"
         }
     },
     "welcome": {
@@ -235,7 +253,7 @@
             },
             "step1": {
                 "title": "步驟 1：啟動所需程序",
-                "description": "運行 `DanhengServer.exe` 和 `Fiddler Classic`"
+                "description": "運行 `DanhengServer.exe` 和 `Fiddler Classic` (或 cultivation)"
             },
             "step2": {
                 "title": "步驟 2：創建帳戶",

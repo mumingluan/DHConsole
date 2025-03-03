@@ -201,13 +201,31 @@
     },
     "navigation": {
         "header": "Gérer les Données du Jeu",
-        "title": "Console DH",
+        "title": "DH Console",
         "segments": {
             "characters": "Personnages",
             "missions": "Missions",
             "inventory": "Inventaire",
+            "scene": "Scène",
             "account": "Compte",
             "command": "Commande"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Objets à Proximité",
+            "recentChanges": "Changements Récents"
+        },
+        "labels": {
+            "state": "État",
+            "showDistantProps": "Afficher les objets > 100m"
+        },
+        "messages": {
+            "saveSuccess": "État de l'objet enregistré avec succès",
+            "saveError": "Échec de l'enregistrement de l'état de l'objet",
+            "undoSuccess": "État de l'objet restauré avec succès",
+            "undoError": "Échec de la restauration de l'état de l'objet",
+            "noStateSelected": "Veuillez sélectionner un état à enregistrer"
         }
     },
     "welcome": {
@@ -235,7 +253,7 @@
             },
             "step1": {
                 "title": "Étape 1 : Lancer les programmes requis",
-                "description": "Exécutez `DanhengServer.exe` et `Fiddler Classic`"
+                "description": "Exécutez `DanhengServer.exe` et `Fiddler Classic` (ou cultivation)"
             },
             "step2": {
                 "title": "Étape 2 : Créer un compte",

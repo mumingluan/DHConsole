@@ -205,9 +205,27 @@
         "segments": {
             "characters": "ตัวละคร",
             "missions": "ภารกิจ",
-            "inventory": "คลัง",
+            "inventory": "คลังเก็บของ",
+            "scene": "ฉาก",
             "account": "บัญชี",
             "command": "คำสั่ง"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "วัตถุใกล้เคียง",
+            "recentChanges": "การเปลี่ยนแปลงล่าสุด"
+        },
+        "labels": {
+            "state": "สถานะ",
+            "showDistantProps": "แสดงวัตถุ > 100m"
+        },
+        "messages": {
+            "saveSuccess": "บันทึกสถานะวัตถุสำเร็จ",
+            "saveError": "ไม่สามารถบันทึกสถานะวัตถุ",
+            "undoSuccess": "คืนค่าสถานะวัตถุสำเร็จ",
+            "undoError": "ไม่สามารถคืนค่าสถานะวัตถุ",
+            "noStateSelected": "กรุณาเลือกสถานะที่จะบันทึก"
         }
     },
     "welcome": {

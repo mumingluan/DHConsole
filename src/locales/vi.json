@@ -206,8 +206,26 @@
             "characters": "Nhân vật",
             "missions": "Nhiệm vụ",
             "inventory": "Kho",
+            "scene": "Cảnh",
             "account": "Tài khoản",
             "command": "Lệnh"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Vật thể gần đây",
+            "recentChanges": "Thay đổi gần đây"
+        },
+        "labels": {
+            "state": "Trạng thái",
+            "showDistantProps": "Hiển thị vật thể > 100m"
+        },
+        "messages": {
+            "saveSuccess": "Đã lưu trạng thái vật thể thành công",
+            "saveError": "Lưu trạng thái vật thể thất bại",
+            "undoSuccess": "Đã khôi phục trạng thái vật thể thành công",
+            "undoError": "Khôi phục trạng thái vật thể thất bại",
+            "noStateSelected": "Vui lòng chọn một trạng thái để lưu"
         }
     },
     "welcome": {

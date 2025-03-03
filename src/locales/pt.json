@@ -206,8 +206,26 @@
             "characters": "Personagens",
             "missions": "Missões",
             "inventory": "Inventário",
+            "scene": "Cena",
             "account": "Conta",
             "command": "Comando"
+        }
+    },
+    "scene": {
+        "sections": {
+            "propsNearMe": "Objetos Próximos",
+            "recentChanges": "Alterações Recentes"
+        },
+        "labels": {
+            "state": "Estado",
+            "showDistantProps": "Mostrar objetos > 100m"
+        },
+        "messages": {
+            "saveSuccess": "Estado do objeto salvo com sucesso",
+            "saveError": "Falha ao salvar estado do objeto",
+            "undoSuccess": "Estado do objeto restaurado com sucesso",
+            "undoError": "Falha ao restaurar estado do objeto",
+            "noStateSelected": "Selecione um estado para salvar"
         }
     },
     "welcome": {
@@ -235,7 +253,7 @@
             },
             "step1": {
                 "title": "Passo 1: Iniciar Programas Necessários",
-                "description": "Execute `DanhengServer.exe` e `Fiddler Classic`"
+                "description": "Execute `DanhengServer.exe` e `Fiddler Classic` (ou cultivation)"
             },
             "step2": {
                 "title": "Passo 2: Criar Conta",

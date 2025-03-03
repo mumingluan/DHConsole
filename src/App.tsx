@@ -3,6 +3,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TerminalIcon from '@mui/icons-material/Terminal';
+import MapIcon from '@mui/icons-material/Map';
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { DialogsProvider } from '@toolpad/core/useDialogs';
 import { Outlet } from 'react-router';
@@ -30,6 +31,11 @@ function App() {
       segment: 'missions',
       title: t('navigation.segments.missions'),
       icon: <AssignmentIcon />,
+    },
+    {
+      segment: 'scene',
+      title: t('navigation.segments.scene'),
+      icon: <MapIcon />,
     },
     {
       segment: 'inventory',

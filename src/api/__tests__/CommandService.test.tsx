@@ -105,4 +105,103 @@ describe('CommandService', () => {
             expect(Object.keys(result).length).toBe(6); // Should have 6 slots
         });
     });
+
+    describe('parsePropList', () => {
+        it('should correctly parse prop list response', () => {
+            // Arrange
+            const mockResponse =
+                `434-300001[13672]: maze_jigsaw 103012 TriggerEnable:10 (Closed:0,Open:1,Locked:2,TriggerDisable:9,TriggerEnable:10,Hidden:20)
+434-300002[13672]: ordinary 103109 Closed:0 (Closed:0,Open:1,Locked:2,TriggerDisable:9,TriggerEnable:10)
+479-300001[20385]: treasure_chest 60301 ChestClosed:12 (ChestLocked:11,ChestClosed:12,ChestUsed:13,Hidden:20)
+184-300002[22475]: ordinary 211 Open:1 (Closed:0,Open:1,Locked:2)
+38-300002[30864]: door 103011 Closed:0 (Closed:0,Open:1,Locked:2)`;
+
+            // Act
+            const result = CommandService.parsePropList(mockResponse);
+
+            // Assert
+            expect(result).toHaveLength(5);
+
+            expect(result[0]).toEqual({
+                groupId: 434,
+                entityId: 300001,
+                distance: 13672,
+                type: 'maze_jigsaw',
+                propId: 103012,
+                state: 'TriggerEnable',
+                stateId: 10,
+                validStates: {
+                    'Closed': 0,
+                    'Open': 1,
+                    'Locked': 2,
+                    'TriggerDisable': 9,
+                    'TriggerEnable': 10,
+                    'Hidden': 20
+                }
+            });
+
+            expect(result[1]).toEqual({
+                groupId: 434,
+                entityId: 300002,
+                distance: 13672,
+                type: 'ordinary',
+                propId: 103109,
+                state: 'Closed',
+                stateId: 0,
+                validStates: {
+                    'Closed': 0,
+                    'Open': 1,
+                    'Locked': 2,
+                    'TriggerDisable': 9,
+                    'TriggerEnable': 10,
+                }
+            });
+
+            expect(result[2]).toEqual({
+                groupId: 479,
+                entityId: 300001,
+                distance: 20385,
+                type: 'treasure_chest',
+                propId: 60301,
+                state: 'ChestClosed',
+                stateId: 12,
+                validStates: {
+                    'ChestLocked': 11,
+                    'ChestClosed': 12,
+                    'ChestUsed': 13,
+                    'Hidden': 20
+                }
+            });
+
+            expect(result[3]).toEqual({
+                groupId: 184,
+                entityId: 300002,
+                distance: 22475,
+                type: 'ordinary',
+                propId: 211,
+                state: 'Open',
+                stateId: 1,
+                validStates: {
+                    'Closed': 0,
+                    'Open': 1,
+                    'Locked': 2
+                }
+            });
+
+            expect(result[4]).toEqual({
+                groupId: 38,
+                entityId: 300002,
+                distance: 30864,
+                type: 'door',
+                propId: 103011,
+                state: 'Closed',
+                stateId: 0,
+                validStates: {
+                    'Closed': 0,
+                    'Open': 1,
+                    'Locked': 2
+                }
+            });
+        });
+    });
 }); 
